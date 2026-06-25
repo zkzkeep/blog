@@ -15,6 +15,8 @@
       <guid>http://localhost:1313/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
       <description>&lt;p&gt;说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。&lt;/p&gt;
 &lt;p&gt;第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。&lt;/p&gt;
+&lt;p&gt;附上美美的照片：&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20260625210824834&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/Users/leesdove/Documents/blog/static/images/image-20260625210824834.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;期间主要经历了以下坑：&lt;/p&gt;
 &lt;p&gt;1、Hexo → Hugo 迁移&lt;/p&gt;
 &lt;p&gt;2、图片路径调整&lt;/p&gt;
@@ -32,7 +34,47 @@
 &lt;p&gt;源码仓库：&lt;/p&gt;
 &lt;h6&gt;&lt;a href=&#34;https://github.com/zkzkeep/blog&#34;&gt;https://github.com/zkzkeep/blog&lt;/a&gt;&lt;/h6&gt;
 &lt;h1 id=&#34;一博客目录位置&#34;&gt;一、博客目录位置&lt;/h1&gt;
-&lt;p&gt;Mac 本地博客目录：&lt;/p&gt;</description>
+&lt;p&gt;Mac 本地博客目录：&lt;/p&gt;
+&lt;p&gt;这是正文&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;~/&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Documents&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;blog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入博客目录：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd ~/Documents/blog
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;确认是否进入成功：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pwd
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;应该显示：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/Users/leesdove/Documents/blog
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h1 id=&#34;二本地预览博客&#34;&gt;二、本地预览博客&lt;/h1&gt;
+&lt;p&gt;进入博客目录：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd ~/Documents/blog
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;启动 Hugo：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;hugo server
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;浏览器访问：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;http://localhost:1313
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;停止服务：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Ctrl + C
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h1 id=&#34;三新建文章&#34;&gt;三、新建文章&lt;/h1&gt;
+&lt;h2 id=&#34;方法一推荐&#34;&gt;方法一（推荐）&lt;/h2&gt;
+&lt;p&gt;打开 Typora&lt;/p&gt;
+&lt;p&gt;新建文件&lt;/p&gt;
+&lt;p&gt;保存到：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;~/Documents/blog/content/posts/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;文件名例如：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;我的第一篇文章.md
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;文章模板：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;+++
+title = &amp;#34;我的第一篇文章&amp;#34;
+date = 2026-06-25
+draft = false
+tags = [&amp;#34;生活&amp;#34;]
+categories = [&amp;#34;随笔&amp;#34;]
++++
+
+这里开始写正文
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;方法二hugo命令&#34;&gt;方法二（Hugo命令）&lt;/h2&gt;
+&lt;p&gt;必须先进入博客目录：&lt;/p&gt;</description>
     </item>
     <item>
       <title>测试文章</title>
