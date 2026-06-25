@@ -2,11 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2026-06-25T19:52:37+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2023-08-30T14:57:24+08:00</lastmod>
+    <lastmod>2026-06-25T19:52:37+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2023-08-30T14:57:24+08:00</lastmod>
+    <lastmod>2026-06-25T19:52:37+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/test/</loc>
+    <lastmod>2026-06-25T19:36:24+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/%E7%8E%B0%E5%9C%BA%E4%BC%9A%E5%B0%8F%E7%BB%93/</loc>
     <lastmod>2023-08-30T14:57:24+08:00</lastmod>
