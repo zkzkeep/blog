@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: recursive
           fetch-depth: 0
 
       - name: Setup Hugo
@@ -21,7 +21,7 @@ jobs:
           hugo-version: "latest"
           extended: true
 
-      - name: Build
+      - name: Build site
         run: hugo --minify
 
       - name: Deploy
