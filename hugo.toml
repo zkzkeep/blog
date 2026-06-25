@@ -1,0 +1,9 @@
+baseURL = "https://blog.leesy.cc/"
+languageCode = "zh-cn"
+title = "我的博客"
+theme = "PaperMod"
+
+[params]
+ShowReadingTime = true
+ShowPostNavLinks = true
+defaultTheme = "auto"
