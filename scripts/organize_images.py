@@ -12,6 +12,7 @@ IMAGE = re.compile(r"!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(\s+[^)]*)?\)")
 class ImageResult:
     created_files: set[Path] = field(default_factory=set)
     unresolved_refs: list[str] = field(default_factory=list)
+    removed_temp_files: set[Path] = field(default_factory=set)
 
 
 def _must_import_locally(reference: str) -> bool:
@@ -35,6 +36,7 @@ def _local_source(reference: str, post: Path) -> Path | None:
 def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
     """复制本轮文章的本地图片；从不移动、覆盖或删除原图。"""
     result = ImageResult()
+    temporary_root_copies: set[Path] = set()
     for post in posts:
         text, missing = post.read_text(encoding="utf-8"), []
         image_number = 0
@@ -53,6 +55,10 @@ def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
                 else:
                     target.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(source, target); result.created_files.add(target)
                     log(f"已复制图片：{source.name} → {target.relative_to(BLOG_ROOT)}")
+            # Typora 在设置图片根目录后，粘贴图片会生成 /../文件名：
+            # 这是博客根目录的临时副本，待全部文章处理完再安全清理。
+            if raw.startswith("/../") and source.parent.resolve() == BLOG_ROOT:
+                temporary_root_copies.add(source)
             return f"![{alt}](/{target.relative_to(STATIC_DIR).as_posix()}{title or ''})"
         updated = IMAGE.sub(replace, text)
         for reference in missing: log(f"警告：未找到图片，保持原链接不动：{post.name} → {reference}")
@@ -62,4 +68,11 @@ def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
         if updated != text:
             if dry_run: log(f"[dry-run] 将标准化图片链接：{post.relative_to(BLOG_ROOT)}")
             else: post.write_text(updated, encoding="utf-8")
+    # 只有整轮图片检查都通过才删除临时副本；失败时保留现场供修复。
+    if not dry_run and not result.unresolved_refs:
+        for source in temporary_root_copies:
+            if source.is_file():
+                source.unlink()
+                result.removed_temp_files.add(source)
+                log(f"已清理 Typora 根目录临时图片：{source.name}")
     return result
