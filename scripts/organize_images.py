@@ -14,7 +14,13 @@ def _local_source(reference: str, post: Path) -> Path | None:
     reference = unquote(reference.strip().strip("<>"))
     if reference.startswith(("http://", "https://", "data:")): return None
     if reference.startswith("file://"): reference = urlparse(reference).path
-    candidate = STATIC_DIR / reference.lstrip("/") if reference.startswith("/images/") else (Path(reference) if reference.startswith("/") else (post.parent / reference).resolve())
+    if reference.startswith("/images/"):
+        candidate = STATIC_DIR / reference.lstrip("/")
+    elif reference.startswith("/../"):
+        # Typora 的图片根目录设为 static 后，根目录图片会写成 /../文件名。
+        candidate = (STATIC_DIR / reference.lstrip("/")).resolve()
+    else:
+        candidate = Path(reference) if reference.startswith("/") else (post.parent / reference).resolve()
     return candidate if candidate.is_file() else None
 def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
     """复制本轮文章的本地图片；从不移动、覆盖或删除原图。"""
