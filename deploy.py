@@ -23,6 +23,9 @@ def main() -> int:
             if not args.dry_run:
                 log(f"已备份原文到：{backup_markdown(posts)}")
             images = organize_images(posts, dry_run=args.dry_run)
+            if images.unresolved_refs:
+                details = "\n".join(images.unresolved_refs)
+                raise BlogError(f"以下本地图片未找到；为避免发布坏链接，已取消提交：\n{details}")
             markdown = fix_markdown(posts, dry_run=args.dry_run)
             affected = set(posts) | images.created_files | markdown.changed_files
         else:
