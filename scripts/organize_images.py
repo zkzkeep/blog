@@ -12,6 +12,14 @@ IMAGE = re.compile(r"!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(\s+[^)]*)?\)")
 class ImageResult:
     created_files: set[Path] = field(default_factory=set)
     unresolved_refs: list[str] = field(default_factory=list)
+
+
+def _must_import_locally(reference: str) -> bool:
+    """仅阻止 Typora 刚插入、必须复制到博客的本地图片路径。
+
+    历史文章中的 /images/... 和 ../images/... 可能是教程示例；保留警告但不阻断发布。
+    """
+    return reference.startswith(("/../", "file://", "/Users/", "/private/"))
 def _local_source(reference: str, post: Path) -> Path | None:
     reference = unquote(reference.strip().strip("<>"))
     if reference.startswith(("http://", "https://", "data:")): return None
@@ -48,7 +56,9 @@ def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
             return f"![{alt}](/{target.relative_to(STATIC_DIR).as_posix()}{title or ''})"
         updated = IMAGE.sub(replace, text)
         for reference in missing: log(f"警告：未找到图片，保持原链接不动：{post.name} → {reference}")
-        result.unresolved_refs.extend(f"{post.name} → {reference}" for reference in missing)
+        result.unresolved_refs.extend(
+            f"{post.name} → {reference}" for reference in missing if _must_import_locally(reference)
+        )
         if updated != text:
             if dry_run: log(f"[dry-run] 将标准化图片链接：{post.relative_to(BLOG_ROOT)}")
             else: post.write_text(updated, encoding="utf-8")
