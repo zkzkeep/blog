@@ -4,10 +4,12 @@ import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import unquote, urlparse
+from urllib.request import Request, urlopen
 from .config import BLOG_ROOT, IMAGE_EXTENSIONS, IMAGES_DIR, STATIC_DIR
 from .utils import log, safe_directory_name
 
 IMAGE = re.compile(r"!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(\s+[^)]*)?\)")
+FENCED_CODE = re.compile(r"(?ms)^[ \t]*(?P<fence>`{3,}|~{3,}).*?^[ \t]*(?P=fence)[ \t]*$")
 @dataclass
 class ImageResult:
     created_files: set[Path] = field(default_factory=set)
@@ -33,6 +35,62 @@ def _local_source(reference: str, post: Path) -> Path | None:
     else:
         candidate = Path(reference) if reference.startswith("/") else (post.parent / reference).resolve()
     return candidate if candidate.is_file() else None
+
+
+def _remote_extension(reference: str, content_type: str = "") -> str:
+    """优先使用 URL 后缀；没有后缀时再根据响应类型判断。"""
+    suffix = Path(urlparse(reference).path).suffix.lower()
+    if suffix in IMAGE_EXTENSIONS:
+        return suffix
+    subtype = content_type.split(";", 1)[0].lower().removeprefix("image/")
+    aliases = {"jpeg": ".jpg", "svg+xml": ".svg", "x-icon": ".ico"}
+    suffix = aliases.get(subtype, f".{subtype}" if subtype else "")
+    return suffix if suffix in IMAGE_EXTENSIONS else ".jpg"
+
+
+def _download_remote_image(reference: str, target: Path, *, dry_run: bool) -> bool:
+    """将文章中的外链图片收归到 static；失败时保持原链接，绝不破坏文章。"""
+    if target.exists():
+        return True
+    if dry_run:
+        log(f"[dry-run] 将下载外链图片：{reference} → {target}"); return True
+    try:
+        request = Request(reference, headers={"User-Agent": "Mozilla/5.0 (blog image organizer)"})
+        with urlopen(request, timeout=20) as response:
+            content_type = response.headers.get_content_type()
+            if not content_type.startswith("image/"):
+                log(f"警告：外链不是图片，保持原链接不动：{reference}"); return False
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with target.open("wb") as output:
+                shutil.copyfileobj(response, output)
+        log(f"已下载外链图片：{target.relative_to(BLOG_ROOT)}")
+        return True
+    except Exception as exc:
+        log(f"警告：外链图片下载失败，保持原链接不动：{reference}（{exc}）")
+        return False
+
+
+def is_managed_image_reference(reference: str, post: Path) -> bool:
+    """返回图片是否已经是该文章下编号且实际存在的静态资源。"""
+    raw = reference.strip().strip("<>")
+    folder = safe_directory_name(post.stem)
+    prefix = f"/images/{folder}/"
+    if not raw.startswith(prefix):
+        return False
+    filename = raw.removeprefix(prefix)
+    if not re.fullmatch(r"[1-9]\d*\.(?:avif|gif|jpeg|jpg|png|svg|webp)", filename, flags=re.I):
+        return False
+    return (STATIC_DIR / raw.lstrip("/")).is_file()
+
+
+def image_references(text: str) -> list[str]:
+    references: list[str] = []
+    cursor = 0
+    for code_block in FENCED_CODE.finditer(text):
+        references.extend(match.group(2).strip("<>") for match in IMAGE.finditer(text[cursor:code_block.start()]))
+        cursor = code_block.end()
+    references.extend(match.group(2).strip("<>") for match in IMAGE.finditer(text[cursor:]))
+    return references
 def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
     """复制本轮文章的本地图片；从不移动、覆盖或删除原图。"""
     result = ImageResult()
@@ -42,9 +100,19 @@ def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
         image_number = 0
         def replace(match: re.Match[str]) -> str:
             nonlocal image_number
-            alt, reference, title = match.groups(); source = _local_source(reference, post); raw = reference.strip("<>")
+            alt, reference, title = match.groups(); raw = reference.strip("<>")
+            # 外链图片也归档到博客本地，避免图床失效，并与本地图片一样按顺序编号。
+            if raw.startswith(("http://", "https://")):
+                image_number += 1
+                target = IMAGES_DIR / safe_directory_name(post.stem) / f"{image_number}{_remote_extension(raw)}"
+                if _download_remote_image(raw, target, dry_run=dry_run):
+                    if not dry_run:
+                        result.created_files.add(target)
+                    return f"![{alt}](/{target.relative_to(STATIC_DIR).as_posix()}{title or ''})"
+                return match.group(0)
+            source = _local_source(reference, post)
             if source is None:
-                if not raw.startswith(("http://", "https://", "data:")): missing.append(raw)
+                if not raw.startswith("data:"): missing.append(raw)
                 return match.group(0)
             if source.suffix.lower() not in IMAGE_EXTENSIONS: return match.group(0)
             image_number += 1
@@ -60,7 +128,15 @@ def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
             if raw.startswith("/../") and source.parent.resolve() == BLOG_ROOT:
                 temporary_root_copies.add(source)
             return f"![{alt}](/{target.relative_to(STATIC_DIR).as_posix()}{title or ''})"
-        updated = IMAGE.sub(replace, text)
+        # 教程中的 Markdown 示例常包含图片写法；代码块原样保留，不应当被当成真实图片。
+        fragments: list[str] = []
+        cursor = 0
+        for code_block in FENCED_CODE.finditer(text):
+            fragments.append(IMAGE.sub(replace, text[cursor:code_block.start()]))
+            fragments.append(code_block.group(0))
+            cursor = code_block.end()
+        fragments.append(IMAGE.sub(replace, text[cursor:]))
+        updated = "".join(fragments)
         for reference in missing: log(f"警告：未找到图片，保持原链接不动：{post.name} → {reference}")
         result.unresolved_refs.extend(
             f"{post.name} → {reference}" for reference in missing if _must_import_locally(reference)

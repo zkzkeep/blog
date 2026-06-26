@@ -14,13 +14,18 @@ def main() -> int:
     p = argparse.ArgumentParser(description="安全发布 Hugo 博客")
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--no-push", action="store_true")
+    p.add_argument("--all-images", action="store_true", help="巡检并整理全部文章图片（含历史外链图）")
     p.add_argument("--message", default="auto deploy")
     args = p.parse_args()
     try:
         posts = changed_markdown_files()
+        if args.all_images:
+            from scripts.config import CONTENT_DIR
+            posts = sorted(CONTENT_DIR.rglob("*.md"))
         deleted = deleted_markdown_files()
         if posts or deleted:
-            log(f"检测到 {len(posts)} 篇新增或修改、{len(deleted)} 篇已删除的文章。")
+            scope = "全部文章图片巡检" if args.all_images else "新增或修改"
+            log(f"检测到 {len(posts)} 篇{scope}、{len(deleted)} 篇已删除的文章。")
             if not args.dry_run:
                 log(f"已备份原文到：{backup_markdown(posts)}")
             images = organize_images(posts, dry_run=args.dry_run)
