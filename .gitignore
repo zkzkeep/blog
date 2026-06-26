@@ -16,3 +16,5 @@ __pycache__/
 
 # 临时日志
 *.log
+.hugo_build.lock
+.backups/
