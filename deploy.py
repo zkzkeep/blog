@@ -3,6 +3,7 @@ import re
 import json
 import shutil
 from pathlib import Path
+from urllib.parse import unquote
 
 IMAGE_PATTERN = re.compile(r'!\[.*?\]\((.*?)\)')
 
@@ -16,19 +17,36 @@ def log(msg):
     print(msg)
 
 
-def find_image_path(img: str):
-    """
-    尝试找到 Markdown 中引用的图片真实位置
-    """
-    candidates = [
-        Path(img),
-        Path("static") / img.lstrip("/"),
-        Path(img.lstrip("/")),
-    ]
+def clean_img_path(img: str):
+    img = img.strip()
+    img = img.split("?")[0].split("#")[0]
+    img = unquote(img)
+    return img
 
-    for p in candidates:
-        if p.exists() and p.is_file():
-            return p
+
+def find_image_path(img: str):
+    img = clean_img_path(img)
+
+    candidates = []
+
+    p = Path(img)
+
+    # 1. 绝对路径
+    candidates.append(p)
+
+    # 2. Hugo 路径：/images/xxx => static/images/xxx
+    if img.startswith("/images/"):
+        candidates.append(Path("static") / img.lstrip("/"))
+
+    # 3. 普通相对路径
+    candidates.append(Path(img.lstrip("/")))
+
+    # 4. static 兜底
+    candidates.append(Path("static") / img.lstrip("/"))
+
+    for c in candidates:
+        if c.exists() and c.is_file():
+            return c
 
     return None
 
@@ -47,37 +65,31 @@ def process_images(md_path: Path, images_dir: str):
     log(f"  📦 找到图片: {len(images)} 张")
 
     mapping = {}
+    real_index = 1
 
-    for idx, img in enumerate(images, start=1):
-        old_img = img.strip()
-
-        # 已经是目标格式的，跳过
-        if old_img.startswith(f"/images/{post_name}/"):
-            continue
-
-        img_path = find_image_path(old_img)
+    for img in images:
+        original_img = img.strip()
+        img_path = find_image_path(original_img)
 
         if img_path is None:
-            log(f"  ⚠️ 找不到图片，跳过: {old_img}")
+            log(f"  ⚠️ 找不到图片，跳过: {original_img}")
             continue
 
-        suffix = img_path.suffix.lower()
-        if not suffix:
-            suffix = ".jpg"
-
-        new_filename = f"{idx}{suffix}"
+        suffix = img_path.suffix.lower() or ".jpg"
+        new_filename = f"{real_index}{suffix}"
         new_path = target_dir / new_filename
 
-        # 如果目标文件已存在，先删除，避免报错
-        if new_path.exists():
-            new_path.unlink()
-
-        shutil.move(str(img_path), str(new_path))
+        # 如果原图已经在目标位置，就只改名
+        if img_path.resolve() != new_path.resolve():
+            if new_path.exists():
+                new_path.unlink()
+            shutil.move(str(img_path), str(new_path))
 
         new_ref = f"/images/{post_name}/{new_filename}"
-        mapping[old_img] = new_ref
+        mapping[original_img] = new_ref
 
         log(f"  ✓ {img_path.name} → {new_filename}")
+        real_index += 1
 
     for old, new in mapping.items():
         content = content.replace(old, new)
@@ -108,7 +120,7 @@ def deploy(cmd):
 def main():
     print("\n===============================")
     print("Leesy Blog Toolkit")
-    print("🚀 Hugo 一键发布工具 V1.1")
+    print("🚀 Hugo 一键发布工具 V1.2")
     print("===============================\n")
 
     cfg = load_config()

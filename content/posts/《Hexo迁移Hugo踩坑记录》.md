@@ -11,7 +11,7 @@ title = '《Hexo迁移Hugo踩坑记录》'
 
 附上美美的照片：
 
-![image-20260625210824834](/images/《Hexo迁移Hugo踩坑记录》/image-20260625210824834.png)
+![image-20260625210824834](/images/《Hexo迁移Hugo踩坑记录》/1.png)
 
 期间主要经历了以下坑：
 
