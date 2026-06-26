@@ -9,6 +9,21 @@ def changed_markdown_files() -> list[Path]:
     untracked = run([*git_utf8, "ls-files", "--others", "--exclude-standard", "--", "content"]).stdout.splitlines()
     files = {BLOG_ROOT / name for name in changed + untracked if name.endswith(".md")}
     return sorted((p for p in files if p.is_file() and CONTENT_DIR in p.parents), key=str)
+
+
+def deleted_markdown_files() -> list[Path]:
+    """返回相对 HEAD 已删除的文章；路径已不存在也需要被 Git 提交。"""
+    lines = run(["git", "-c", "core.quotepath=false", "diff", "--name-status", "HEAD", "--", "content"]).stdout.splitlines()
+    deleted = []
+    for line in lines:
+        status, _, name = line.partition("\t")
+        if status == "D" and name.endswith(".md"):
+            deleted.append(BLOG_ROOT / name)
+    return sorted(deleted, key=str)
+
+
+def has_pending_markdown_changes() -> bool:
+    return bool(changed_markdown_files() or deleted_markdown_files())
 def commit_and_push(paths: set[Path], message: str, *, push: bool) -> None:
     if not paths: log("没有本轮文章或图片变更需要提交。"); return
     run(["git", "add", "--", *(str(p.relative_to(BLOG_ROOT)) for p in sorted(paths))])

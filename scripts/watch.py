@@ -6,7 +6,7 @@ import sys
 import time
 from pathlib import Path
 from .config import BLOG_ROOT, CONTENT_DIR
-from .git_tools import changed_markdown_files
+from .git_tools import has_pending_markdown_changes
 from .utils import log
 
 POLL_SECONDS, QUIET_SECONDS = 3, 15
@@ -15,7 +15,7 @@ def signature() -> tuple[tuple[str, int, int], ...]:
 def main() -> None:
     last = signature(); pending_at: float | None = None
     log("自动发布监听已启动；保存文章后 15 秒自动同步。Ctrl-C 停止。")
-    if changed_markdown_files():
+    if has_pending_markdown_changes():
         log("检测到启动前已写完但未发布的文章，立即自动同步…")
         result = subprocess.run([sys.executable, "deploy.py"], cwd=BLOG_ROOT)
         last = signature()
