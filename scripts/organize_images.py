@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 from .config import BLOG_ROOT, IMAGE_EXTENSIONS, IMAGES_DIR, STATIC_DIR
-from .utils import log, safe_directory_name, sha256
+from .utils import log, safe_directory_name
 
 IMAGE = re.compile(r"!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(\s+[^)]*)?\)")
 @dataclass
@@ -21,13 +21,17 @@ def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
     result = ImageResult()
     for post in posts:
         text, missing = post.read_text(encoding="utf-8"), []
+        image_number = 0
         def replace(match: re.Match[str]) -> str:
+            nonlocal image_number
             alt, reference, title = match.groups(); source = _local_source(reference, post); raw = reference.strip("<>")
             if source is None:
                 if not raw.startswith(("http://", "https://", "data:")): missing.append(raw)
                 return match.group(0)
             if source.suffix.lower() not in IMAGE_EXTENSIONS: return match.group(0)
-            target = IMAGES_DIR / safe_directory_name(post.stem) / f"{sha256(source)[:16]}{source.suffix.lower()}"
+            image_number += 1
+            # 同一篇文章按出现顺序编号：1.png、2.jpg……，便于人工管理。
+            target = IMAGES_DIR / safe_directory_name(post.stem) / f"{image_number}{source.suffix.lower()}"
             if source.resolve() != target.resolve() and not target.exists():
                 if dry_run: log(f"[dry-run] 将复制图片：{source} → {target}")
                 else:
