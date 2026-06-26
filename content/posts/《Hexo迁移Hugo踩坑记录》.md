@@ -468,37 +468,23 @@ cp .github/workflows/hugo.yml ~/Desktop/
 
 以后写文章只需要：
 
-```
-Typora写文章
-↓
-保存到content/posts
-↓
-本地预览(hugo server)
-↓
-git add .
-↓
-git commit -m "新增文章"
-↓
-git push
-↓
-等待1~2分钟
-↓
-博客自动更新
-```
-
-------
-
-这份文档建议你直接保存为：
+1. 用 Typora 写完文章、插完图片并保存。
+2. 在终端运行：
 
 ```
-博客维护手册.md
+cd ~/Documents/blog
+python3 -m scripts.watch
 ```
 
-放到：
+1. 它启动时会立刻检测你刚写完但尚未发布的文章，然后自动：
+   - 备份原 Markdown
+   - 识别 Typora 图片路径
+   - 复制图片到 `static/images/文章名/`
+   - 按顺序改名为 `1.jpg`、`2.png`、`3.jpg`
+   - 修改 Markdown 图片链接
+   - Hugo 构建
+   - Git 提交并推送
+   - GitHub Pages 自动发布
 
-```
-~/Documents/blog/
-```
-
-
+看到“自动同步完成”后，按 `Ctrl-C` 停止监听器即可。
 
