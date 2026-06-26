@@ -1,0 +1,18 @@
+# Hugo 构建输出
+public/
+
+# Hugo 缓存
+resources/
+
+# macOS 系统文件
+.DS_Store
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# 临时日志
+*.log
