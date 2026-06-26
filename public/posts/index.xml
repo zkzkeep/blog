@@ -2,21 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on 我的博客</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://blog.leesy.cc/posts/</link>
     <description>Recent content in Posts on 我的博客</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Jun 2026 19:52:37 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Jun 2026 11:48:01 +0800</lastBuildDate>
+    <atom:link href="https://blog.leesy.cc/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>生病杂记</title>
+      <link>https://blog.leesy.cc/posts/%E7%94%9F%E7%97%85%E6%9D%82%E8%AE%B0/</link>
+      <pubDate>Fri, 26 Jun 2026 11:48:01 +0800</pubDate>
+      <guid>https://blog.leesy.cc/posts/%E7%94%9F%E7%97%85%E6%9D%82%E8%AE%B0/</guid>
+      <description>&lt;p&gt;2026年6月23号，这一天是我该终身铭记的一天。一张医生的诊断证明，让我下半辈子永远都摆脱不了吃药的命运了，我得冠状动脉粥样硬化了。37岁的年龄，说大不大，说小不小，但按医生的话说，得的稍微有点着早。为了宽慰我，他又接着说，没事儿，我还不是吃药，我都吃5年啦。我看着他快50岁的头发和真诚的眼神，有种想打人得冲动，哎，可是我才37岁啊！&lt;/p&gt;
+&lt;p&gt;起初我有点想不通，毕竟我血压低，血脂低，身高也就178吧，体重也才65，不说帅比潘安，年轻时候那也是一表人才的，怎么就得了这个病啊，不科学啊。后来我问了AI，才搞明白，我这是遗传和压力导致的。遗传占主导地位，压力占次要地位。刚好25年，工作太忙，压力又大，持续扛压过后，得上了也是意料中事。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;3a52a69bac0730eb25209f961f12b066&#34; loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/Users/leesdove/Documents/blog/static/images/3a52a69bac0730eb25209f961f12b066-2449836.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;既然事已成定局，我也不再纠结了。吃药就吃药吧，也没什么大不了，反正医保卡里的钱足够买药了。而且这药是真便宜啊，一盒4板28粒才3块钱。医生给我开了一盒他汀，两瓶叶酸，叶酸，就是那个每个男人备孕时都被媳妇儿逼着吃的玩意儿，三样总共才10块。不得不感慨，社会主义就是好啊，让大家都能吃上国产药了。&lt;/p&gt;
+&lt;p&gt;我们家是有遗传史的，我爸这边男性，几乎人人都有。我爸62岁才得的冠心病，然后由于经常运动，跳舞打拳太极，血脂一直控制的很好，根本看不出有病的样子。&lt;/p&gt;
+&lt;p&gt;有一次他笑着说，如果哪天活腻了，就不吃药了，血管堵了，得了心梗，一下子就走了，轻松自在。比那些在病床上接受放疗化疗最后钱财两空的人好太多了。&lt;/p&gt;
+&lt;p&gt;但是，只要还有希望，谁会愿意离开这个世界呢？谁又敢说自己活腻歪了？&lt;/p&gt;
+&lt;p&gt;好死不如赖活着，我才不想走呢，我还要见证家居AI机器人时代的到来呢？我还等着AI机器人给咱泡茶做饭捏脚按摩呢？咱就躺在家里当大爷，哈哈哈，岂不快哉！&lt;/p&gt;</description>
+    </item>
     <item>
       <title>《Hexo迁移Hugo踩坑记录》</title>
-      <link>http://localhost:1313/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+      <link>https://blog.leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Thu, 25 Jun 2026 19:52:37 +0800</pubDate>
-      <guid>http://localhost:1313/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://blog.leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
       <description>&lt;p&gt;说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。&lt;/p&gt;
 &lt;p&gt;第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。&lt;/p&gt;
 &lt;p&gt;附上美美的照片：&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;image-20260625210824834&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/Users/leesdove/Documents/blog/static/images/image-20260625210824834.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20260625210824834&#34; loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8AHexo%E8%BF%81%E7%A7%BBHugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E3%80%8B/image-20260625210824834.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;期间主要经历了以下坑：&lt;/p&gt;
 &lt;p&gt;1、Hexo → Hugo 迁移&lt;/p&gt;
 &lt;p&gt;2、图片路径调整&lt;/p&gt;
@@ -78,16 +92,16 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>测试文章</title>
-      <link>http://localhost:1313/posts/test/</link>
+      <link>https://blog.leesy.cc/posts/test/</link>
       <pubDate>Thu, 25 Jun 2026 19:36:24 +0800</pubDate>
-      <guid>http://localhost:1313/posts/test/</guid>
+      <guid>https://blog.leesy.cc/posts/test/</guid>
       <description>&lt;p&gt;这是我的第一篇 Hugo 测试文章。&lt;/p&gt;</description>
     </item>
     <item>
       <title>现场会小结</title>
-      <link>http://localhost:1313/posts/%E7%8E%B0%E5%9C%BA%E4%BC%9A%E5%B0%8F%E7%BB%93/</link>
+      <link>https://blog.leesy.cc/posts/%E7%8E%B0%E5%9C%BA%E4%BC%9A%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Wed, 30 Aug 2023 14:57:24 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E7%8E%B0%E5%9C%BA%E4%BC%9A%E5%B0%8F%E7%BB%93/</guid>
+      <guid>https://blog.leesy.cc/posts/%E7%8E%B0%E5%9C%BA%E4%BC%9A%E5%B0%8F%E7%BB%93/</guid>
       <description>&lt;p&gt;省公司安全文化现场会是湖北公司有史以来接待人数最多，级别最高，规模最大的一次盛会。为办好这次会议，我又一次的被抽调到来集中办公。&lt;/p&gt;
 &lt;p&gt;会议前，我主要负责编写现场会筹备方案，迎检手册等文字性材料。会议期间，负责管理短信提醒服务。&lt;/p&gt;
 &lt;p&gt;具体详情不想多说，说说本次会议带给我的一些思考。&lt;/p&gt;
@@ -101,9 +115,9 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>看片有感</title>
-      <link>http://localhost:1313/posts/%E7%9C%8B%E7%89%87%E6%9C%89%E6%84%9F/</link>
+      <link>https://blog.leesy.cc/posts/%E7%9C%8B%E7%89%87%E6%9C%89%E6%84%9F/</link>
       <pubDate>Wed, 05 Jul 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/%E7%9C%8B%E7%89%87%E6%9C%89%E6%84%9F/</guid>
+      <guid>https://blog.leesy.cc/posts/%E7%9C%8B%E7%89%87%E6%9C%89%E6%84%9F/</guid>
       <description>&lt;p&gt;这两天，沉迷于色情不能自拔。各种搜索摸摸唱，98，95等类似的东西，最后还看了黄片。但也不知道是人老了还是咋地，第一次破天荒的从头看到尾。完全没有那种想要冲刺的想法。就是想看看剧情。&lt;/p&gt;
 &lt;p&gt;发现，从事这方面的这些女孩子，大多价值观与一般人不同。她们是纯信奉金钱至上。干这个就是为了钱。没有你我所谓的快感和高潮，当把它当成了一项工作后，和我们普通人工作是一样的，谁会喜欢工作呢？还不是拿钱走人。这里面，有的人素质高点，拿钱给你把事儿办好，服务好，还是有基本的职业道德；但也有些素质太差，以自我为中心，拿钱事儿也不办好。总之，这就是一份工作而已。以上是我最近看片的一点感悟。&lt;/p&gt;
 &lt;p&gt;我今天写这个话题，有两个方面想说。一，探讨价值观；二，自省。&lt;/p&gt;
@@ -117,10 +131,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>写在省公司应急演练之后</title>
-      <link>http://localhost:1313/posts/%E5%86%99%E5%9C%A8%E7%9C%81%E5%85%AC%E5%8F%B8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E4%B9%8B%E5%90%8E/</link>
+      <link>https://blog.leesy.cc/posts/%E5%86%99%E5%9C%A8%E7%9C%81%E5%85%AC%E5%8F%B8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E4%B9%8B%E5%90%8E/</link>
       <pubDate>Tue, 20 Jun 2023 20:04:22 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%86%99%E5%9C%A8%E7%9C%81%E5%85%AC%E5%8F%B8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E4%B9%8B%E5%90%8E/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E5%86%99%E5%9C%A8%E7%9C%81%E5%85%AC%E5%8F%B8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E4%B9%8B%E5%90%8E/%E5%9B%BE%E7%89%871.png&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E5%86%99%E5%9C%A8%E7%9C%81%E5%85%AC%E5%8F%B8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E4%B9%8B%E5%90%8E/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E5%86%99%E5%9C%A8%E7%9C%81%E5%85%AC%E5%8F%B8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E4%B9%8B%E5%90%8E/%E5%9B%BE%E7%89%871.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;6月15日，我在省公司应急演练脚本编制的工作已经全面结束。回想起一个星期前自己每日朝九晚十的日子，有种恍如隔世的味道。&lt;/p&gt;
 &lt;p&gt;我是5月25日那天下午接到闻总通知，让我去省公司参与完成此项工作，当时我一脸懵逼。本以为是去公司安监部挂岗锻炼，没曾想安监部没去成，倒先来了省公司涨了眼。&lt;/p&gt;
 &lt;p&gt;从来没有经历过机关的运行规律和套路，对于很多工作自然是被动和盲目的。记得第一天刚进去，见识到了机关的作风严谨，大家中午都不休息，除了吃饭和上厕所，基本上就没有离开会议室。就是硬刚啊。死命的打电话查资料，因为是省公司级别的迎峰度夏应急演练脚本，首先要将几个故障设置合理。要求我们故障设置必须合情合理，说得通讲的可信，这就对我们的专业水平提出了很高的要求。&lt;/p&gt;
@@ -137,9 +151,9 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>《随笔》</title>
-      <link>http://localhost:1313/posts/%E9%9A%8F%E7%AC%94/</link>
+      <link>https://blog.leesy.cc/posts/%E9%9A%8F%E7%AC%94/</link>
       <pubDate>Sun, 11 Jun 2023 10:17:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E9%9A%8F%E7%AC%94/</guid>
+      <guid>https://blog.leesy.cc/posts/%E9%9A%8F%E7%AC%94/</guid>
       <description>&lt;p&gt;最近，莫老爷生病了，经宜昌和武汉协和两家医院反复确认，就是白血病。&lt;/p&gt;
 &lt;p&gt;在今年三四月份的时候，他告诉我说，医院医生打电话给他，说他血液有些指标不正常，要他去复查。他当时忙，一直拖着没有去。医生说，你这个人，到底是命重要还是工作重要啊。直到今年6月初，我去站里上班，才知道他原来那么严重，下楼拿个饭心跳就剧烈跳动，必须得休息半个小时才能缓过劲儿来。妈呀，我当时一直以为他只是二阳。没曾想会严重到这个地步。&lt;/p&gt;
 &lt;p&gt;他现在正在协和进行化疗，化疗这个词，往往和癌症、死亡有关。听着就令人有些难受。尤其是在一个对自己很好的大哥身上看到，更令人心痛。但现状就是这么残酷，生老病死这四苦，谁也避免不了。&lt;/p&gt;
@@ -148,53 +162,53 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>五一游记</title>
-      <link>http://localhost:1313/posts/%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0/</link>
+      <link>https://blog.leesy.cc/posts/%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0/</link>
       <pubDate>Wed, 03 May 2023 14:46:48 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0/</guid>
+      <guid>https://blog.leesy.cc/posts/%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0/</guid>
       <description>&lt;p&gt;今天是5月3日，我在丈母娘家里，中午刷了一会儿视频，后被隔壁的装修给吵着了，没睡。&lt;/p&gt;
 &lt;p&gt;这个五一，我们一家人回了趟老家。原本是爸妈想回去走走转转的，他们二老想搭动车回去，还让雪花帮忙买了车票。那时我还在恩施上班，听老哥说起才知道这事儿，二老身体也不算太好，老家路也不算好走，两人单独回去我们也不放心，疫情三年终于过去了，我和老哥也想出去走走，于是我两一拍即合，当即决定我们一家人一起回老家过五一！&lt;/p&gt;
 &lt;p&gt;行程安排如下：4月29日出发，毕竟那天车多人多，能当天平安抵达已属不易了。4月30日先去看望下新州的二舅，然后中午带着二舅去小姨家聚聚，吃饭聊天；5月1日，上午回黄冈团风老家，在四爷家吃饭，下午去大姨家。5月2日返程。最终的行程也基本如计划一致，酒店定在团风的汉庭。新洲那边基本上没啥好的酒店，18年住过一次过后就再也不想住了。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/08dea4c0344a77a25653fd96c00f819.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/08dea4c0344a77a25653fd96c00f819.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;雪花开车，小月月在车后吃东西。爷爷奶奶为了哄她，带她看了一路的铁塔，鸟窝和风车。当然也少不了美食，这个吃货，嘴巴那可是一刻不停。欢乐的不得了。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/413975c513c0dd4372c60c33d67a42d.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/413975c513c0dd4372c60c33d67a42d.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这个是在后湖停车区拍的，她妈妈给她买的娃哈哈，她喝的这叫一个欢乐啊。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/2cc96e9aa3bfdeecb54b171b0734ebc.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/2cc96e9aa3bfdeecb54b171b0734ebc.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这个母女装还是很上镜的有没有？&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/b58eabd97f72bf6c1bdb3c8b182a33d.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/b58eabd97f72bf6c1bdb3c8b182a33d.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这是娃哈哈推介大使嘛，可以考虑收个代言费的。哈哈哈哈哈&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/16845b820a453d366c6c3c1c997694b.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/735a71714984b60d5ea6ce848ed7448.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/56aa9c7260dcd5ff463e36bb1ad6c4c.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/013f63128ec79a0505ff5653fec4f0b.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/4cda7f18cf3940863114083c02690f8.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/8d996c80cdd68b9658649de34d1f595.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/41b3f36d527c3a740fb424e547382b8.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/16845b820a453d366c6c3c1c997694b.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/735a71714984b60d5ea6ce848ed7448.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/56aa9c7260dcd5ff463e36bb1ad6c4c.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/013f63128ec79a0505ff5653fec4f0b.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/4cda7f18cf3940863114083c02690f8.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/8d996c80cdd68b9658649de34d1f595.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/41b3f36d527c3a740fb424e547382b8.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;可萌可甜可咸可爱，小家伙就是亲她大伯大妈，一个属相的就这么和谐嘛？&lt;/p&gt;
 &lt;p&gt;5月1日，在我们老家栗林村，社会主义新农村建设的有声有色，我们村居然还搞起了一个小型的旅游景点叫：快活林。林中清风习习，吹着树叶飒飒作响，好不快哉！同时还提供了烧火做饭的地儿，满足游客踏青烧烤的需求，为社会主义新农村建设点赞！&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/502a117fad05c3575812bfb92bd0319.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/83c2d3edbe21319fdbfd5aec77afa49.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/502a117fad05c3575812bfb92bd0319.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/83c2d3edbe21319fdbfd5aec77afa49.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;小家伙在快活林里和杨杨哥哥玩的好不快活，荡秋千，挖土，捡石头，就是爱这些农家地头里的简单快乐。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/dd06353ee3a6756c7cfcfab1ffca362.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/eb6b962bd9cc74e24121ed558abeaa8.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/fdbaad51e35b39be916650fd096f4aa.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/95120967b6dc3da490d4cb1a5c96956.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/e839d468e34e49d7cf843e05bb490a3.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/2dacbd5b243441dcb2609ea97d26a69.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/dd06353ee3a6756c7cfcfab1ffca362.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/eb6b962bd9cc74e24121ed558abeaa8.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/fdbaad51e35b39be916650fd096f4aa.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/95120967b6dc3da490d4cb1a5c96956.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/e839d468e34e49d7cf843e05bb490a3.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/2dacbd5b243441dcb2609ea97d26a69.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;5月2日，我们返程回家。由于我的一个导航失误，我们重新走到了沪渝高速，也就是老的汉宜高速段上去了。这段路上车多人多但就是服务区少，基本上300km的距离，只有三个服务区。平均下来100km一个，路上差点被老爸老妈还是雪花骂死了，说我没走对路要走沪蓉高速。我一边开着车，一边挨着骂，我也很无奈啊。老哥的车在我们后面跟着，本以为他走对了，结果他也走错了，笑死了。&lt;/p&gt;
 &lt;p&gt;但令人万万没想到的是，我们找到了一个宝藏——潜江服务区，简直让我们刷新了对当代中国服务区的三观。太震撼了！一进入大门，映入眼帘的居然是古装歌舞表演和古色古香的历史建筑。哇，一个服务区还能这样玩儿？爱了爱了。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/00738e06a24aa8398c0a85b1a3a1d21.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/00738e06a24aa8398c0a85b1a3a1d21.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;两旁的商业区也是各种文化底蕴，有糖人，有棉花糖，哇，都是小时候的味道和记忆。这个服务区真的令人印象深刻。来到了潜江不吃吃小龙虾怎么行？龙虾走起，150一盒，由于都不饿，于是就点了两盒龙虾加两碗面，于是我们边吃龙虾边看节目表演，果然高雅的艺术都需要金钱开路，300多块就这样没了。但我觉得不后悔，毕竟这样的一种模式让人很难不花钱啊。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/f800cf7e89dfae26043cc3bbea0d7c6.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/94d302654acf87e5258f7e3ab7216b9.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/f800cf7e89dfae26043cc3bbea0d7c6.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%94%E4%B8%80%E6%B8%B8%E8%AE%B0%E3%80%8B/94d302654acf87e5258f7e3ab7216b9.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;后来又听老妈说在我到车上午休的时候又来了一个类似于西安不夜城的那个不倒翁姐姐，还和小月月握了手呢。&lt;/p&gt;
 &lt;p&gt;经过了潜江服务区，我们一路奔波终于来到了枝江停车区，算了，不提也罢，作为大半个宜昌人，真感觉差距太大了，一个是宾至如归，一个是脏乱差。简直没法比，哎！此处无图，以免丢了宜昌的美好形象。&lt;/p&gt;</description>
     </item>
     <item>
       <title>《悉达多》</title>
-      <link>http://localhost:1313/posts/%E6%82%89%E8%BE%BE%E5%A4%9A/</link>
+      <link>https://blog.leesy.cc/posts/%E6%82%89%E8%BE%BE%E5%A4%9A/</link>
       <pubDate>Fri, 21 Apr 2023 14:51:47 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%82%89%E8%BE%BE%E5%A4%9A/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E6%82%89%E8%BE%BE%E5%A4%9A%E3%80%8B/watermark,image_d2F0ZXIvYmFpa2UxNTA=,g_7,xp_5,yp_5.jpeg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E6%82%89%E8%BE%BE%E5%A4%9A/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E6%82%89%E8%BE%BE%E5%A4%9A%E3%80%8B/watermark,image_d2F0ZXIvYmFpa2UxNTA=,g_7,xp_5,yp_5.jpeg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;《悉达多》这本书是我昨日无聊在酒店长廊书屋里偶然看到的，书屋里空无一人，放着空灵高雅的音乐，那一刻，也正好符合看这本书的心境。于是我脱了鞋，坐在地毯上读了起来。&lt;/p&gt;
 &lt;p&gt;原本我以为它讲的是一个佛陀出家成佛的故事，后来一看，好像又与事实不符，结果看到最后发现，它讲的是我们芸芸众生离苦得乐，解脱究竟的故事。也恰好暗合了众生即佛的道妙。&lt;/p&gt;
 &lt;p&gt;何为真理？如何探寻真理？真理究竟是什么？它是可以通过无休止的苦修才能寻得的嘛？这些问题困扰着年轻的悉达多，于是他远毅然决然的离家出走，加入了沙门的行列。经过这些苦修可以获得一定的神通，以此立足谋生，但这就是真理嘛？悉达多并不认可。&lt;/p&gt;
@@ -213,9 +227,9 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>新闻培训作业-06</title>
-      <link>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-06/</link>
+      <link>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-06/</link>
       <pubDate>Tue, 28 Mar 2023 18:03:00 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-06/</guid>
+      <guid>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-06/</guid>
       <description>&lt;h1 id=&#34;新闻培训作业-06&#34;&gt;&lt;!-- raw HTML omitted --&gt;新闻培训作业-06&lt;!-- raw HTML omitted --&gt;&lt;/h1&gt;
 &lt;p&gt;经过这段时间的学习，总结了一些新闻宣传考试中必考的知识点：&lt;/p&gt;
 &lt;h4 id=&#34;一企业文化部分节选&#34;&gt;一、企业文化(部分节选)&lt;/h4&gt;
@@ -248,19 +262,19 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>Git学习_删除文件</title>
-      <link>http://localhost:1313/posts/git%E5%AD%A6%E4%B9%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</link>
+      <link>https://blog.leesy.cc/posts/git%E5%AD%A6%E4%B9%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</link>
       <pubDate>Mon, 27 Mar 2023 16:44:16 +0800</pubDate>
-      <guid>http://localhost:1313/posts/git%E5%AD%A6%E4%B9%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://blog.leesy.cc/posts/git%E5%AD%A6%E4%B9%A0-%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6/</guid>
       <description>&lt;p&gt;1.如果你用的rm删除文件，那就相当于只删除了工作区的文件，如果想要恢复，直接用git restore  &lt;!-- raw HTML omitted --&gt;就可以&lt;/p&gt;
 &lt;p&gt;2.如果你用的是git rm删除文件，那就相当于不仅删除了文件，而且还添加到了暂存区，需要先git reset HEAD &lt;!-- raw HTML omitted --&gt;，然后再git restore  &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;3.如果你想彻底把版本库的删除掉，先git rm，再git commit 就ok了&lt;/p&gt;</description>
     </item>
     <item>
       <title>新闻培训作业-05</title>
-      <link>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-05/</link>
+      <link>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-05/</link>
       <pubDate>Thu, 23 Mar 2023 21:42:34 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-05/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-05/176982.png&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-05/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-05/176982.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;中共中央党史和文献研究院编辑的习近平同志《论党的宣传思想工作》一书，收入习近平同志2013年8月19日至2020年2月23日期间关于党的宣传思想工作的重要文稿52篇。&lt;/p&gt;
 &lt;p&gt;报告从理论和实践结合上系统回答了新时代坚持和发展什么样的中国特色社会主义、怎样坚持和发展中国特色社会主义这个重大时代课题，概括了习近平新时代中国特色社会主义思想的主要内容，提出新时代坚持和发展中国特色社会主义的基本方略，确立了习近平新时代中国特色社会主义思想的历史地位。强调，全党要深刻领会新时代中国特色社会主义思想的精神实质和丰富内涵，在各项工作中全面准确贯彻落实。&lt;/p&gt;
 &lt;p&gt;指出：中国特色社会主义文化，源自于中华民族五千多年文明历史所孕育的**==中华优秀传统文化==&lt;strong&gt;，熔铸于党领导人民在革命、建设、改革中创造的革命文化和社会主义先进文化，植根于中国特色社会主义伟大实践。发展中国特色社会主义文化，就是&lt;/strong&gt;==以马克思主义为指导，坚守中华文化立场，立足当代中国现实，结合当今时代条件，发展面向现代化、面向世界、面向未来的，民族的科学的大众的社会主义文化，推动社会主义精神文明和物质文明协调发展。要坚持为人民服务、为社会主义服务，坚持百花齐放、百家争鸣，坚持创造性转化、创新性发展，不断铸就中华文化新辉煌==**。要牢牢掌握==&lt;strong&gt;意识形态工作&lt;/strong&gt;==领导权，培育和践行社会主义核心价值观，加强思想道德建设，繁荣发展社会主义文艺，推动文化事业和文化产业发展。&lt;/p&gt;
@@ -316,10 +330,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>新闻培训作业-04</title>
-      <link>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-04/</link>
+      <link>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-04/</link>
       <pubDate>Wed, 22 Mar 2023 20:51:35 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-04/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-04/xixik_62a66617e4e6108f.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-04/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-04/xixik_62a66617e4e6108f.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;为了进一步将近日的所学所思融会贯通，今天继续将前几次的作业重新做一下。&lt;/p&gt;
 &lt;p&gt;这是一篇《“全电景区”：减碳 靓景 乐游》的通讯稿，这篇通讯稿时效性很差，题目要求我们改为一篇消息，字数在600-800字，下面我试着重新做一下。&lt;/p&gt;
 &lt;h4 id=&#34;节能还减碳--实惠还好玩&#34;&gt;&lt;!-- raw HTML omitted --&gt;节能还减碳  实惠还好玩&lt;!-- raw HTML omitted --&gt;&lt;/h4&gt;
@@ -333,10 +347,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>新闻培训作业-03</title>
-      <link>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-03/</link>
+      <link>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-03/</link>
       <pubDate>Tue, 21 Mar 2023 20:10:17 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-03/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-03/iso-republic-notebook-write-desk-hands-1100x733.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-03/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-03/iso-republic-notebook-write-desk-hands-1100x733.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;今天一天考了两场考试，都是关于消息写作的。很沮丧！很头疼！写的很不好！&lt;/p&gt;
 &lt;p&gt;我似乎越写越不知道该怎么写了。以往的写作模式被彻底打破，新的写作模式还没有重新被建立起来，处于迷茫期。&lt;/p&gt;
 &lt;p&gt;翻看着高刚老师的教材，突然发现自己以前的写作方法叫做一个：华尔街日报式，沮丧的内心有了一丝安慰，原来我写的没错啊，也不是我不会写文章，是还没有彻底掌握理解消息的写作手法而已。&lt;/p&gt;
@@ -363,10 +377,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>新闻培训作业-02</title>
-      <link>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-02/</link>
+      <link>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-02/</link>
       <pubDate>Mon, 20 Mar 2023 19:44:08 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-02/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-02/2.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-02/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-02/2.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;3月15日，公司举办了新闻宣传竞赛，其中有一道题是消息写作。拿到试卷后，我一看材料差不多有2500字，要将这么大一段材料改写成消息，难度还是挺大的。&lt;/p&gt;
 &lt;p&gt;在考试那天，我稀里糊涂的写了一大段，最后20分的满分，个人只考了12分，看到其他同事有考16分高分的，一直想深入了解低分原因，于是在老师这几天对消息写作的讲解下，我明白了自己不足。&lt;/p&gt;
 &lt;p&gt;消息主要由：标题、导语、背景、主体和结尾组成。其中标题尤为重要，正所谓：题好文一半，我之前取了一个：“三大法宝”让工程更“6”的题目，现在看来，简直是不忍直视。还更“6”？（大哥这是消息啊，不是搞笑啊，我真是服了自己的脑洞了）&lt;/p&gt;
@@ -383,10 +397,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>新闻培训作业_01</title>
-      <link>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-01/</link>
+      <link>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-01/</link>
       <pubDate>Sun, 19 Mar 2023 21:54:50 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-01/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-01/image-20230319221530597.png&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-01/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E6%96%B0%E9%97%BB%E5%9F%B9%E8%AE%AD%E4%BD%9C%E4%B8%9A-01/image-20230319221530597.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;今天，老师根据讲课内容给我们布置了一篇撰写消息的作业。具体内容不限，主要是要求大家能够及时将所学所思转化为生产力，对于这样的任务，我能有什么想法呢，按要求执行呗。&lt;/p&gt;
 &lt;p&gt;于是我在网上找了找素材，突然看到了一个视频，视频链接为：https://haokan.baidu.com/v?vid=7637514420175947431&amp;amp;pd=bjh&amp;amp;fr=bjhauthor&amp;amp;type=video 。&lt;/p&gt;
 &lt;p&gt;讲的是一名24岁女大学生稀里糊涂的当选上了自家村的村长，本以为钱多事儿少离家近，没想到却掉进了“大坑”。但她不轻易言弃，带领乡亲们奋力建设家乡的故事。&lt;/p&gt;
@@ -403,26 +417,26 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>修改hexo中文章头设置后hexo n报错解决办法</title>
-      <link>http://localhost:1313/posts/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
+      <link>https://blog.leesy.cc/posts/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</link>
       <pubDate>Thu, 09 Mar 2023 11:54:25 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
+      <guid>https://blog.leesy.cc/posts/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</guid>
       <description>&lt;p&gt;这几天利用Github和Hexo搭建个人网页博客，网上这样的教程一堆，但对于我这个小白而言很多看起来很清晰的教程其实里面坑很多，下面就将其中困扰我较长时间的一个问题写出来，以供大家参考。&lt;/p&gt;
 &lt;p&gt;我是主要参考&lt;a href=&#34;https://godweiyang.com/2018/04/13/hexo-blog/&#34;&gt;weiyang大佬&lt;/a&gt;的教程搭建的，在网页初步搭建好后，我按照教程，对文章头进行设置，将&lt;code&gt;/scaffolds/post.md&lt;/code&gt;修改为如下代码：&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230309140406.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230309140406.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;结果将原文件进行如上修改后，在git bash里面就频繁报错，&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/code.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/code.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;将故障信息搜索发现，80%以上的都是说没有空格，应添加空格，我之前也遇到过没有添加空格会报：YAMLException: end of the stream or a document separator is expected (2:6)故障&lt;/p&gt;
 &lt;p&gt;但这个问题，我不论怎样的添加空格都没有用，为此，我郁闷了好久。&lt;/p&gt;
 &lt;p&gt;后来我想着重新下载matery主题，将原文件和我的文件进行比对看看，终于发现了原来原文件是没有上下三个“&amp;mdash;”的，将其去掉后，故障消失，问题得以解决。&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/code1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E4%BF%AE%E6%94%B9hexo%E4%B8%AD%E6%96%87%E7%AB%A0%E5%A4%B4%E8%AE%BE%E7%BD%AE%E5%90%8Ehexo-n%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/code1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;我就是按照如上设置的，目前暂未发现其他问题，希望对后来者有帮助！&lt;/p&gt;</description>
     </item>
     <item>
       <title>《飘》</title>
-      <link>http://localhost:1313/posts/%E9%A3%98/</link>
+      <link>https://blog.leesy.cc/posts/%E9%A3%98/</link>
       <pubDate>Wed, 08 Mar 2023 14:05:31 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E9%A3%98/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E9%A3%98%E3%80%8B/%E9%A3%98.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E9%A3%98/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E9%A3%98%E3%80%8B/%E9%A3%98.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;看完《飘》后，斯嘉丽和瑞特的爱情真是让人无语。&lt;/p&gt;
 &lt;p&gt;如瑞特所说，斯嘉丽这个现实，贪婪，勇敢，无所畏惧的小贱货，就像个孩子，而艾希礼就像天上的月亮，即使她得到了月亮，她又能用月亮做什么呢？&lt;/p&gt;
 &lt;p&gt;让人想起了一句话，我本将心向明月，奈何明月照沟渠啊。&lt;/p&gt;
@@ -431,10 +445,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>我的卑微与伟大</title>
-      <link>http://localhost:1313/posts/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7/</link>
+      <link>https://blog.leesy.cc/posts/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7/</link>
       <pubDate>Wed, 08 Mar 2023 14:00:41 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7/%E6%88%91%E7%9A%84%E5%8D%91%E5%BE%AE%E4%B8%8E%E4%BC%9F%E5%A4%A7.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;爱一个人是有多卑微，就会有多伟大。这看似有些相悖的言论，却真实的道出了爱的真谛。
 你以为我是要记叙自己不堪回首的爱情吗？哦，no ！我只是想以爱情来阐述这样一个事实，爱与恨，生存与死亡，轻与重这样一些相对的概念，其意义并不相对，更多的是一种相互成就，相互包容。&lt;/p&gt;
 &lt;h3 id=&#34;一&#34;&gt;一&lt;/h3&gt;
@@ -449,10 +463,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>《约翰克里斯朵夫》</title>
-      <link>http://localhost:1313/posts/%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB/</link>
+      <link>https://blog.leesy.cc/posts/%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB/</link>
       <pubDate>Wed, 08 Mar 2023 13:02:27 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB%E3%80%8B/%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB_1.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB%E3%80%8B/%E7%BA%A6%E7%BF%B0%E5%85%8B%E9%87%8C%E6%96%AF%E6%9C%B5%E5%A4%AB_1.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;伟大人物之约翰·克里斯朵夫。&lt;/p&gt;
 &lt;p&gt;今天早晨才将这部鸿篇巨著彻底看完，124万字，差不多看了一个半月的时间，也足足磨练了我的耐心呀。&lt;/p&gt;
 &lt;p&gt;回过头想想，它到底都讲了些啥呢？他是个音乐家，从小对音乐就表现出惊人的天赋，在其舅舅高脱弗烈特的指引下，走上了一条追求真理的路。追求真理的人注定是孤独的，他敢于反抗大众权威，敢于对奉为圭臬的作品说不。那时的他初尝真理的滋味，他被真理的那种破坏性，爆发性的力量给深深震撼了。&lt;/p&gt;
@@ -467,10 +481,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>《卡拉马佐夫兄弟》</title>
-      <link>http://localhost:1313/posts/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F/</link>
+      <link>https://blog.leesy.cc/posts/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F/</link>
       <pubDate>Sun, 23 Aug 2020 12:56:23 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F_1-1678250603443-1.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F_1-1678250603443-1.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;卡拉马佐夫兄弟，这部小说读完后我久久无法下笔，不知道该如何评价，总觉得还差点什么，不该这么结束。是的，他是有第二部的，但陀思妥耶夫斯基已经死了。&lt;/p&gt;
 &lt;p&gt;第一部的故事其实很简单，讲的是俄国一个家庭的矛盾。大儿子德米特里·费尧多罗维奇.卡拉马佐夫（以下简称德米特里），被告谋杀弑父的故事。他的父亲，费尧多尔 · 巴甫洛维奇 · 卡拉马佐夫（以下简称费尧多尔），贪财好色，卑鄙下流，粗俗浅薄，却精于理财，通过两任妻子的陪嫁，最终积累了高达10万卢布的财富。大儿子，德米特里前妻所生之子，正直善良，但却继承了老子那荒唐的性子，鲁莽冲动，做事不顾后果，和他老子，同时爱上了一个平凡的女人——格露莘卡，都为了这个女人斗得你死我活。德米特里曾扬言，一定要杀了他老子。最终他拿着铁杵爬进了他老子的院墙，打伤了曾养育他的仆人，然后满手鲜血的拿着近3000卢布爬出了院子。老子被打死了，仆人还活着，口里直喊着，这杀父的逆子！种种迹象都表明，人是他所杀，他百口莫辩。&lt;/p&gt;
 &lt;p&gt;其实杀人的人不是他。但最终他还是被判了刑，流放至西伯利亚。杀父的人是他家的仆人，斯乜尔加科夫，他在二少爷也就是伊万的“隐秘”的授意下，杀了老爷，然后嫁祸给了大少爷。做的天衣无缝。伊万最终受不住良心的责备，发了疯。斯乜尔加科夫也在审判的前夜自杀身亡。&lt;/p&gt;
@@ -481,10 +495,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>《一句顶一万句》</title>
-      <link>http://localhost:1313/posts/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/</link>
+      <link>https://blog.leesy.cc/posts/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/</link>
       <pubDate>Mon, 07 May 2018 12:59:30 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/8da5b47f2ea245d78d079014774b9f83.jpeg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E4%B8%80%E5%8F%A5%E9%A1%B6%E4%B8%80%E4%B8%87%E5%8F%A5/8da5b47f2ea245d78d079014774b9f83.jpeg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;刘震云，是我从小就比较喜欢的一个作家。&lt;/p&gt;
 &lt;p&gt;初中时候买过他几本书，从《一地鸡毛》到后来的《手机》，又到如今单位图书室里摆放着的《一句顶一万句》。他的写作风格还是老样子，开篇第一句大体都是，杨百顺他爹是个卖豆腐的，诸如此类。其语言简洁洗练，寥寥数笔，人物形象就跃然纸上，十分的传神生动。&lt;/p&gt;
 &lt;p&gt;这本书呢，讲述的是一个家族百年来的故事。说是故事倒不如说是生活琐事，因为也没啥惊天动地的伟业，全是些市井小民的鸡毛小事。但几代人相似的不幸与人生轨迹，让人看着心疼。主人翁，交心的朋友没几个，不交心的倒是一大堆。也让人明白一点，婚姻大事切不可轻率，要找个有话聊能交心的，若两人无话可说或者说不到一块去，婚姻绝不会幸福，因为那个心哪，总渴望着读懂自己的那个人出现。和自己爱的那个人在一起，一句话胜过他人的千言万语。&lt;/p&gt;
@@ -492,10 +506,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>《人生的枷锁》</title>
-      <link>http://localhost:1313/posts/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81/</link>
+      <link>https://blog.leesy.cc/posts/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81/</link>
       <pubDate>Thu, 07 Dec 2017 21:45:38 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81_%E6%AF%9B%E5%A7%86.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81/%E4%BA%BA%E7%94%9F%E7%9A%84%E6%9E%B7%E9%94%81_%E6%AF%9B%E5%A7%86.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;《人生的枷锁》，毛姆的这本半自传体小说。花了我将近两个月时间，今天终于看完了。&lt;/p&gt;
 &lt;p&gt;不知道该说些什么，很久以前我就发现了人生的意义就是它本没意义，后来陷入了消极情绪的泥潭中。但菲利普·凯里却不这样认为，他反倒觉得如果它没意义，那么生活中的酸甜苦辣不过是生活中五颜六色的调剂品罢了。&lt;/p&gt;
 &lt;p&gt;人生可以按照自己设计的路线任意进行，而不需要如绝大多数人一样的恋爱结婚生子。后来在意识到自己爱上了莎莉后改变了主意，放弃了周游世界的想法，与莎莉结婚。&lt;/p&gt;
@@ -505,18 +519,18 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>《傲慢与偏见》</title>
-      <link>http://localhost:1313/posts/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/</link>
+      <link>https://blog.leesy.cc/posts/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/</link>
       <pubDate>Sun, 17 Sep 2017 10:57:37 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81%E3%80%8B/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81%E3%80%8B/%E5%82%B2%E6%85%A2%E4%B8%8E%E5%81%8F%E8%A7%81.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;《傲慢与偏见》，今日终于看完了。实话说，情节并不算精彩，但作者鲜活的人物描写和细腻的情感刻画着实令我惊叹。让我第一次感受到原来女孩子的心思都是这么的变幻莫测和难以琢磨。也让我看到，每个女孩子都值得被爱，如果爱，那么请深爱。不咸不淡的问候，敷衍的态度，即使相处再久，也不见得能打动她们的心。人都是聪明的，即使相处中间存在着再多的傲慢与偏见，只要男方肯努力追求，真心钦许，终会被爱所化解，构筑幸福的乐园。&lt;/p&gt;</description>
     </item>
     <item>
       <title>《人间失格》</title>
-      <link>http://localhost:1313/posts/%E4%BA%BA%E9%97%B4%E5%A4%B1%E6%A0%BC/</link>
+      <link>https://blog.leesy.cc/posts/%E4%BA%BA%E9%97%B4%E5%A4%B1%E6%A0%BC/</link>
       <pubDate>Mon, 12 Jun 2017 18:47:43 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E4%BA%BA%E9%97%B4%E5%A4%B1%E6%A0%BC/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E3%80%8A%E4%BA%BA%E9%97%B4%E5%A4%B1%E6%A0%BC%E3%80%8B/20210627054529-1-1679403554412-2.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E4%BA%BA%E9%97%B4%E5%A4%B1%E6%A0%BC/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E3%80%8A%E4%BA%BA%E9%97%B4%E5%A4%B1%E6%A0%BC%E3%80%8B/20210627054529-1-1679403554412-2.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;刚读完太宰治的《人间失格》，怎么说呢，篇幅很短，但看起来颇为震撼！&lt;/p&gt;
 &lt;p&gt;可怜的主人翁叶藏从小就有种自弃式的抑郁，少年时代机敏聪慧，然而，不知不觉的就走上了一条自毁的不归路。你可以说这一切是贫穷导致的，但我更倾向于是一种从小缺乏关爱以至于对世间淡漠所引起的悲剧。对他人强暴其妻不觉愤怒反而感到恐惧，愤恨他人待己虚伪却又怕得罪他人以至唯唯诺诺，想摆脱现实泥潭却又沉迷酗酒美色，这样的人，简直难以堪称为人！然而，我们现实生活中不也有大批大批这样的“人”么？&lt;/p&gt;
 &lt;p&gt;男人在世间最重要的伴侣，不是女人，而是高尚的人格和为之奋斗一生的事业！&lt;/p&gt;
@@ -526,10 +540,10 @@ categories = [&amp;#34;随笔&amp;#34;]
     </item>
     <item>
       <title>劳动的意义</title>
-      <link>http://localhost:1313/posts/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89/</link>
+      <link>https://blog.leesy.cc/posts/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89/</link>
       <pubDate>Mon, 22 May 2017 20:46:06 +0800</pubDate>
-      <guid>http://localhost:1313/posts/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89.jpg&#34;&gt;&lt;/p&gt;
+      <guid>https://blog.leesy.cc/posts/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://blog.leesy.cc/images/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89/%E5%8A%B3%E5%8A%A8%E7%9A%84%E6%84%8F%E4%B9%89.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;当心情抑郁了，我们会做什么呢？&lt;/p&gt;
 &lt;p&gt;有人说，可以出去吃好吃的，譬如说吃火锅，如果一顿不够，那就两顿。准可以将郁闷的心情抹去。也有人说，去旅行，去找人倾述苦闷。这都是化解自身苦闷抑郁极好的办法，然而我要向大家介绍一种比较辛苦的办法，那就是劳动！&lt;/p&gt;
 &lt;p&gt;这不是我的原创，是《平凡的世界》中孙少平给我们提供的办法。经个人的实践后，发现这办法虽然累点儿，但着实挺管用的。&lt;/p&gt;

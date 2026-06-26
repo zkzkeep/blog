@@ -1,0 +1,6 @@
+{
+    "content_dir": "content/posts",
+    "images_dir": "static/images",
+    "build_cmd": "hugo",
+    "deploy_cmd": "git add . && git commit -m \"auto deploy\" && git push"
+  }

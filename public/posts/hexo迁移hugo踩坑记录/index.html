@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto" data-theme="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>《Hexo迁移Hugo踩坑记录》 | 我的博客</title>
 <meta name="keywords" content="">
 <meta name="description" content="说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。
@@ -70,16 +70,16 @@ categories = [&#34;随笔&#34;]
 方法二（Hugo命令）
 必须先进入博客目录：">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="https://blog.leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="icon" href="https://blog.leesy.cc/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://blog.leesy.cc/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://blog.leesy.cc/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://blog.leesy.cc/apple-touch-icon.png">
+<link rel="mask-icon" href="https://blog.leesy.cc/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+<link rel="alternate" hreflang="en" href="https://blog.leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
 <noscript>
     <style>
         #theme-toggle,
@@ -125,13 +125,138 @@ categories = [&#34;随笔&#34;]
         document.querySelector("html").dataset.theme = 'light';
     }
 
+</script><meta property="og:url" content="https://blog.leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+  <meta property="og:site_name" content="我的博客">
+  <meta property="og:title" content="《Hexo迁移Hugo踩坑记录》">
+  <meta property="og:description" content="说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。
+第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。
+附上美美的照片：
+期间主要经历了以下坑：
+1、Hexo → Hugo 迁移
+2、图片路径调整
+3、GitHub 仓库管理
+4、Git 基本操作（commit、push、pull、rebase）
+5、GitHub Actions 自动部署
+6、GitHub Pages
+7、Cloudflare 自定义域名
+8、DNS 排查
+9、Hugo Front Matter 格式
+这每一个，对我来说都是全新内容，加上AI，它的信息并不是最新的，导致它说的很多地方找不到，然后就再次询问，一来二去的，导致一个小问题，别人1秒可以搞定，我却需要半小时才搞明白。
+为了不让以后的写博客之路出现故障，在此，我对其中的主要操作细节和流程进行一个记录和复盘，便于以后回顾。
+博客地址：
+https://blog.leesy.cc 源码仓库：
+https://github.com/zkzkeep/blog 一、博客目录位置 Mac 本地博客目录：
+这是正文
+~/Documents/blog 进入博客目录：
+cd ~/Documents/blog 确认是否进入成功：
+pwd 应该显示：
+/Users/leesdove/Documents/blog 二、本地预览博客 进入博客目录：
+cd ~/Documents/blog 启动 Hugo：
+hugo server 浏览器访问：
+http://localhost:1313 停止服务：
+Ctrl &#43; C 三、新建文章 方法一（推荐） 打开 Typora
+新建文件
+保存到：
+~/Documents/blog/content/posts/ 文件名例如：
+我的第一篇文章.md 文章模板：
+&#43;&#43;&#43; title = &#34;我的第一篇文章&#34; date = 2026-06-25 draft = false tags = [&#34;生活&#34;] categories = [&#34;随笔&#34;] &#43;&#43;&#43; 这里开始写正文 方法二（Hugo命令） 必须先进入博客目录：">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-06-25T19:52:37+08:00">
+    <meta property="article:modified_time" content="2026-06-25T19:52:37+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="《Hexo迁移Hugo踩坑记录》">
+  <meta name="twitter:description" content="说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。
+第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。
+附上美美的照片：
+期间主要经历了以下坑：
+1、Hexo → Hugo 迁移
+2、图片路径调整
+3、GitHub 仓库管理
+4、Git 基本操作（commit、push、pull、rebase）
+5、GitHub Actions 自动部署
+6、GitHub Pages
+7、Cloudflare 自定义域名
+8、DNS 排查
+9、Hugo Front Matter 格式
+这每一个，对我来说都是全新内容，加上AI，它的信息并不是最新的，导致它说的很多地方找不到，然后就再次询问，一来二去的，导致一个小问题，别人1秒可以搞定，我却需要半小时才搞明白。
+为了不让以后的写博客之路出现故障，在此，我对其中的主要操作细节和流程进行一个记录和复盘，便于以后回顾。
+博客地址：
+https://blog.leesy.cc 源码仓库：
+https://github.com/zkzkeep/blog 一、博客目录位置 Mac 本地博客目录：
+这是正文
+~/Documents/blog 进入博客目录：
+cd ~/Documents/blog 确认是否进入成功：
+pwd 应该显示：
+/Users/leesdove/Documents/blog 二、本地预览博客 进入博客目录：
+cd ~/Documents/blog 启动 Hugo：
+hugo server 浏览器访问：
+http://localhost:1313 停止服务：
+Ctrl &#43; C 三、新建文章 方法一（推荐） 打开 Typora
+新建文件
+保存到：
+~/Documents/blog/content/posts/ 文件名例如：
+我的第一篇文章.md 文章模板：
+&#43;&#43;&#43; title = &#34;我的第一篇文章&#34; date = 2026-06-25 draft = false tags = [&#34;生活&#34;] categories = [&#34;随笔&#34;] &#43;&#43;&#43; 这里开始写正文 方法二（Hugo命令） 必须先进入博客目录：">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://blog.leesy.cc/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "《Hexo迁移Hugo踩坑记录》",
+      "item": "https://blog.leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "《Hexo迁移Hugo踩坑记录》",
+  "name": "《Hexo迁移Hugo踩坑记录》",
+  "description": "说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。\n第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。\n附上美美的照片：\n期间主要经历了以下坑：\n1、Hexo → Hugo 迁移\n2、图片路径调整\n3、GitHub 仓库管理\n4、Git 基本操作（commit、push、pull、rebase）\n5、GitHub Actions 自动部署\n6、GitHub Pages\n7、Cloudflare 自定义域名\n8、DNS 排查\n9、Hugo Front Matter 格式\n这每一个，对我来说都是全新内容，加上AI，它的信息并不是最新的，导致它说的很多地方找不到，然后就再次询问，一来二去的，导致一个小问题，别人1秒可以搞定，我却需要半小时才搞明白。\n为了不让以后的写博客之路出现故障，在此，我对其中的主要操作细节和流程进行一个记录和复盘，便于以后回顾。\n博客地址：\nhttps://blog.leesy.cc 源码仓库：\nhttps://github.com/zkzkeep/blog 一、博客目录位置 Mac 本地博客目录：\n这是正文\n~/Documents/blog 进入博客目录：\ncd ~/Documents/blog 确认是否进入成功：\npwd 应该显示：\n/Users/leesdove/Documents/blog 二、本地预览博客 进入博客目录：\ncd ~/Documents/blog 启动 Hugo：\nhugo server 浏览器访问：\nhttp://localhost:1313 停止服务：\nCtrl + C 三、新建文章 方法一（推荐） 打开 Typora\n新建文件\n保存到：\n~/Documents/blog/content/posts/ 文件名例如：\n我的第一篇文章.md 文章模板：\n+++ title = \u0026#34;我的第一篇文章\u0026#34; date = 2026-06-25 draft = false tags = [\u0026#34;生活\u0026#34;] categories = [\u0026#34;随笔\u0026#34;] +++ 这里开始写正文 方法二（Hugo命令） 必须先进入博客目录：\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。\n第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。\n附上美美的照片：\n期间主要经历了以下坑：\n1、Hexo → Hugo 迁移\n2、图片路径调整\n3、GitHub 仓库管理\n4、Git 基本操作（commit、push、pull、rebase）\n5、GitHub Actions 自动部署\n6、GitHub Pages\n7、Cloudflare 自定义域名\n8、DNS 排查\n9、Hugo Front Matter 格式\n这每一个，对我来说都是全新内容，加上AI，它的信息并不是最新的，导致它说的很多地方找不到，然后就再次询问，一来二去的，导致一个小问题，别人1秒可以搞定，我却需要半小时才搞明白。\n为了不让以后的写博客之路出现故障，在此，我对其中的主要操作细节和流程进行一个记录和复盘，便于以后回顾。\n博客地址：\nhttps://blog.leesy.cc 源码仓库：\nhttps://github.com/zkzkeep/blog 一、博客目录位置 Mac 本地博客目录：\n这是正文\n~/Documents/blog 进入博客目录：\ncd ~/Documents/blog 确认是否进入成功：\npwd 应该显示：\n/Users/leesdove/Documents/blog 二、本地预览博客 进入博客目录：\ncd ~/Documents/blog 启动 Hugo：\nhugo server 浏览器访问：\nhttp://localhost:1313 停止服务：\nCtrl + C 三、新建文章 方法一（推荐） 打开 Typora\n新建文件\n保存到：\n~/Documents/blog/content/posts/ 文件名例如：\n我的第一篇文章.md 文章模板：\n+++ title = \"我的第一篇文章\" date = 2026-06-25 draft = false tags = [\"生活\"] categories = [\"随笔\"] +++ 这里开始写正文 方法二（Hugo命令） 必须先进入博客目录：\ncd ~/Documents/blog 创建文章：\nhugo new posts/我的第一篇文章.md 生成内容类似：\n+++ title = '我的第一篇文章' date = '2026-06-25T20:00:00+08:00' draft = true +++ 注意：\ndraft = true 表示草稿。\n发布前必须改：\ndraft = false 否则网站不会显示。\n四、图片管理 统一放到：\n~/Documents/blog/static/images/ 例如：\nstatic/images/book/pride.jpg 文章引用：\n![](/images/book/pride.jpg) 注意：\n正确：\n/images/book/pride.jpg 错误（Hexo旧格式）：\n./../images/book/pride.jpg 五、发布文章 进入博客目录：\ncd ~/Documents/blog 添加修改：\ngit add . 提交：\ngit commit -m \"新增文章\" 上传：\ngit push 六、如果 git push 被拒绝 错误类似：\nrejected fetch first 解决：\ngit pull origin main --rebase 然后：\ngit push 七、查看部署状态 打开 GitHub 仓库。\n点击：\nActions 查看最新任务。\n正常情况：\nDeploy Hugo site to Pages ✔ build ✔ deploy 全部绿色。\n八、查看网站是否更新 等待约：\n1~2分钟 访问：\nblog.leesy.cc\n确认新文章是否出现。\n九、Cloudflare DNS 配置 正确配置：\nType: CNAME Name: blog Target: zkzkeep.github.io Proxy Status: DNS Only（灰云） 不要使用：\nProxied（橙云） 十、GitHub Pages 配置 仓库：\nblog 进入：\nSettings → Pages 配置：\nSource: GitHub Actions 不是：\nDeploy from branch 十一、常见故障排查 网站404 先检查：\nActions 是否全部绿色。\n然后检查：\nSettings → Pages 是否：\nSource = GitHub Actions 图片不显示 检查路径是否为：\n![](/images/xxx.jpg) 不要使用：\n![](./../images/xxx.jpg) 文章不显示 检查：\ndraft = false 如果：\ndraft = true 网站不会显示。\nHugo报错 例如：\nERROR no existing content directory configured for this project 原因：\n没有进入博客目录。\n正确：\ncd ~/Documents/blog 然后再执行：\nhugo new 十二、备份关键文件 工作流文件：\n~/Documents/blog/.github/workflows/hugo.yml 建议备份一份到桌面：\ncp .github/workflows/hugo.yml ~/Desktop/ 十三、我的日常博客流程 以后写文章只需要：\nTypora写文章 ↓ 保存到content/posts ↓ 本地预览(hugo server) ↓ git add . ↓ git commit -m \"新增文章\" ↓ git push ↓ 等待1~2分钟 ↓ 博客自动更新 这份文档建议你直接保存为：\n博客维护手册.md 放到：\n~/Documents/blog/ ",
+  "wordCount" : "301",
+  "inLanguage": "en",
+  "datePublished": "2026-06-25T19:52:37+08:00",
+  "dateModified": "2026-06-25T19:52:37+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://blog.leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "我的博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://blog.leesy.cc/favicon.ico"
+    }
+  }
+}
 </script>
 </head>
 <body id="top">
     <header class="header">
     <nav class="header-nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="我的博客 (Alt + H)">我的博客</a>
+            <a href="https://blog.leesy.cc/" accesskey="h" title="我的博客 (Alt + H)">我的博客</a>
             <div class="logo-switches">
                 <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
@@ -176,7 +301,7 @@ categories = [&#34;随笔&#34;]
   <div class="post-content md-content"><p>说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。</p>
 <p>第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。</p>
 <p>附上美美的照片：</p>
-<p><img alt="image-20260625210824834" loading="lazy" src="/Users/leesdove/Documents/blog/static/images/Hexo%E8%BF%81%E7%A7%BBHugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/image-20260625210824834.png"></p>
+<p><img alt="image-20260625210824834" loading="lazy" src="/images/%E3%80%8AHexo%E8%BF%81%E7%A7%BBHugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95%E3%80%8B/image-20260625210824834.png"></p>
 <p>期间主要经历了以下坑：</p>
 <p>1、Hexo → Hugo 迁移</p>
 <p>2、图片路径调整</p>
@@ -396,7 +521,11 @@ git push
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="next" href="http://localhost:1313/posts/test/">
+  <a class="prev" href="https://blog.leesy.cc/posts/%E7%94%9F%E7%97%85%E6%9D%82%E8%AE%B0/">
+    <span class="title">« Prev</span>
+    <span>生病杂记</span>
+  </a>
+  <a class="next" href="https://blog.leesy.cc/posts/test/">
     <span class="title">Next »</span>
     <span>测试文章</span>
   </a>
@@ -407,7 +536,7 @@ git push
     </main>
     
 <footer class="footer">
-        <span>&copy; 2026 <a href="http://localhost:1313/">我的博客</a></span> · 
+        <span>&copy; 2026 <a href="https://blog.leesy.cc/">我的博客</a></span> · 
 
     
     
