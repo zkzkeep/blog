@@ -17,7 +17,40 @@ def log(msg):
     print(msg)
 
 
+def clean_post_name(name: str):
+    """
+    清理文章名，生成适合放在 images 下的文件夹名
+    例如：
+    《五一游记》 -> 五一游记
+    《人间失格》 -> 人间失格
+    """
+    name = name.strip()
+
+    # 去掉书名号
+    name = name.replace("《", "").replace("》", "")
+
+    # 去掉常见不适合做文件夹名的符号
+    bad_chars = [
+        "/", "\\", ":", "：", "*", "?", "？",
+        '"', "'", "<", ">", "|", "，", ",",
+        "。", "！", "!", "、"
+    ]
+
+    for ch in bad_chars:
+        name = name.replace(ch, "")
+
+    # 多个空格变一个空格
+    name = re.sub(r"\s+", " ", name)
+
+    return name.strip()
+
+
 def clean_img_path(img: str):
+    """
+    清理 Markdown 里的图片路径
+    处理 URL 编码，例如：
+    %E4%BA%94 -> 五
+    """
     img = img.strip()
     img = img.split("?")[0].split("#")[0]
     img = unquote(img)
@@ -25,20 +58,21 @@ def clean_img_path(img: str):
 
 
 def find_image_path(img: str):
+    """
+    根据 Markdown 中的图片路径，找到真实图片文件
+    """
     img = clean_img_path(img)
 
     candidates = []
 
-    p = Path(img)
-
-    # 1. 绝对路径
-    candidates.append(p)
+    # 1. 原路径
+    candidates.append(Path(img))
 
     # 2. Hugo 路径：/images/xxx => static/images/xxx
     if img.startswith("/images/"):
         candidates.append(Path("static") / img.lstrip("/"))
 
-    # 3. 普通相对路径
+    # 3. 去掉开头 /
     candidates.append(Path(img.lstrip("/")))
 
     # 4. static 兜底
@@ -58,11 +92,14 @@ def process_images(md_path: Path, images_dir: str):
     if not images:
         return
 
-    post_name = md_path.stem
+    raw_post_name = md_path.stem
+    post_name = clean_post_name(raw_post_name)
+
     target_dir = Path(images_dir) / post_name
     target_dir.mkdir(parents=True, exist_ok=True)
 
     log(f"  📦 找到图片: {len(images)} 张")
+    log(f"  📁 图片目录: images/{post_name}/")
 
     mapping = {}
     real_index = 1
@@ -79,7 +116,7 @@ def process_images(md_path: Path, images_dir: str):
         new_filename = f"{real_index}{suffix}"
         new_path = target_dir / new_filename
 
-        # 如果原图已经在目标位置，就只改名
+        # 如果图片本来就在正确位置，并且名字也对，就不移动
         if img_path.resolve() != new_path.resolve():
             if new_path.exists():
                 new_path.unlink()
@@ -89,6 +126,7 @@ def process_images(md_path: Path, images_dir: str):
         mapping[original_img] = new_ref
 
         log(f"  ✓ {img_path.name} → {new_filename}")
+
         real_index += 1
 
     for old, new in mapping.items():
@@ -120,7 +158,7 @@ def deploy(cmd):
 def main():
     print("\n===============================")
     print("Leesy Blog Toolkit")
-    print("🚀 Hugo 一键发布工具 V1.2")
+    print("🚀 Hugo 一键发布工具 V1.3")
     print("===============================\n")
 
     cfg = load_config()
