@@ -1,70 +1,42 @@
-#!/usr/bin/env python3
-
+from __future__ import annotations
 import re
 import shutil
+from dataclasses import dataclass, field
 from pathlib import Path
+from urllib.parse import unquote, urlparse
+from .config import BLOG_ROOT, IMAGE_EXTENSIONS, IMAGES_DIR, STATIC_DIR
+from .utils import log, safe_directory_name, sha256
 
-# ===========================
-# Hugo 博客根目录
-# ===========================
-BLOG_ROOT = Path.home() / "Documents" / "blog"
-
-POSTS_DIR = BLOG_ROOT / "content" / "posts"
-
-IMAGES_ROOT = BLOG_ROOT / "static" / "images"
-
-TEMP_DIR = IMAGES_ROOT / "未整理"
-
-# 匹配 Markdown 图片
-pattern = re.compile(r'!\[(.*?)\]\((.*?)\)')
-
-total = 0
-
-for md in POSTS_DIR.rglob("*.md"):
-
-    article_name = md.stem
-
-    article_image_dir = IMAGES_ROOT / article_name
-
-    article_image_dir.mkdir(exist_ok=True)
-
-    text = md.read_text(encoding="utf-8")
-
-    def replace(match):
-
-        global total
-
-        alt = match.group(1)
-
-        image_path = match.group(2)
-
-        if "/Users/" not in image_path:
-            return match.group(0)
-
-        source = Path(image_path)
-
-        if not source.exists():
-            print(f"找不到图片：{source}")
-            return match.group(0)
-
-        destination = article_image_dir / source.name
-
-        if not destination.exists():
-            shutil.move(str(source), str(destination))
-
-        new_path = f"/images/{article_name}/{source.name}"
-
-        total += 1
-
-        print(f"✓ {source.name} -> {article_name}")
-
-        return f"![{alt}]({new_path})"
-
-    new_text = pattern.sub(replace, text)
-
-    md.write_text(new_text, encoding="utf-8")
-
-print()
-print("======================")
-print(f"整理完成，共处理 {total} 张图片")
-print("======================")
+IMAGE = re.compile(r"!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(\s+[^)]*)?\)")
+@dataclass
+class ImageResult: created_files: set[Path] = field(default_factory=set)
+def _local_source(reference: str, post: Path) -> Path | None:
+    reference = unquote(reference.strip().strip("<>"))
+    if reference.startswith(("http://", "https://", "data:")): return None
+    if reference.startswith("file://"): reference = urlparse(reference).path
+    candidate = STATIC_DIR / reference.lstrip("/") if reference.startswith("/images/") else (Path(reference) if reference.startswith("/") else (post.parent / reference).resolve())
+    return candidate if candidate.is_file() else None
+def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
+    """复制本轮文章的本地图片；从不移动、覆盖或删除原图。"""
+    result = ImageResult()
+    for post in posts:
+        text, missing = post.read_text(encoding="utf-8"), []
+        def replace(match: re.Match[str]) -> str:
+            alt, reference, title = match.groups(); source = _local_source(reference, post); raw = reference.strip("<>")
+            if source is None:
+                if not raw.startswith(("http://", "https://", "data:")): missing.append(raw)
+                return match.group(0)
+            if source.suffix.lower() not in IMAGE_EXTENSIONS: return match.group(0)
+            target = IMAGES_DIR / safe_directory_name(post.stem) / f"{sha256(source)[:16]}{source.suffix.lower()}"
+            if source.resolve() != target.resolve() and not target.exists():
+                if dry_run: log(f"[dry-run] 将复制图片：{source} → {target}")
+                else:
+                    target.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(source, target); result.created_files.add(target)
+                    log(f"已复制图片：{source.name} → {target.relative_to(BLOG_ROOT)}")
+            return f"![{alt}](/{target.relative_to(STATIC_DIR).as_posix()}{title or ''})"
+        updated = IMAGE.sub(replace, text)
+        for reference in missing: log(f"警告：未找到图片，保持原链接不动：{post.name} → {reference}")
+        if updated != text:
+            if dry_run: log(f"[dry-run] 将标准化图片链接：{post.relative_to(BLOG_ROOT)}")
+            else: post.write_text(updated, encoding="utf-8")
+    return result

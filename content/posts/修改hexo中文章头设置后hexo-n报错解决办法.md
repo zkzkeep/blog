@@ -6,6 +6,7 @@ tags:
   - hexo
   - 报错
   - 文章新建
+typora-root-url: /Users/leesdove/Documents/blog/static
 ---
 
 

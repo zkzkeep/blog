@@ -3,6 +3,7 @@ title: "Git学习_删除文件"
 date: 2023-03-27T16:44:16+08:00
 draft: false
 tags:
+typora-root-url: /Users/leesdove/Documents/blog/static
 ---
 
 
