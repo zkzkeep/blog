@@ -1,0 +1,69 @@
+<script>
+(() => {
+  const labels = {
+    idle: "复制",
+    done: "已复制",
+    failed: "失败"
+  };
+
+  function fallbackCopy(text) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.top = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand("copy");
+      return Promise.resolve();
+    } catch (error) {
+      return Promise.reject(error);
+    } finally {
+      textarea.remove();
+    }
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return fallbackCopy(text);
+  }
+
+  document.querySelectorAll(".post-content div.highlight, .post-content pre").forEach((block) => {
+    if (block.closest(".highlight") && block.tagName.toLowerCase() === "pre") return;
+    if (block.querySelector(":scope > .copy-code-button")) return;
+
+    const code = block.querySelector("code");
+    if (!code) return;
+
+    block.classList.add("copy-code-wrapper");
+
+    const button = document.createElement("button");
+    button.className = "copy-code-button";
+    button.type = "button";
+    button.textContent = labels.idle;
+    button.setAttribute("aria-label", "复制代码");
+
+    button.addEventListener("click", async () => {
+      const text = code.innerText.replace(/\n$/, "");
+      try {
+        await copyText(text);
+        button.textContent = labels.done;
+        button.classList.add("is-copied");
+      } catch (error) {
+        button.textContent = labels.failed;
+        button.classList.add("is-failed");
+      }
+
+      window.setTimeout(() => {
+        button.textContent = labels.idle;
+        button.classList.remove("is-copied", "is-failed");
+      }, 1400);
+    });
+
+    block.appendChild(button);
+  });
+})();
+</script>
