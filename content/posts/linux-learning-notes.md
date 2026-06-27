@@ -1,6 +1,6 @@
 ---
 title: "Linux 学习笔记"
-date: 2026-06-27
+date: 2026-06-27T20:36:45+08:00
 draft: false
 tags: ["Linux", "命令行", "学习笔记"]
 categories: ["技术学习"]
