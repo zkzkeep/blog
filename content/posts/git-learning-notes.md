@@ -1,18 +1,11 @@
 ---
 title: "Git 学习心得"
-date: 2026-06-27T13:49:00+08:00
+date: 2026-06-27
 draft: false
-tags:
-  - Git
-  - 学习
-  - 技术
+tags: ["Git", "GitHub", "版本控制", "学习笔记"]
+categories: ["技术学习"]
+description: "一个非程序员的 Git 入门记录，从零开始，亲手操作，真实体验。涵盖版本控制、分支、GitHub 推送全流程。"
 typora-root-url: /Users/leesdove/Documents/blog/static
----
-
-# Git 学习心得
-
-> 一个非程序员的 Git 入门记录，从零开始，亲手操作，真实体验。
-
 ---
 
 ## 一、为什么要学 Git
@@ -184,12 +177,7 @@ git add README.md          # 没空格，不用引号
 git add "my file.md"       # 有空格，必须加引号
 ```
 
-**好习惯**：命名文件时不用空格，用下划线或短横线代替，永远不用担心引号问题：
-
-```
-my_file.md
-my-file.md
-```
+**好习惯**：命名文件时不用空格，用下划线或短横线代替，永远不用担心引号问题。
 
 ### commit 备注写什么
 
@@ -234,11 +222,6 @@ ae147d5 (HEAD -> main) 第二次提交README.md文件
 git checkout 8cfeaf0
 ```
 
-输出：
-```
-HEAD is now at 8cfeaf0 首次提交
-```
-
 此刻打开文件，内容变回了最初的样子。
 
 **`detached HEAD` 不用怕**：正常状态下你站在一个分支上，像站在行驶的火车上。`detached HEAD` 是你跳下火车，站在铁轨上的某个固定点，可以四处看看，但不属于任何一列车。
@@ -254,11 +237,6 @@ git checkout main
 ### checkout 的本质
 
 在 Git 眼里，**分支和版本号本质上是同一种东西——都是指向某个 commit 的指针**。
-
-```
-git checkout 8cfeaf0   → 跳到固定坐标，不会移动
-git checkout main      → 跳到路标，随新commit自动移动
-```
 
 `checkout` 只做一件事：**把 HEAD 挪过去**，目标是什么都行。
 
@@ -304,32 +282,9 @@ git add another_README.md
 git commit -m "分支功能的第一个文件"
 ```
 
-输出：
-```
-[分支功能 6c2bbf1] 分支功能的第一个文件
- 1 file changed, 1 insertion(+)
- create mode 100644 another_README.md
-```
-
 ### 平行宇宙的验证
 
-切回 main：
-
-```bash
-git checkout main
-ls
-```
-
-输出：只有 `README.md`，`another_README.md` 消失了！
-
-切回分支功能：
-
-```bash
-git checkout 分支功能
-ls
-```
-
-`another_README.md` 重新出现。
+切回 main 后 `ls`，`another_README.md` 消失了。切回分支功能后 `ls`，它又出现了。
 
 **同一个文件夹，切换分支，文件凭空消失又出现——这就是平行宇宙。**
 
@@ -344,20 +299,18 @@ git merge 分支功能
 
 输出：
 ```
-Updating ae147d5..6c2bbf1
 Fast-forward
  another_README.md | 1 +
  1 file changed, 1 insertion(+)
- create mode 100644 another_README.md
 ```
 
-`Fast-forward`：main 没有走其他路，分支是从 main 直接长出去的，所以直接把 main 的指针往前推就完成了，是最简单的合并方式。
-
-合并完成后，`another_README.md` 正式出现在主线上。
+`Fast-forward`：main 没有走其他路，直接把指针往前推就完成了，是最简单的合并方式。
 
 ---
 
-## 八、Git vs GitHub
+## 八、连接 GitHub——推到云端
+
+### Git vs GitHub
 
 很多人把这两个混淆，其实是两回事：
 
@@ -368,31 +321,96 @@ Fast-forward
 - `git commit` = 把东西打包装箱，放在家里
 - `git push` = 把箱子交给快递员，发到云端仓库
 
-今天做的所有操作，commit 都存在电脑本地的 `.git` 文件夹里，完全离线，完全私密。
+### 在 GitHub 上建仓库
+
+登录 github.com，点右上角 `+` → `New repository`，填写仓库名，**不要勾选** `Add a README file`（本地已经有了），点 `Create repository`。
+
+### 连接本地仓库与 GitHub
+
+```bash
+git remote add origin https://github.com/你的用户名/仓库名.git
+```
+
+验证连接：
+
+```bash
+git remote -v
+```
+
+输出：
+```
+origin  https://github.com/你的用户名/仓库名.git (fetch)
+origin  https://github.com/你的用户名/仓库名.git (push)
+```
+
+- `fetch`：从 GitHub 拉取内容用这个地址
+- `push`：推送内容到 GitHub 用这个地址
+- `origin`：远程仓库的别名，以后不用每次输完整地址
+
+### 第一次推送
+
+```bash
+git push -u origin main
+```
+
+输出：
+```
+Writing objects: 100% (9/9), done.
+[new branch]  main -> main
+branch 'main' set up to track 'origin/main'.
+```
+
+`-u` 的意思是"记住这个推送关系"，以后直接敲 `git push` 就行。
+
+### 以后的日常工作流
+
+```bash
+# 改文件
+git add .
+git commit -m "说明"
+git push          # 推到云端，就这一条
+```
 
 ---
 
 ## 九、常用命令速查
 
 ```bash
+# 基础操作
 git init                    # 在当前文件夹建仓库
 git status                  # 查看当前状态（随时可敲）
 git add 文件名              # 把文件放入暂存区
 git add .                   # 把所有改动放入暂存区
 git commit -m "备注"        # 存档，附上说明
 git commit -a -m "备注"     # 跳过add，直接提交所有已追踪文件
+
+# 历史记录
 git log --oneline           # 查看简洁的提交历史
+git diff                    # 查看具体改了哪些内容
+
+# 时间机器
 git checkout 版本ID         # 跳到某个历史版本
-git checkout 分支名         # 切换分支
-git switch 分支名           # 切换分支（新写法）
+git checkout main           # 跳回最新版本
+
+# 分支操作
 git branch                  # 查看所有分支
 git branch 分支名           # 创建新分支
+git checkout 分支名         # 切换分支
+git switch 分支名           # 切换分支（新写法）
 git merge 分支名            # 把指定分支合并到当前分支
+
+# GitHub 操作
+git remote add origin 地址  # 连接远程仓库
+git remote -v               # 查看远程仓库连接
+git push -u origin main     # 第一次推送
+git push                    # 之后每次推送
+git pull                    # 从云端拉取最新内容
+git clone 地址              # 把别人的仓库复制到本地
 ```
 
 ---
 
-## 十、今天最大的收获
+## 十、最大的收获
 
 1. **Git 和 GitHub 不是一回事**，Git 是本地工具，GitHub 是云端平台
 2. **`add` 的意义是"挑选"**，不是所有改动都要一起提交
@@ -400,7 +418,8 @@ git merge 分支名            # 把指定分支合并到当前分支
 4. **`detached HEAD` 不用怕**，看完跳回来就行
 5. **`git status` 是最好的朋友**，不知道怎么办先敲它
 6. **分支就是平行宇宙**，同一个文件夹，切换分支，文件会消失和出现
+7. **`git push` 是最后一步**，commit 只是打包，push 才是真正发出去
 
 ---
 
-*第一次亲手操作 Git，从建仓库到 commit 到分支到合并，走完了完整的核心流程。下一步：学 GitHub，把本地仓库推到云端。*
+*第一次亲手操作 Git，从建仓库、commit、分支、合并，到推送 GitHub，走完了完整的核心流程。下一步：学 Linux 命令行。*
