@@ -1,3 +1,14 @@
+---
+title: "Git 学习心得"
+date: 2026-06-27T13:49:00+08:00
+draft: false
+tags:
+  - Git
+  - 学习
+  - 技术
+typora-root-url: /Users/leesdove/Documents/blog/static
+---
+
 # Git 学习心得
 
 > 一个非程序员的 Git 入门记录，从零开始，亲手操作，真实体验。
