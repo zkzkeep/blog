@@ -1,6 +1,6 @@
 ---
 title: "Git 学习心得"
-date: 2026-06-27
+date: 2026-06-27T14:37:59+08:00
 draft: false
 tags: ["Git", "GitHub", "版本控制", "学习笔记"]
 categories: ["技术学习"]
