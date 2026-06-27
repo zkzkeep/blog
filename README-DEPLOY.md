@@ -11,7 +11,7 @@ python3 -m scripts.watch
 
 在 Typora 保存文章后，监听器等待 15 秒，自动备份原文、复制图片、写入网页链接、构建 Hugo、提交并推送。它处理相对 Git `HEAD` 新增、修改或删除的 Markdown；删除文章会同步从博客撤下页面，但保留图片文件，避免误删。原文备份在 `.backups/<时间>/markdown/`。本地图片找不到时流程会取消提交，防止坏链接被发布。
 
-自动处理过的文章会有 `typora-root-url: ../../static`；因此 `/images/...` 在 Typora 本地和网站上都能显示。可先用 `python3 deploy.py --dry-run` 预览，或用 `python3 deploy.py --no-push` 只提交不推送。
+自动处理过的文章会有 `typora-root-url: /Users/leesdove/Documents/blog/static`；因此 `/images/...` 在 Typora 本地和网站上都能显示。可先用 `python3 deploy.py --dry-run` 预览，或用 `python3 deploy.py --no-push` 只提交不推送。
 
 ## 图片巡检
 
@@ -28,10 +28,4 @@ python3 deploy.py --all-images
 python3 -m scripts.audit_images
 ```
 
-要让 Mac 每天 09:00 自动执行这项只读巡检（登录时也执行一次），只需安装一次：
-
-```bash
-python3 -m scripts.install_image_audit
-```
-
-检查日志在 `~/Library/Logs/blog-image-audit.log`。巡检不修改文章；发现问题后，运行 `python3 deploy.py --all-images` 即可备份、整理并发布。
+目前不启用 macOS 定时巡检。需要检查时手动执行上面的巡检命令即可；发现问题后，运行 `python3 deploy.py --all-images` 即可备份、整理并发布。

@@ -140,9 +140,13 @@ Cloudflare Pages 提供了：
 
 最终形成了下面这一套工作流：
 
-Typora → Hugo → Git → GitHub → Cloudflare Pages → leesy.cc
+Typora → 监听器 → 自动整理图片 → Hugo 构建 → GitHub → Cloudflare Pages → leesy.cc
 
-整个发布过程只需要一次 `git push` 即可完成。
+日常写作时，我只需要先启动监听器，然后在 Typora 里写文章、保存文章。
+
+监听器会自动等待编辑结束，调用发布脚本完成图片整理、文章修正、Hugo 构建、Git 提交和推送。
+
+Cloudflare Pages 收到 GitHub 上的新提交后，再自动完成线上部署。
 
 ------
 
@@ -198,14 +202,13 @@ Typora → Hugo → Git → GitHub → Cloudflare Pages → leesy.cc
 ```text
 blog/
 ├── archetypes/
-├── assets/
 ├── content/
-├── layouts/
 ├── scripts/
 ├── static/
 ├── themes/
+├── deploy.py
 ├── hugo.toml
-└── README.md
+└── README-DEPLOY.md
 ```
 
 其中几个目录最重要。
@@ -214,7 +217,7 @@ blog/
 
 保存所有 Markdown 文章。
 
-以后所有文章都放在：
+目前所有文章都放在：
 
 ```text
 content/posts/
@@ -228,13 +231,25 @@ content/posts/
 
 保存所有静态资源。
 
-例如：
+当前最重要的是图片目录：
 
 ```text
 static/images/
 ```
 
-所有图片最终都会放在这里。
+所有文章图片最终都会放在：
+
+```text
+static/images/<文章名>/
+```
+
+并按文章中出现顺序命名为：
+
+```text
+1.jpg
+2.png
+3.webp
+```
 
 浏览器访问时，对应：
 
@@ -250,7 +265,12 @@ static/images/
 
 例如：
 
-- organize_images.py
+- `organize_images.py`：整理图片；
+- `markdown.py`：修正文章头信息和标签；
+- `git_tools.py`：检测 Git 变更并提交；
+- `hugo_tools.py`：运行 Hugo 构建；
+- `watch.py`：监听 Typora 保存并自动发布；
+- `audit_images.py`：检查图片引用是否规范。
 
 以后新的自动化工具，也统一放在这里。
 
@@ -262,7 +282,9 @@ static/images/
 
 当前使用：
 
-PaperMod。
+```text
+themes/PaperMod/
+```
 
 如果以后升级主题，也只需要替换这一部分。
 
@@ -337,7 +359,19 @@ Typora
 Markdown
     │
     ▼
-Python 自动整理图片
+scripts.watch 监听保存
+    │
+    ▼
+deploy.py 调度发布流程
+    │
+    ▼
+备份原文
+    │
+    ▼
+Python 自动整理图片和修正 Markdown
+    │
+    ▼
+Hugo 本地构建校验
     │
     ▼
 Git Commit
@@ -352,7 +386,7 @@ Cloudflare Pages
 https://leesy.cc
 ```
 
-整个过程中，除了写文章之外，其余步骤均可自动完成。
+整个过程中，除了启动监听器和写文章之外，其余步骤均可自动完成。
 
 博客维护者需要关注的，只有内容本身。
 
@@ -436,10 +470,16 @@ PaperMod、LoveIt 等优秀主题都非常成熟。
 配置 hugo.toml
         │
         ▼
-本地运行 hugo server
+整理 content、static、themes
         │
         ▼
-上传 GitHub
+编写 deploy.py 和 scripts/
+        │
+        ▼
+本地运行 hugo --minify 校验
+        │
+        ▼
+推送到 GitHub
         │
         ▼
 Cloudflare Pages 自动部署
@@ -541,28 +581,44 @@ Typora 默认插入图片以后：
 - 图片全部堆积在一个目录；
 - 更换电脑后容易失效。
 
-经过多次尝试，最终设计出目前的方案：
+经过多次尝试，最终设计出目前的方案。
 
 Typora
 ↓
 
-统一复制到
+文章保存后，由监听器触发发布脚本
+
+↓
+
+Python 识别文章里的图片引用
+
+↓
+
+统一复制到文章自己的图片目录
 
 ```text
-static/images/未整理/
+static/images/<文章名>/
 ```
 
 ↓
 
-Python 自动整理图片
+按出现顺序编号
+
+```text
+1.jpg
+2.png
+3.webp
+```
 
 ↓
 
-按文章分类移动
+自动把文章里的图片链接改成
 
-↓
+```text
+/images/<文章名>/1.jpg
+```
 
-自动修改 Markdown 图片链接
+同时，脚本会给文章补充 `typora-root-url`，这样同一条 `/images/...` 链接在 Typora 本地和网站上都能显示。
 
 整个过程无需人工处理。
 
@@ -587,19 +643,20 @@ Python 自动整理图片
 最终博客部署架构调整为：
 
 ```text
-Git
-↓
-
+本地 Git Commit
+    ↓
 GitHub
-
-↓
-
+    ↓
 Cloudflare Pages
-
-↓
-
+    ↓
 https://leesy.cc
 ```
+
+迁移完成后，GitHub Pages 已经关闭，旧的 GitHub Pages workflow 也已经从仓库中删除。
+
+GitHub 现在只负责保存源码和提交历史。
+
+Cloudflare Pages 负责构建、部署、HTTPS 和 CDN。
 
 实践证明，这套方案明显比 GitHub Pages 更加省心。
 
@@ -611,14 +668,17 @@ https://leesy.cc
 
 ```text
 blog/
+├── archetypes/
 ├── content/
+│   └── posts/
 ├── static/
 │   └── images/
 ├── scripts/
 ├── themes/
-├── assets/
+│   └── PaperMod/
+├── deploy.py
 ├── hugo.toml
-└── README.md
+└── README-DEPLOY.md
 ```
 
 目录尽量保持简单。
@@ -628,6 +688,10 @@ blog/
 所有图片统一放入 `static/images/`。
 
 所有文章统一放入 `content/posts/`。
+
+`deploy.py` 作为发布总入口。
+
+`README-DEPLOY.md` 记录日常写作和发布命令。
 
 长期维护时，这样的结构最容易理解。
 
