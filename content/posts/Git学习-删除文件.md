@@ -14,5 +14,3 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 3.如果你想彻底把版本库的删除掉，先git rm，再git commit 就ok了
 
 
-
-
