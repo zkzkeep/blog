@@ -14,6 +14,8 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 Windows 有 C 盘、D 盘，是多个并列的盘。Linux 不一样——**所有东西都挂在一个根目录 `/` 下**，像一棵树，从树根出发，所有文件夹都是树枝。
 
+
+
 ```
 /                        ← 树根，整个文件系统的起点
 ├── Users/               ← Mac 特有，Linux 是 /home
