@@ -19,7 +19,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 # 前言
 
-2026 年 6 月 28 日，终于把困扰几个月的 Mac Apple ID 登录问题彻底解决了。
+2026 年 6 月 28 日，终于把困扰几个月的 Mac Apple ID 登录问题彻底解决了！！！！！
 
 这一天从 Apple ID 登录失败开始，最后一路恢复到了 Homebrew、Hugo、Git、SSH、DMIT、GitHub 推送、Typora 图片配置和博客自动发布。过程很折腾，但最后结果是好的：系统干净了，Apple ID 正常了，博客环境也恢复了。
 
