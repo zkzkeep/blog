@@ -26,7 +26,13 @@ def has_pending_markdown_changes() -> bool:
     return bool(changed_markdown_files() or deleted_markdown_files())
 def commit_and_push(paths: set[Path], message: str, *, push: bool) -> None:
     if not paths: log("没有本轮文章或图片变更需要提交。"); return
-    run(["git", "add", "--", *(str(p.relative_to(BLOG_ROOT)) for p in sorted(paths))])
+    relative = sorted(str(p.relative_to(BLOG_ROOT)) for p in paths)
+    # 被清理的孤儿图片可能从未被 Git 追踪过；对这类“不存在也不在库里”的路径，
+    # git add 会直接报错退出，所以先过滤掉，只保留真正需要暂存的路径。
+    tracked = set(run(["git", "-c", "core.quotepath=false", "ls-files", "--", *relative]).stdout.splitlines())
+    stageable = [name for name in relative if name in tracked or (BLOG_ROOT / name).exists()]
+    if not stageable: log("没有可提交的本轮变更。"); return
+    run(["git", "add", "--", *stageable])
     staged = run(["git", "diff", "--cached", "--quiet"], check=False)
     if staged.returncode == 0: log("没有可提交的本轮变更。"); return
     if staged.returncode != 1: raise BlogError("无法检查 Git 暂存区状态。")

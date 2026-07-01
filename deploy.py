@@ -6,7 +6,7 @@ import sys
 from scripts.git_tools import changed_markdown_files, deleted_markdown_files, commit_and_push
 from scripts.hugo_tools import build_hugo
 from scripts.markdown import fix_markdown
-from scripts.organize_images import organize_images
+from scripts.organize_images import garbage_collect_images, organize_images
 from scripts.utils import BlogError, backup_markdown, log
 
 
@@ -37,6 +37,9 @@ def main() -> int:
         else:
             log("没有新增或修改的 Markdown；跳过图片整理和文章改写。")
             affected = set()
+        # 无论本轮是否有文章变更，都巡检一遍孤儿图片：文章被删除、或图片被重新整理后
+        # 留下的旧图，都会在这一步被清理，不依赖单独识别"删除"事件。
+        affected |= garbage_collect_images(dry_run=args.dry_run)
         build_hugo(dry_run=args.dry_run)
         if not args.dry_run:
             commit_and_push(affected, args.message, push=not args.no_push)

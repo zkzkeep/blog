@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 from urllib.request import Request, urlopen
-from .config import BLOG_ROOT, IMAGE_EXTENSIONS, IMAGES_DIR, STATIC_DIR
+from .config import BLOG_ROOT, CONTENT_DIR, IMAGE_EXTENSIONS, IMAGES_DIR, STATIC_DIR
 from .utils import log, safe_directory_name
 
 IMAGE = re.compile(r"!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(\s+[^)]*)?\)")
@@ -152,3 +152,41 @@ def organize_images(posts: list[Path], *, dry_run: bool = False) -> ImageResult:
                 result.removed_temp_files.add(source)
                 log(f"已清理 Typora 根目录临时图片：{source.name}")
     return result
+
+
+def _referenced_images() -> set[Path]:
+    """扫描当前所有文章，返回仍被引用的 static/images 文件（绝对路径）。"""
+    referenced: set[Path] = set()
+    for post in CONTENT_DIR.rglob("*.md"):
+        for reference in image_references(post.read_text(encoding="utf-8")):
+            raw = unquote(reference.strip().strip("<>"))
+            if raw.startswith("/images/"):
+                referenced.add((STATIC_DIR / raw.lstrip("/")).resolve())
+    return referenced
+
+
+def garbage_collect_images(*, dry_run: bool = False) -> set[Path]:
+    """删除 static/images 中不再被任何现存文章引用的图片。
+
+    覆盖两类孤儿：文章被删除后遗留的整个编号文件夹；以及 Typora 直接存到
+    static/images 根目录、被 organize_images 复制归档后遗留的原图。
+    """
+    if not IMAGES_DIR.is_dir():
+        return set()
+    referenced = _referenced_images()
+    removed: set[Path] = set()
+    for file in sorted(IMAGES_DIR.rglob("*")):
+        if file.is_dir() or file.name == ".DS_Store" or file.resolve() in referenced:
+            continue
+        if dry_run:
+            log(f"[dry-run] 将删除未被引用的图片：{file.relative_to(BLOG_ROOT)}")
+        else:
+            file.unlink()
+            log(f"已删除未被引用的图片：{file.relative_to(BLOG_ROOT)}")
+        removed.add(file)
+    if not dry_run:
+        for directory in sorted((d for d in IMAGES_DIR.rglob("*") if d.is_dir()), key=lambda p: -len(p.parts)):
+            if not any(directory.iterdir()):
+                directory.rmdir()
+                log(f"已清理空文件夹：{directory.relative_to(BLOG_ROOT)}")
+    return removed
