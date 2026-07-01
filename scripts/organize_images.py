@@ -1,12 +1,18 @@
 from __future__ import annotations
 import re
 import shutil
+import time
+from datetime import datetime
 from dataclasses import dataclass, field
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 from urllib.request import Request, urlopen
-from .config import BLOG_ROOT, CONTENT_DIR, IMAGE_EXTENSIONS, IMAGES_DIR, STATIC_DIR
+from .config import BACKUPS_DIR, BLOG_ROOT, CONTENT_DIR, IMAGE_EXTENSIONS, IMAGES_DIR, STATIC_DIR
 from .utils import log, safe_directory_name
+
+# 刚粘贴进来的新图片会先落盘、文章几秒后才保存引用；这段保护期内绝不清理，
+# 避免把用户正在插入的图片当成孤儿误删。真正的孤儿（来自已删文章）时间都很久远。
+RECENT_IMAGE_GRACE_SECONDS = 600
 
 IMAGE = re.compile(r"!\[([^\]]*)\]\((<[^>]+>|[^)\s]+)(\s+[^)]*)?\)")
 FENCED_CODE = re.compile(r"(?ms)^[ \t]*(?P<fence>`{3,}|~{3,}).*?^[ \t]*(?P=fence)[ \t]*$")
@@ -170,19 +176,31 @@ def garbage_collect_images(*, dry_run: bool = False) -> set[Path]:
 
     覆盖两类孤儿：文章被删除后遗留的整个编号文件夹；以及 Typora 直接存到
     static/images 根目录、被 organize_images 复制归档后遗留的原图。
+
+    两道安全阀：① 刚更新、还没被任何文章引用的新图片处于保护期，绝不删除，
+    避免误删用户正在粘贴的图片；② 确定要删的文件先移入 .backups，随时可找回，
+    绝不再硬删用户数据。
     """
     if not IMAGES_DIR.is_dir():
         return set()
     referenced = _referenced_images()
+    now = time.time()
+    trash = BACKUPS_DIR / datetime.now().strftime("%Y%m%d-%H%M%S") / "removed-images"
     removed: set[Path] = set()
     for file in sorted(IMAGES_DIR.rglob("*")):
         if file.is_dir() or file.name == ".DS_Store" or file.resolve() in referenced:
             continue
+        # 新粘贴的图片往往先落盘、文章几秒后才保存引用；保护期内一律跳过。
+        if now - file.stat().st_mtime < RECENT_IMAGE_GRACE_SECONDS:
+            log(f"暂不清理（保护期内、可能是刚粘贴还没写入引用的新图）：{file.relative_to(BLOG_ROOT)}")
+            continue
         if dry_run:
             log(f"[dry-run] 将删除未被引用的图片：{file.relative_to(BLOG_ROOT)}")
         else:
-            file.unlink()
-            log(f"已删除未被引用的图片：{file.relative_to(BLOG_ROOT)}")
+            destination = trash / file.relative_to(STATIC_DIR)
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.move(str(file), str(destination))
+            log(f"已移除未被引用的图片（已备份到 .backups，可找回）：{file.relative_to(BLOG_ROOT)}")
         removed.add(file)
     if not dry_run:
         for directory in sorted((d for d in IMAGES_DIR.rglob("*") if d.is_dir()), key=lambda p: -len(p.parts)):
