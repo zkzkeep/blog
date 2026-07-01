@@ -1,0 +1,260 @@
+---
+title: "自建 Vaultwarden：Chrome 插件登录报「发生意外错误」的排查与修复"
+date: 2026-07-01T00:00:00+08:00
+draft: false
+tags: ["Vaultwarden", "Bitwarden", "Docker", "群晖", "Synology", "自托管", "macOS", "Gatekeeper"]
+categories: ["运维折腾"]
+description: "手机和 Mac App 都能正常登录，唯独 Chrome 浏览器插件登录失败。根因是新版 Bitwarden 插件调用了旧版 Vaultwarden 尚未实现的 prelogin 接口，升级到 1.36.0+ 即可解决。附群晖 Container Manager 配置 Docker 镜像加速，以及 macOS Gatekeeper 隔离属性导致下载文件打不开的解决办法。"
+typora-root-url: /Users/leesdove/Documents/blog/static
+---
+
+## 问题现象
+
+自建的 Bitwarden 服务（实际是 Vaultwarden），在手机 App、Mac 桌面 App 上都能正常登录使用，**唯独 Chrome 浏览器插件登录失败**，弹出一个非常笼统的红色报错：「发生错误 / 发生意外错误」。
+
+![bitwarden-login-error](/images/vaultwarden-chrome-extension-login-fix/1.png)
+
+这种笼统的报错很容易让人往错误的方向排查——怀疑 Chrome 权限、插件缓存、代理、DNS、TLS 证书，甚至怀疑自己密码输错了。但这类问题恰恰最具迷惑性。
+
+## 根本原因
+
+最新版的 Bitwarden 浏览器插件（2026.4.1 起）在登录时会调用一个**新的预登录接口**：
+
+```
+POST /identity/accounts/prelogin/password
+```
+
+如果自建的 Vaultwarden 版本低于 **1.36.0**，服务端还没有实现这个接口，请求会返回 `404 Not Found`，插件便显示「发生意外错误」这种看不出所以然的提示。
+
+### 为什么手机、Mac App 正常，只有 Chrome 插件失败？
+
+关键在于**已登录设备和全新登录流程走的不是同一条路径**：
+
+- 手机 App、Mac App 之前已经登录过，本地保留了会话状态、密钥、访问令牌等缓存，日常使用只是在刷新已有会话，**并不会重新走一遍完整的首次登录流程**，因此绕开了这个新接口。
+- Chrome 插件（尤其是新装或重新登录时）必须从头走完整的登录链路：服务器选择 → prelogin → KDF 元数据 → 令牌交换 → 同步 → 本地解锁，这才把 prelogin 接口缺失的问题暴露出来。
+
+一句话总结：**旧设备还能用，只能证明"已有会话还活着"，并不能证明"首次登录 API 路径是健康的"。**
+
+## 排查方法
+
+查看 Vaultwarden 容器日志，确认是否是 prelogin 接口 404：
+
+```bash
+docker logs -f <容器名> 2>&1 | grep -Ei 'prelogin|connect/token|404|400|ERROR|WARN'
+```
+
+如果在 Chrome 插件点击登录时，日志里出现类似：
+
+```
+POST /identity/accounts/prelogin/password
+404 Not Found
+```
+
+那就石锤了——升级 Vaultwarden 即可解决。
+
+## 解决方案：升级 Vaultwarden 到 1.36.0+
+
+思路很简单：把镜像升级到 1.36.0 或更新版本。但在国内自建环境里，往往会在 `docker pull` 这一步撞上第二个坑——**Docker Hub 拉取超时**。下面按实际踩坑顺序完整记录。
+
+### 坑一：docker pull 超时
+
+执行 pull 时报错：
+
+```
+Error response from daemon: Get "https://registry-1.docker.io/v2/":
+net/http: request canceled while waiting for connection
+(Client.Timeout exceeded while awaiting headers)
+```
+
+这跟 Vaultwarden 无关，是国内直连 Docker Hub 官方仓库超时/被限速，解决办法是配置**镜像加速源**。
+
+> 注意：国内公益镜像站变动非常频繁，很多今天能用明天就失效，建议一次配 2~3 个作为兜底。
+
+### 坑二：群晖不是标准 systemd，配置文件路径也不同
+
+在群晖（本文环境为 SA6400，运行非官方 build，套件为 **Container Manager**）上，`systemctl restart docker` 是无效的：
+
+```
+Failed to restart docker.service: Unit docker.service failed to load:
+No such file or directory.
+```
+
+而且更关键的是：**群晖的 dockerd 不读标准的 `/etc/docker/daemon.json`**，它用的是套件自己的配置路径。
+
+**Container Manager 的真实配置文件路径：**
+
+```
+/var/packages/ContainerManager/etc/dockerd.json
+```
+
+（如果不确定，可用 `ps aux | grep dockerd` 看启动参数里 `--config-file=` 指向的路径。）
+
+原始内容通常长这样，注意**要保留原有字段，只追加 `registry-mirrors`，不能整个覆盖**：
+
+```json
+{"data-root":"/var/packages/ContainerManager/var/docker","log-driver":"journald","log-opts":{"tag":"synology-container"},"storage-driver":"btrfs"}
+```
+
+### 配置镜像加速源
+
+先备份，再写入（追加了 `registry-mirrors` 字段）：
+
+```bash
+# 备份原文件，出问题好还原
+sudo cp /var/packages/ContainerManager/etc/dockerd.json \
+        /var/packages/ContainerManager/etc/dockerd.json.bak
+
+# 写入新配置（保留原有 4 个字段 + 追加镜像加速源）
+sudo tee /var/packages/ContainerManager/etc/dockerd.json > /dev/null << 'EOF'
+{"data-root":"/var/packages/ContainerManager/var/docker","log-driver":"journald","log-opts":{"tag":"synology-container"},"storage-driver":"btrfs","registry-mirrors":["https://docker.1ms.run","https://docker.xuanyuan.me","https://docker.1panel.live","https://hub.rat.dev"]}
+EOF
+```
+
+### 用群晖的方式重启 Container Manager
+
+群晖用的是 `synopkg` / `synosystemctl`，不是 `systemctl`：
+
+```bash
+sudo synopkg restart ContainerManager
+```
+
+（也可以直接在 DSM 图形界面的套件中心里把 Container Manager 停止再启动，效果一样。）
+
+### 验证镜像加速是否生效
+
+```bash
+docker info | grep -A 5 "Registry Mirrors"
+```
+
+看到配置的地址列出来即为成功（那几条 `No cpu cfs quota support` 之类的 WARNING 是群晖内核缺少部分 cgroup 限流特性的正常提示，忽略即可）：
+
+```
+ Registry Mirrors:
+  https://docker.1ms.run/
+  https://docker.xuanyuan.me/
+  https://docker.1panel.live/
+  https://hub.rat.dev/
+```
+
+### 拉取最新镜像并重建容器
+
+进入 compose 目录（本文为 `/volume5/docker/compose/bitwarden`），确认镜像 tag：
+
+```bash
+docker compose ps
+```
+
+如果 IMAGE 是 `vaultwarden/server:latest`，直接拉取重建即可，无需改 compose 文件：
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+若 compose 里写死的是旧版本号（如 `vaultwarden/server:1.35.4-alpine`），需先把 tag 改为 `latest` 或明确的 `1.36.0` 以上版本再 pull。
+
+### 确认版本
+
+注意：`docker exec <容器> vaultwarden --version` 可能会报 `executable file not found in $PATH`，这不代表升级失败，只是二进制路径/名字不在默认 PATH 里。用日志确认版本最稳：
+
+```bash
+docker logs <容器名> 2>&1 | grep -i version | head
+```
+
+看到 `Version 1.36.0`（或更高）即达标：
+
+```
+|                           Version 1.36.0
+```
+
+## 收尾验证
+
+回到 Chrome 插件重新登录即可通过。如果想在登录前确认接口不再 404，可以盯着日志再点一次登录：
+
+```bash
+docker logs -f <容器名> 2>&1 | grep -i prelogin
+```
+
+没有再出现 404（或直接登录成功、日志显示 200），问题就彻底闭环了。
+
+若升级后 Chrome 插件仍失败，先别急着怀疑版本，可以试试：
+
+- 在插件里退出登录后，**彻底关闭 Chrome 再重开**，清掉插件缓存的旧状态；
+- 确认插件「正在访问 / 自托管」里填的是 Vaultwarden 的**完整地址**。
+
+## 排查链路小结
+
+| 环节 | 内容 |
+| --- | --- |
+| **现象** | 手机 / Mac App 正常，唯独 Chrome 插件登录报「发生意外错误」 |
+| **根因** | 新版插件调用新 prelogin 接口，旧版 Vaultwarden 未实现 → 返回 404 |
+| **为何只坑插件** | 旧设备靠已有会话缓存运行，未走完整首次登录流程 |
+| **附带坑一** | `docker pull` 撞 Docker Hub 超时 → 配置国内镜像加速源 |
+| **附带坑二** | 群晖非标准 systemd；配置在 `/var/packages/ContainerManager/etc/dockerd.json`，用 `synopkg restart ContainerManager` 重启 |
+| **修复** | 升级 Vaultwarden 至 **1.36.0+** |
+
+## 延伸：下载的 md 文件被 macOS 拦截打不开
+
+把上面这篇文章从网络下载到 Mac 后，双击时可能弹出一个警告，提示「未打开」、「Apple 无法验证……是否包含可能危害 Mac 安全或泄漏隐私的恶意软件」，还带着「移到废纸篓」的红色按钮：
+
+![macos-gatekeeper-quarantine](/images/vaultwarden-chrome-extension-login-fix/2.png)
+
+### 为什么会这样
+
+这是 macOS 的 **Gatekeeper 隔离机制**，不是文件损坏，也不是文件真有问题。
+
+从浏览器下载、或从网络来源获取的文件，macOS 会自动打上一个叫 `com.apple.quarantine` 的**隔离属性**。对于来源无法验证的文件，系统就弹这个框警告。这是 macOS 对**所有**网络下载文件的默认行为，跟文件内容无关——一个纯文本的 `.md` 当然不可能藏恶意软件，只是被一刀切地拦下了。
+
+这也解释了为什么同一个目录里其他 `.md`（本地创建的）能正常打开，唯独这个刚下载的被拦：**本地创建的文件没有隔离属性，下载来的才有。**
+
+> ⚠️ 千万别点「移到废纸篓」，点「完成」关掉弹窗即可，然后用下面的方法解除隔离。
+
+### 解决方法
+
+**方法一：命令行解除单个文件（最快）**
+
+```bash
+xattr -d com.apple.quarantine 文件路径
+```
+
+不知道确切路径时，在终端先敲 `xattr -d com.apple.quarantine `（末尾留空格），再把文件从访达**拖进终端窗口**自动补全路径，然后回车。或者用 `find` 定位：
+
+```bash
+cd ~/Documents/blog
+find . -name "vaultwarden-chrome-extension-login-fix.md"
+xattr -d com.apple.quarantine ./content/posts/vaultwarden-chrome-extension-login-fix.md
+```
+
+想确认文件确实带了隔离属性，可以先看一眼，输出里有 `com.apple.quarantine` 就是它：
+
+```bash
+xattr 文件路径
+```
+
+**方法二：右键打开**
+
+在访达里**右键**（或按住 Control 点击）文件 → 选「打开」，弹窗里会多出一个「打开」按钮，点它即可，之后不再拦截。
+
+**方法三：批量解除整个下载目录**
+
+```bash
+xattr -dr com.apple.quarantine ~/Downloads
+```
+
+`-r` 递归，对文件夹内所有文件生效。
+
+### 以后还会遇到吗？如何长期应对
+
+只要是浏览器下载或从网络来源获取的文件，都会带上隔离属性，这是常态。但不必为此焦虑：
+
+- **大多数常规文件（图片、PDF、文本、压缩包等）双击一般不拦**，真正每次硬拦截的主要是可执行程序、脚本、来源不明的 App。
+- **不建议全局关闭 Gatekeeper**（`sudo spctl --master-disable`）。那会让所有下载程序都不再验证，等于拆掉一道重要安全防线，得不偿失。
+- **更好的思路是"绕开下载"而非"关掉防护"**：自己在本地用 VS Code / Typora 创建编辑的文件、通过 `git clone` / `git pull` 拉取的文件、以及内网（Tailscale / scp / NAS）传输的文件，**通常都不带隔离属性**，天然免疫。对写博客、搞开发的使用习惯来说，日常几乎不会被它困扰。
+
+一句话：**保留 Gatekeeper，偶尔遇到时用 `xattr -dr ~/Downloads` 批量清一下，是安全与便利的最佳平衡。**
+
+## 经验教训
+
+1. **笼统的客户端报错未必是客户端的问题。** 「发生意外错误」的真正根源在服务端接口缺失。遇到这类问题，第一时间去翻**服务端日志**，比在客户端反复重装折腾高效得多。
+2. **"旧设备能用"是个陷阱。** 它只证明已有会话还活着，不能证明完整登录路径健康。判断兼容性要用全新登录流程去验证。
+3. **Vaultwarden 需要紧跟 Bitwarden 客户端的 API 变化。** 官方客户端一旦引入新接口，滞后的自建服务端就可能被"卡首次登录"。养成定期更新 Vaultwarden 的习惯，能大幅降低这类问题的概率。
