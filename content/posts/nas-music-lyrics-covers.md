@@ -1,6 +1,6 @@
 ---
 title: "给黑群晖 7 万首音乐批量补齐歌词与封面（Navidrome 友好、非破坏方案）"
-date: 2026-07-02T10:00:00+08:00
+date: 2026-07-02T09:52:00+08:00
 lastmod: 2026-07-02T10:00:00+08:00
 draft: false
 tags: ["群晖", "Xpenology", "Navidrome", "音乐库", "歌词", "网易云", "Tailscale", "Python"]
