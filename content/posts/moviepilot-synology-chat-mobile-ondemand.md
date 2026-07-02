@@ -1,6 +1,6 @@
 ---
 title: "手机上发个片名，回家就能看：Synology Chat + MoviePilot 点播一条龙(附一坨历史遗留问题排障)"
-date: 2026-07-02T19:10:00+08:00
+date: 2026-07-02T18:30:00+08:00
 draft: false
 tags: ["MoviePilot", "Synology Chat", "群晖", "Xpenology", "Docker", "自动化观影", "mihomo", "网络排障"]
 categories: ["NAS", "折腾记录"]
