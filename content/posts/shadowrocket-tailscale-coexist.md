@@ -14,9 +14,11 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 我的场景很典型：
 
 - Mac 上开着 **Shadowrocket**（TUN 模式）用于日常代理；
-- 同时需要 **Tailscale** 连回家里的黑群晖 NAS（SA6400，Tailscale IP `100.127.178.15`，MagicDNS 名 `sa6400`）。
+- 同时需要 **Tailscale** 连回家里的黑群晖 NAS（SA6400，Tailscale IP `100.101.102.15`，MagicDNS 名 `sa6400`）。
 
-症状也很典型：**两个同时开,总有一个不干活**。Shadowrocket 开着的时候，`ping 100.127.178.15` 全部超时，DSM 网页打不开；关掉 Shadowrocket 就正常。
+> 注：文中所有 IP、主机名、tailnet 域名均已做脱敏替换，思路和命令不受影响，照抄时换成你自己的即可。
+
+症状也很典型：**两个同时开,总有一个不干活**。Shadowrocket 开着的时候，`ping 100.101.102.15` 全部超时，DSM 网页打不开；关掉 Shadowrocket 就正常。
 
 网上常见的答案是「在代理软件里把 `100.64.0.0/10` 加一条 DIRECT 分流规则」。**先说结论：这个答案在 Mac 上的 Shadowrocket 是错的**，而且真正的问题有两层。下面是完整的排障过程。
 
@@ -33,16 +35,16 @@ IP-CIDR, 100.64.0.0/10, DIRECT (不解析域名)
 结果 ping 出现了诡异的输出：
 
 ```
-92 bytes from 10.192.0.10: Time to live exceeded
- ... Src 10.100.174.44  Dst 100.127.178.15
+92 bytes from 10.9.0.10: Time to live exceeded
+ ... Src 10.0.8.44  Dst 100.101.102.15
 ```
 
-注意源地址 `10.100.174.44` —— 这不是 Tailscale 的地址，是**物理网卡 en0 的局域网地址**。包被甩给了物理网关，在运营商/校园网里绕圈直到 TTL 耗尽。
+注意源地址 `10.0.8.44` —— 这不是 Tailscale 的地址，是**物理网卡 en0 的局域网地址**。包被甩给了物理网关，在运营商/校园网里绕圈直到 TTL 耗尽。
 
 原因：**Shadowrocket 的 DIRECT 意思是「从物理网卡直连」，它并不知道也不关心 Tailscale 的存在**。而且这条规则会让 Shadowrocket 往系统路由表里写一条：
 
 ```
-100.64/10 → 10.100.174.183 (en0 网关)
+100.64/10 → 10.0.8.1 (en0 网关)
 ```
 
 这条路由直接把 Tailscale 的路由压死了。
@@ -52,7 +54,7 @@ IP-CIDR, 100.64.0.0/10, DIRECT (不解析域名)
 删掉 DIRECT 规则后查路由表（`netstat -rn -f inet`）：
 
 ```
-100.64/10   10.100.174.183   UGSc   en0      ← Shadowrocket 的排除路由（全局生效）
+100.64/10   10.0.8.1   UGSc   en0      ← Shadowrocket 的排除路由（全局生效）
 100.64/10   link#44          UCSI   utun16   ← Tailscale 的路由（注意 I 标志）
 ```
 
@@ -63,7 +65,7 @@ IP-CIDR, 100.64.0.0/10, DIRECT (不解析域名)
 验证 Tailscale 隧道本身没问题：
 
 ```bash
-ping -b utun16 100.127.178.15   # 强制从 Tailscale 网卡发包 → 通！
+ping -b utun16 100.101.102.15   # 强制从 Tailscale 网卡发包 → 通！
 ```
 
 ### 破局：/32 主机路由，精确度碾压
@@ -71,16 +73,16 @@ ping -b utun16 100.127.178.15   # 强制从 Tailscale 网卡发包 → 通！
 路由选路规则：**前缀越长（越精确）优先级越高**。`/32` 主机路由必然赢过那条 `/10`：
 
 ```bash
-sudo route -n add -host 100.127.178.15 -interface utun16
+sudo route -n add -host 100.101.102.15 -interface utun16
 ```
 
-加完 `route get 100.127.178.15` 显示走 `utun16`，ping 立刻通了。
+加完 `route get 100.101.102.15` 显示走 `utun16`，ping 立刻通了。
 
 > 小坑：如果 `route add` 报 `File exists`，是内核克隆的邻居表项挡路，先 `sudo route -n delete -host <IP>` 再加。
 
 ### 第三坑：ping 通了，浏览器还是打不开
 
-`curl --noproxy '*' http://100.127.178.15:5000` 返回 200，但浏览器死活进不去。查系统代理：
+`curl --noproxy '*' http://100.101.102.15:5000` 返回 200，但浏览器死活进不去。查系统代理：
 
 ```bash
 scutil --proxy
@@ -98,13 +100,13 @@ scutil --proxy
 ExcludeSimpleHostnames : 1
 ```
 
-**不带点的「简单主机名」自动绕过系统代理。** 而 Tailscale 的 MagicDNS 正好在系统里配了搜索域（`tailxxxx.ts.net`），短名 `sa6400` 能直接解析成 `100.127.178.15`。
+**不带点的「简单主机名」自动绕过系统代理。** 而 Tailscale 的 MagicDNS 正好在系统里配了搜索域（`tailxxxx.ts.net`），短名 `sa6400` 能直接解析成 `100.101.102.15`。
 
 所以浏览器访问：
 
 ```
 http://sa6400:5000        ← 用这个 ✅
-http://100.127.178.15:5000 ← 不要用 IP ❌（会被交给代理）
+http://100.101.102.15:5000 ← 不要用 IP ❌（会被交给代理）
 ```
 
 链路变成：短名绕过代理 → MagicDNS 解析 → 命中 /32 主机路由 → 进 Tailscale 隧道 → 到家。
@@ -141,8 +143,8 @@ http://100.127.178.15:5000 ← 不要用 IP ❌（会被交给代理）
 # 卸载:sudo sh install-nas-route.sh uninstall
 # =============================================================
 
-NAS_IP="100.127.178.15"   # NAS 的 Tailscale IP,若变化改这里
-LABEL="com.leesdove.tailscale-nas-route"
+NAS_IP="100.101.102.15"   # NAS 的 Tailscale IP,若变化改这里
+LABEL="com.user.tailscale-nas-route"
 SCRIPT="/usr/local/bin/tailscale-nas-route.sh"
 PLIST="/Library/LaunchDaemons/${LABEL}.plist"
 
@@ -211,7 +213,7 @@ echo "✅ 安装完成。浏览器请用 http://sa6400:5000 访问 NAS"
 **在哪跑:永远在 Mac 本地终端跑,不是 NAS。** 这个脚本修的是 Mac 的路由表,跟 NAS 无关。跑之前认准终端提示符——排障时我就犯过把命令跑到 NAS 的 SSH 会话里的错误:
 
 ```
-leesdove@xxx-MacBook ~ %   ← Mac 本地,对 ✅
+user@MacBook-Air ~ %   ← Mac 本地,对 ✅
 root@SA6400:~#             ← 这是 NAS 的 SSH,错 ❌(先 exit 退出来)
 ```
 
@@ -252,7 +254,7 @@ root@SA6400:~#             ← 这是 NAS 的 SSH,错 ❌(先 exit 退出来)
 
 ```bash
 # 1. 路由指向对不对?(应该是 Tailscale 的 utunX)
-route -n get 100.127.178.15 | grep interface
+route -n get 100.101.102.15 | grep interface
 
 # 2. Tailscale 活着吗?
 /Applications/Tailscale.app/Contents/MacOS/Tailscale status
@@ -261,7 +263,7 @@ route -n get 100.127.178.15 | grep interface
 log show --last 10m --predicate 'eventMessage CONTAINS "tailscale-nas-route"'
 
 # 4. 网络层通、浏览器不通?→ 检查是不是用 IP 访问了,换短名
-curl -s -o /dev/null -w "%{http_code}\n" --noproxy '*' http://100.127.178.15:5000
+curl -s -o /dev/null -w "%{http_code}\n" --noproxy '*' http://100.101.102.15:5000
 ```
 
 ## 写在最后
