@@ -1,6 +1,7 @@
 ---
 title: "让 Shadowrocket 和 Tailscale 在 Mac 上和平共处：一次路由冲突的完整排障记录"
 date: 2026-07-02T11:15:00+08:00
+lastmod: 2026-07-02T11:40:00+08:00
 draft: false
 tags: ["Tailscale", "Shadowrocket", "macOS", "路由", "群晖", "Xpenology", "网络排障"]
 categories: ["NAS", "折腾记录"]
@@ -205,15 +206,37 @@ echo "✅ 安装完成。浏览器请用 http://sa6400:5000 访问 NAS"
 
 ## 换电脑 / 重装系统的完整流程
 
+### 脚本在哪跑、放在哪(先搞清楚这两点)
+
+**在哪跑:永远在 Mac 本地终端跑,不是 NAS。** 这个脚本修的是 Mac 的路由表,跟 NAS 无关。跑之前认准终端提示符——排障时我就犯过把命令跑到 NAS 的 SSH 会话里的错误:
+
+```
+leesdove@xxx-MacBook ~ %   ← Mac 本地,对 ✅
+root@SA6400:~#             ← 这是 NAS 的 SSH,错 ❌(先 exit 退出来)
+```
+
+**放在哪:随便,但要多备几份。** 脚本本身放哪个目录都行——它运行时会把真正干活的文件安装到系统固定位置(`/usr/local/bin/tailscale-nas-route.sh` 和 `/Library/LaunchDaemons/`),跟脚本文件自己在哪无关。我存了三份:
+
+| 位置 | 用途 |
+|---|---|
+| Mac 本地 | 留底 |
+| NAS 共享文件夹 | 换电脑时从 File Station 下载 |
+| 移动硬盘 | 离线备份(NAS 也挂了时的保命稻草) |
+
+### 恢复四步
+
 以后拿到新 Mac（或重装系统后），恢复整套环境只需四步：
 
-1. **装 Tailscale**（App Store 或官网），登录同一账号，确认菜单栏图标变绿、能看到 NAS 设备在线；
+1. **装 Tailscale**（App Store 或官网），登录同一账号，确认菜单栏图标变绿、能看到 NAS 设备在线——这是唯一的前提，Shadowrocket 装不装、开不开都不影响安装；
 2. **装 Shadowrocket**，导入原来的配置（节点 + 规则原样即可，不需要为 Tailscale 加任何特殊规则）；
-3. **跑一次安装脚本**（从 NAS 的 File Station 或移动硬盘取回）：
+3. **跑一次安装脚本**。比如从 NAS 下载到了新 Mac 的"下载"文件夹：
 
    ```bash
+   cd ~/Downloads
    sudo sh install-nas-route.sh
    ```
+
+   输入 Mac 的开机密码（不是 NAS 的），看到 `✅ 安装完成` 即可；
 
 4. **浏览器书签存 `http://sa6400:5000`**，以后固定用短名访问。
 
