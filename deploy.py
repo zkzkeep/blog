@@ -5,12 +5,12 @@ import argparse
 import sys
 from scripts.config import BLOG_ROOT
 from scripts.git_tools import changed_markdown_files, deleted_markdown_files, commit_and_push
-from scripts.hugo_tools import build_hugo, deploy_pages
+from scripts.hugo_tools import build_hugo
 from scripts.markdown import fix_markdown
 from scripts.organize_images import garbage_collect_images, organize_images
 from scripts.utils import BlogError, backup_markdown, log
 
-TOTAL_STEPS = 6
+TOTAL_STEPS = 5
 
 
 def step(number: int, title: str) -> None:
@@ -77,27 +77,20 @@ def main() -> int:
         step(4, "构建 Hugo 网站")
         build_hugo(dry_run=args.dry_run)
 
-        # 第 5 步：提交并推送文章源码。
-        step(5, "提交文章并推送到 GitHub")
+        # 第 5 步：提交并推送。网站由 Cloudflare Pages 监听 main 分支自动构建部署，
+        # 推送成功即等于发布，无需再做任何额外操作。
+        step(5, "提交并推送，触发网站部署")
         if args.dry_run:
             log("[dry-run] 跳过提交和推送。")
         else:
             commit_and_push(affected, args.message, push=not args.no_push)
-
-        # 第 6 步：把构建好的网页发布到 gh-pages——网站从这个分支伺服，
-        # 漏掉这一步就是“源码推上去了、网站却不更新”。
-        step(6, "发布网页，让网站上线")
-        if args.no_push:
-            log("--no-push 模式，跳过网页发布。")
-        else:
-            deploy_pages(dry_run=args.dry_run)
         log("")
         if args.dry_run:
             log("✅ 预览结束（dry-run），没有改动任何文件。")
         elif args.no_push:
             log("✅ 已在本地提交，未推送。")
         else:
-            log("✅ 全部完成！网站正在更新，约 1 分钟后生效。")
+            log("✅ 全部完成！Cloudflare Pages 正在自动部署，约 1 分钟后生效。")
             log("   网站地址：https://leesy.cc")
         return 0
     except BlogError as exc:
