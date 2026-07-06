@@ -119,3 +119,4 @@ dmesg | tail
 - 暴露给不可控环境的入口，一定用**专用低权限账号**，并把其他共享显式 NA 掉——新用户默认权限比你想象的大。
 - DSM 的 NA 是 ACL deny 条目，只能通过 `synoshare --setuser` 设置，手动 `synoacltool` 加 deny 会报 8400。
 - `btrfs device stats` + `dmesg` + SMART 三件套，能把"文件系统报错"定位到"线缆接触不良"这个层面。
+- well done
