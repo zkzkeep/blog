@@ -1,0 +1,66 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI | 我的博客</title><meta name=keywords content><meta name=description content><meta name=author content><link rel=canonical href=https://leesy.cc/tags/ai/><link crossorigin=anonymous href=/assets/css/stylesheet.c37119b9630e1d5f12e3c5e038883e2fe7ef6a602aaf5446943f7bdf2f8dd287.css integrity="sha256-w3EZuWMOHV8S48XgOIg+L+fvamAqr1RGlD973y+N0oc=" rel="preload stylesheet" as=style><link rel=icon href=https://leesy.cc/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://leesy.cc/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://leesy.cc/favicon-32x32.png><link rel=apple-touch-icon href=https://leesy.cc/apple-touch-icon.png><link rel=mask-icon href=https://leesy.cc/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://leesy.cc/tags/ai/index.xml title=rss><link rel=alternate hreflang=en href=https://leesy.cc/tags/ai/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://leesy.cc/tags/ai/"><meta property="og:site_name" content="我的博客"><meta property="og:title" content="AI"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://leesy.cc/ accesskey=h title="我的博客 (Alt + H)">我的博客</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><header class=page-header><h1>AI</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>故障录波两题整理</h2></header><div class=entry-content><p>总体看图顺序 拿到故障录波图，不要先盯着波形看。先按下面顺序：
+看题干和表头：确认是线路、主变、母线还是其他设备；看动作时间、CT/PT 变比、标度。 看通道名称：明确每一列是开关量、电流、电压还是零序量。 看模拟量：哪一相电流增大、哪一相电压降低、有没有 3I0 和 3U0。 看开关量：保护出口、跳闸、跳位继电器、重合闸、永跳等动作时间。 写报告：时间、设备、相别、故障类型、保护动作、开关动作、动作正确性。 核心口诀：
+看对象 -> 定相别 -> 判故障 -> 排时序 -> 写结论 试题 1：线路 C 相接地故障，单跳重合后加速三跳 一、故障性质判断 从录波图看：
+Ic 故障后明显增大； 3I0 出现； Uc 电压异常或降低； 3U0 出现。 所以可判断为：
+线路 C 相接地故障。
+判断依据：
+C 相电流增大 + 零序电流出现 + C 相电压异常 + 零序电压出现 = C 相接地故障 二、第一次故障及单相跳闸过程 关键时间：
+0ms 左右：C 相接地故障发生 30ms 左右：保护发出 C 相跳闸命令 75ms 左右：C 相断路器跳开，故障电流消失 115ms 左右：C 相跳闸出口返回 注意：
+C 相跳闸 是保护出口命令，不等于断路器已经跳开。
+...</p></div><footer class=entry-footer><span title='2026-06-28 13:16:00 +0800 CST'>June 28, 2026</span>&nbsp;·&nbsp;<span>3 min</span></footer><a class=entry-link aria-label="post link to 故障录波两题整理" href=https://leesy.cc/posts/%E6%95%85%E9%9A%9C%E5%BD%95%E6%B3%A2%E4%B8%A4%E9%A2%98%E6%95%B4%E7%90%86/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>高级技师实操考试笔试复习指导</h2></header><div class=entry-content><p>考试按你说的分三块：仿真机你自己练，我只安排笔试两项。今天是 2026-06-28，后天考试按 2026-06-30 处理，所以策略是：不再追求全量细读，改为“模板化作答 + 高频计算 + 按评分点写满”。
+总体优先级 故障录波图分析：最像标准化笔试，材料里明确是“故障参数 40% + 录波报告分析 60%”。这是最值得抢分的一项。 一次设备故障及缺陷综合分析：重点不是背整本课件，而是会按模板判断缺陷等级、原因和处理建议。 新站投产送电：按流程题准备，背“时间节点、验收环节、验收方法、投运前检查、资料/规程/工器具移交、启动验收”。 两天复习安排 6 月 28 日：建立答题骨架 上午或现在开始，先用 2 小时做录波：
+背录波分析 6 步：看表头和故障概况；核对故障前相位；读比例尺和开关量；列事件时间轴；算电流电压幅值；用过零点算相位并判断保护动作。 默写录波报告 6 栏：开关量动作分析、故障过程、保护动作过程、故障类型、保护动作正确性、保护动作时序图/相量图。 练 2 张照片里的题：不要只看答案，要按“时间、设备、故障相别、保护启动/出口/跳闸、是否重合、结论”完整写。 下午用 2.5 小时做一次设备缺陷：
+背缺陷题模板：部位 -> 热像特征 -> 致热类型 -> 计算 -> 缺陷等级 -> 试验数据佐证 -> 原因 -> 处理。 重点练 3 个案例：CT 颈部过热、CT 本体过热、CT 储油柜缺油。 把“电流致热”和“电压致热”分清：接头/线夹/触头多为电流致热；整体发热、介损异常、绝缘受潮劣化、缺油多归到电压致热或绝缘缺陷。 晚上用 1.5 小时做新站投产：
+默写“七个验收环节”：可研初设审查、厂内验收、到货验收、隐蔽工程验收、中间验收、竣工预验收、启动验收。 默写“四种验收方法”：资料检查、旁站见证、现场检查、现场抽查。 默写投运前检查重点：主设备点位、监控后台、五防闭锁、辅助设施、标识牌、设备台账、资料移交、规程、工器具备品备件、钥匙办公通信。 6 月 29 日：按考试输出练 上午：录波闭卷练 2 轮。每轮 35-45 分钟，必须写成报告，不许只在脑子里判断。
+...</p></div><footer class=entry-footer><span title='2026-06-28 09:12:00 +0800 CST'>June 28, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer><a class=entry-link aria-label="post link to 高级技师实操考试笔试复习指导" href=https://leesy.cc/posts/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B8%88%E5%AE%9E%E6%93%8D%E8%80%83%E8%AF%95%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E6%8C%87%E5%AF%BC/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>隐秘的角落</h2></header><div class=entry-content><p>《隐秘的角落》昨日就着弹幕看完的，差点儿没在弹幕里笑死。严格来说这部剧基调是带着压抑氛围的悲剧，却没曾想在弹幕的神助攻下，硬生生看成了喜剧。第二天回过头一想，顿生出一阵悲凉。
+人生无常，每个人的悲喜都互不相同。但最让我难过的是张东升。一个无奈，压抑，求不得的数学补习老师。他为了妻子来到她的城市生活，努力的做一个好丈夫。不抽烟不喝酒努力认真工作，就因为没个光鲜亮丽的工作或者说工资低就被妻子老丈人他们嫌弃。其实以他高智商是不难找到好工作的，他其实本可以更好，来到了这个小城却只为了妻子！但妻子呢，偷情，冷暴力，任性，他都忍了，最后却还要和他离婚，相当于将他最后的一丝倔强也撕下了。
+他可以容忍妻子的所有，但妻子却还要将他彻底赶走，他不是不明白一切，在地下车库里，他说了句，你这一走可再也找不到像我一样对你这么好的人了。那一刻，我真的泪目了。
+弹幕里有人说，多好的坏人啊。知道三个小孩儿为救欣欣，最终还是将30万（其中27万还是找高利贷借的）全部给他们。这冲这份善意，着实让我恨不起来。我虽然做不到他偏执的狠辣，但我依旧被他内心的暖意所感动着。
+他杀岳父岳母，杀妻子的那份狠辣，一般人做不到。但他爱妻子爱家庭一般人也难以做到。每个人都有很多面，一个法律道义上定义的坏人难道就是个彻头彻尾的坏人么？
+但命运就是这样，让你求不得，你想和妻子过一个平淡日子，不行，对方就要嫌弃你无能无用；你不想离婚，不行，必须离；你想回归做个好人终结这一切，不行，就是要报警抓你。当然这不是他杀人的理由，这基本的道德标尺我还是有的。但从他这一生来看，他也是个可怜人，和我们普罗大众一样，再怎么挣扎都逃不脱命运的捉弄。
+他其实可以不死，但他就是一心求死，因为世间已没有什么值得他留恋的了。他已一无所有，拼尽全力也换不回妻子，换不回爱情，换不回不背叛，他活着还有什么意义呢？哀莫大于心死。但他还是用他残存的善意救了欣欣，一个从来没有见过的陌生人。
+我都怀疑到底有没有欣欣，也许，他也是相信童话的那个人呢？</p></div><footer class=entry-footer><span title='2026-06-26 23:05:11 +0800 CST'>June 26, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer><a class=entry-link aria-label="post link to 隐秘的角落" href=https://leesy.cc/posts/%E9%9A%90%E7%A7%98%E7%9A%84%E8%A7%92%E8%90%BD/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>生病杂记</h2></header><div class=entry-content><p>2026年6月23号，这一天是我该终身铭记的一天。一张医生的诊断证明，让我下半辈子永远都摆脱不了吃药的命运了，我得冠状动脉粥样硬化了。37岁的年龄，说大不大，说小不小，但按医生的话说，得的稍微有点着早。为了宽慰我，他又接着说，没事儿，我还不是吃药，我都吃5年啦。我看着他快50岁的头发和真诚的眼神，有种想打人得冲动，哎，可是我才37岁啊！！！！！！
+起初我有点想不通，毕竟我血压低，血脂低，身高也就178吧，体重也才65，不说帅比潘安，年轻时候那也是一表人才的，怎么就得了这个病啊，不科学啊。后来我问了AI，才搞明白，我这是遗传和压力导致的。遗传占主导地位，压力占次要地位。刚好25年，工作太忙，压力又大，持续扛压过后，得上了也是意料中事。
+既然事已成定局，我也不再纠结了。吃药就吃药吧，也没什么大不了，反正医保卡里的钱足够买药了。而且这药是真便宜啊，一盒4板28粒才3块钱。医生给我开了一盒他汀，两瓶叶酸，叶酸，就是那个每个男人备孕时都被媳妇儿逼着吃的玩意儿，三样总共才10块。不得不感慨，社会主义就是好啊，让大家都能吃上国产药了。
+我们家是有遗传史的，我爸这边男性，几乎人人都有。我爸62岁才得的冠心病，然后由于经常运动，跳舞打拳太极，血脂一直控制的很好，根本看不出有病的样子。
+有一次他笑着说，如果哪天活腻了，就不吃药了，血管堵了，得了心梗，一下子就走了，轻松自在。比那些在病床上接受放疗化疗最后钱财两空的人好太多了。
+但是，只要还有希望，谁会愿意离开这个世界呢？谁又敢说自己活腻歪了？
+好死不如赖活着，我才不想走呢，我还要见证家居AI机器人时代的到来呢？我还等着AI机器人给咱泡茶做饭捏脚按摩呢？咱就躺在家里当大爷，哈哈哈，岂不快哉！</p></div><footer class=entry-footer><span title='2026-06-26 11:48:01 +0800 CST'>June 26, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer><a class=entry-link aria-label="post link to 生病杂记" href=https://leesy.cc/posts/%E7%94%9F%E7%97%85%E6%9D%82%E8%AE%B0/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>《Hexo迁移Hugo踩坑记录》</h2></header><div class=entry-content><p>说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。
+第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。
+附上美美的照片：
+期间主要经历了以下坑：
+1、Hexo → Hugo 迁移
+2、图片路径调整
+3、GitHub 仓库管理
+4、Git 基本操作（commit、push、pull、rebase）
+5、GitHub Actions 自动部署
+6、GitHub Pages
+7、Cloudflare 自定义域名
+8、DNS 排查
+9、Hugo Front Matter 格式
+这每一个，对我来说都是全新内容，加上AI，它的信息并不是最新的，导致它说的很多地方找不到，然后就再次询问，一来二去的，导致一个小问题，别人1秒可以搞定，我却需要半小时才搞明白。
+为了不让以后的写博客之路出现故障，在此，我对其中的主要操作细节和流程进行一个记录和复盘，便于以后回顾。
+博客地址：
+https://blog.leesy.cc 源码仓库：
+https://github.com/zkzkeep/blog 一、博客目录位置 Mac 本地博客目录：
+这是正文
+~/Documents/blog 进入博客目录：
+cd ~/Documents/blog 确认是否进入成功：
+pwd 应该显示：
+/Users/leesdove/Documents/blog 二、本地预览博客 进入博客目录：
+cd ~/Documents/blog 启动 Hugo：
+hugo server 浏览器访问：
+http://localhost:1313 停止服务：
+Ctrl + C 三、新建文章 方法一（推荐） 打开 Typora
+新建文件
+保存到：
+~/Documents/blog/content/posts/ 文件名例如：
+我的第一篇文章.md 文章模板：
++++ title = "我的第一篇文章" date = 2026-06-25 draft = false tags = ["生活"] categories = ["随笔"] +++ 这里开始写正文 方法二（Hugo命令） 必须先进入博客目录：
+...</p></div><footer class=entry-footer><span title='2026-06-25 19:52:37 +0800 CST'>June 25, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer><a class=entry-link aria-label="post link to 《Hexo迁移Hugo踩坑记录》" href=https://leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://leesy.cc/>我的博客</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>(()=>{const e={idle:"复制",done:"已复制",failed:"失败"};function t(e){const t=document.createElement("textarea");t.value=e,t.setAttribute("readonly",""),t.style.position="fixed",t.style.top="-9999px",document.body.appendChild(t),t.select();try{return document.execCommand("copy"),Promise.resolve()}catch(e){return Promise.reject(e)}finally{t.remove()}}function n(e){return navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(e):t(e)}document.querySelectorAll(".post-content div.highlight, .post-content pre").forEach(t=>{if(t.closest(".highlight")&&t.tagName.toLowerCase()==="pre")return;if(t.querySelector(":scope > .copy-code-button"))return;const o=t.querySelector("code");if(!o)return;t.classList.add("copy-code-wrapper");const s=document.createElement("button");s.className="copy-code-button",s.type="button",s.textContent=e.idle,s.setAttribute("aria-label","复制代码"),s.addEventListener("click",async()=>{const t=o.innerText.replace(/\n$/,"");try{await n(t),s.textContent=e.done,s.classList.add("is-copied")}catch{s.textContent=e.failed,s.classList.add("is-failed")}window.setTimeout(()=>{s.textContent=e.idle,s.classList.remove("is-copied","is-failed")},1400)}),t.appendChild(s)})})()</script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>

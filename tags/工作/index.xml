@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>工作 on 我的博客</title><link>https://leesy.cc/tags/%E5%B7%A5%E4%BD%9C/</link><description>Recent content in 工作 on 我的博客</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 28 Jun 2026 13:16:00 +0800</lastBuildDate><atom:link href="https://leesy.cc/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>故障录波两题整理</title><link>https://leesy.cc/posts/%E6%95%85%E9%9A%9C%E5%BD%95%E6%B3%A2%E4%B8%A4%E9%A2%98%E6%95%B4%E7%90%86/</link><pubDate>Sun, 28 Jun 2026 13:16:00 +0800</pubDate><guid>https://leesy.cc/posts/%E6%95%85%E9%9A%9C%E5%BD%95%E6%B3%A2%E4%B8%A4%E9%A2%98%E6%95%B4%E7%90%86/</guid><description>&lt;h2 id="总体看图顺序"&gt;总体看图顺序&lt;/h2&gt;
+&lt;p&gt;拿到故障录波图，不要先盯着波形看。先按下面顺序：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;看题干和表头：确认是线路、主变、母线还是其他设备；看动作时间、CT/PT 变比、标度。&lt;/li&gt;
+&lt;li&gt;看通道名称：明确每一列是开关量、电流、电压还是零序量。&lt;/li&gt;
+&lt;li&gt;看模拟量：哪一相电流增大、哪一相电压降低、有没有 3I0 和 3U0。&lt;/li&gt;
+&lt;li&gt;看开关量：保护出口、跳闸、跳位继电器、重合闸、永跳等动作时间。&lt;/li&gt;
+&lt;li&gt;写报告：时间、设备、相别、故障类型、保护动作、开关动作、动作正确性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;核心口诀：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;看对象 -&amp;gt; 定相别 -&amp;gt; 判故障 -&amp;gt; 排时序 -&amp;gt; 写结论
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="试题-1线路-c-相接地故障单跳重合后加速三跳"&gt;试题 1：线路 C 相接地故障，单跳重合后加速三跳&lt;/h2&gt;
+&lt;h2 id="一故障性质判断"&gt;一、故障性质判断&lt;/h2&gt;
+&lt;p&gt;从录波图看：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ic&lt;/code&gt; 故障后明显增大；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;3I0&lt;/code&gt; 出现；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Uc&lt;/code&gt; 电压异常或降低；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;3U0&lt;/code&gt; 出现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以可判断为：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;线路 C 相接地故障。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;判断依据：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;C 相电流增大 + 零序电流出现 + C 相电压异常 + 零序电压出现
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;= C 相接地故障
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="二第一次故障及单相跳闸过程"&gt;二、第一次故障及单相跳闸过程&lt;/h2&gt;
+&lt;p&gt;关键时间：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;0ms 左右：C 相接地故障发生
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;30ms 左右：保护发出 C 相跳闸命令
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;75ms 左右：C 相断路器跳开，故障电流消失
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;115ms 左右：C 相跳闸出口返回
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C 相跳闸&lt;/code&gt; 是保护出口命令，不等于断路器已经跳开。&lt;/p&gt;</description></item><item><title>高级技师实操考试笔试复习指导</title><link>https://leesy.cc/posts/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B8%88%E5%AE%9E%E6%93%8D%E8%80%83%E8%AF%95%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E6%8C%87%E5%AF%BC/</link><pubDate>Sun, 28 Jun 2026 09:12:00 +0800</pubDate><guid>https://leesy.cc/posts/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B8%88%E5%AE%9E%E6%93%8D%E8%80%83%E8%AF%95%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E6%8C%87%E5%AF%BC/</guid><description>&lt;p&gt;考试按你说的分三块：仿真机你自己练，我只安排笔试两项。今天是 2026-06-28，后天考试按 2026-06-30 处理，所以策略是：不再追求全量细读，改为“模板化作答 + 高频计算 + 按评分点写满”。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="21331844dbf208cf061c37e00c7351f6" loading="lazy" src="https://leesy.cc/images/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B8%88%E5%AE%9E%E6%93%8D%E8%80%83%E8%AF%95%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E6%8C%87%E5%AF%BC/1.jpg"&gt;&lt;/p&gt;
+&lt;h2 id="总体优先级"&gt;总体优先级&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;故障录波图分析：最像标准化笔试，材料里明确是“故障参数 40% + 录波报告分析 60%”。这是最值得抢分的一项。&lt;/li&gt;
+&lt;li&gt;一次设备故障及缺陷综合分析：重点不是背整本课件，而是会按模板判断缺陷等级、原因和处理建议。&lt;/li&gt;
+&lt;li&gt;新站投产送电：按流程题准备，背“时间节点、验收环节、验收方法、投运前检查、资料/规程/工器具移交、启动验收”。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="两天复习安排"&gt;两天复习安排&lt;/h2&gt;
+&lt;h3 id="6-月-28-日建立答题骨架"&gt;6 月 28 日：建立答题骨架&lt;/h3&gt;
+&lt;p&gt;上午或现在开始，先用 2 小时做录波：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;背录波分析 6 步：看表头和故障概况；核对故障前相位；读比例尺和开关量；列事件时间轴；算电流电压幅值；用过零点算相位并判断保护动作。&lt;/li&gt;
+&lt;li&gt;默写录波报告 6 栏：开关量动作分析、故障过程、保护动作过程、故障类型、保护动作正确性、保护动作时序图/相量图。&lt;/li&gt;
+&lt;li&gt;练 2 张照片里的题：不要只看答案，要按“时间、设备、故障相别、保护启动/出口/跳闸、是否重合、结论”完整写。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下午用 2.5 小时做一次设备缺陷：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;背缺陷题模板：部位 -&amp;gt; 热像特征 -&amp;gt; 致热类型 -&amp;gt; 计算 -&amp;gt; 缺陷等级 -&amp;gt; 试验数据佐证 -&amp;gt; 原因 -&amp;gt; 处理。&lt;/li&gt;
+&lt;li&gt;重点练 3 个案例：CT 颈部过热、CT 本体过热、CT 储油柜缺油。&lt;/li&gt;
+&lt;li&gt;把“电流致热”和“电压致热”分清：接头/线夹/触头多为电流致热；整体发热、介损异常、绝缘受潮劣化、缺油多归到电压致热或绝缘缺陷。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;晚上用 1.5 小时做新站投产：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默写“七个验收环节”：可研初设审查、厂内验收、到货验收、隐蔽工程验收、中间验收、竣工预验收、启动验收。&lt;/li&gt;
+&lt;li&gt;默写“四种验收方法”：资料检查、旁站见证、现场检查、现场抽查。&lt;/li&gt;
+&lt;li&gt;默写投运前检查重点：主设备点位、监控后台、五防闭锁、辅助设施、标识牌、设备台账、资料移交、规程、工器具备品备件、钥匙办公通信。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="6-月-29-日按考试输出练"&gt;6 月 29 日：按考试输出练&lt;/h3&gt;
+&lt;p&gt;上午：录波闭卷练 2 轮。每轮 35-45 分钟，必须写成报告，不许只在脑子里判断。&lt;/p&gt;</description></item><item><title>我的hugo+cloudflare自动化博客搭建手册</title><link>https://leesy.cc/posts/hugo-cloudflare-handbook/</link><pubDate>Sat, 27 Jun 2026 09:05:34 +0800</pubDate><guid>https://leesy.cc/posts/hugo-cloudflare-handbook/</guid><description>&lt;h1 id="我的-hugo--cloudflare-自动化博客搭建手册"&gt;《我的 Hugo + Cloudflare 自动化博客搭建手册》&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一套属于自己的博客系统，不只是一个网站，更是一份可以长期维护的数字资产。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id="第一章-为什么重建博客"&gt;第一章 为什么重建博客&lt;/h1&gt;
+&lt;h2 id="11-写在前面"&gt;1.1 写在前面&lt;/h2&gt;
+&lt;p&gt;从学生时代开始，我就一直有写博客的习惯。&lt;/p&gt;
+&lt;p&gt;最早接触的是 Hexo + GitHub Pages。那时更多是为了记录折腾电脑、网络和编程的过程。后来因为域名到期、工作繁忙、长期没有维护，博客逐渐停用，最后也无法继续访问。&lt;/p&gt;
+&lt;p&gt;多年以后，我重新开始思考一个问题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;互联网上那么多内容，真正属于自己的还有多少？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;朋友圈会被时间淹没，公众号受平台限制，知乎、微博也都有自己的规则。只有自己拥有的博客，文章、图片、域名、排版和访问方式，才真正掌握在自己手里。&lt;/p&gt;
+&lt;p&gt;这一次，我希望博客不只是一个写文章的网站，而是一套能够长期稳定运行、可以迁移、可以恢复、可以陪伴很多年的知识管理系统。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="12-我的目标"&gt;1.2 我的目标&lt;/h2&gt;
+&lt;p&gt;重建博客时，我给自己定下了几个目标。&lt;/p&gt;
+&lt;p&gt;第一，流程要简单。&lt;/p&gt;
+&lt;p&gt;博客应该把精力放在内容上，而不是每天维护网站本身。理想状态是：打开 Typora 写文章，保存后自动发布。&lt;/p&gt;
+&lt;p&gt;第二，数据要属于自己。&lt;/p&gt;
+&lt;p&gt;所有文章用 Markdown 保存，所有图片进入仓库，源码托管在 GitHub，网站部署在 Cloudflare Pages，域名使用自己的 &lt;code&gt;leesy.cc&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;第三，访问要稳定。&lt;/p&gt;
+&lt;p&gt;博客采用静态部署，没有数据库，没有后台，没有服务器运维压力。Cloudflare Pages 负责 HTTPS、CDN 和全球访问。&lt;/p&gt;
+&lt;p&gt;第四，系统要能长期维护。&lt;/p&gt;
+&lt;p&gt;我希望它不仅能记录读书、生活、技术、工作、健康和思考，也能在几年以后仍然容易恢复、容易修改、容易继续写。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="13-为什么选择-hugo"&gt;1.3 为什么选择 Hugo&lt;/h2&gt;
+&lt;p&gt;目前主流静态博客框架很多，例如 Hexo、Hugo、Jekyll、Astro、Next.js。&lt;/p&gt;
+&lt;p&gt;最终选择 Hugo，主要因为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;构建速度快；&lt;/li&gt;
+&lt;li&gt;Markdown 原生支持好；&lt;/li&gt;
+&lt;li&gt;没有数据库依赖；&lt;/li&gt;
+&lt;li&gt;主题生态成熟；&lt;/li&gt;
+&lt;li&gt;迁移成本低；&lt;/li&gt;
+&lt;li&gt;长期维护相对省心。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对我来说，Hugo 最重要的优点不是功能多，而是它足够安静。&lt;/p&gt;
+&lt;p&gt;写作就是写作，不应该被复杂的运行环境绑住。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="14-当前真实工作流"&gt;1.4 当前真实工作流&lt;/h2&gt;
+&lt;p&gt;现在博客的实际工作流是：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Typora 写作
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;保存 Markdown
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;scripts.watch 监听到变化
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;deploy.py 调度发布流程
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;整理图片、修正文章、补充标签
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Hugo 本地构建校验
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Git commit / git push
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;GitHub 保存源码和历史
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Cloudflare Pages 自动构建部署
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;https://leesy.cc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;日常使用时，我只需要先启动监听器：&lt;/p&gt;</description></item><item><title>管理心得</title><link>https://leesy.cc/posts/%E7%AE%A1%E7%90%86%E5%BF%83%E5%BE%97/</link><pubDate>Fri, 26 Jun 2026 23:25:36 +0800</pubDate><guid>https://leesy.cc/posts/%E7%AE%A1%E7%90%86%E5%BF%83%E5%BE%97/</guid><description>&lt;p&gt;&lt;img alt="image-20260626234938734" loading="lazy" src="https://leesy.cc/images/%E7%AE%A1%E7%90%86%E5%BF%83%E5%BE%97/1.png"&gt;&lt;/p&gt;
+&lt;p&gt;自2024年被领导提拔成了基层班组长以后，感觉自己经过这两年的历练，确实有些变化了，思想也成熟了许多，原本的一些想法在如今看来是有些一厢情愿，也再次验证了一点，管理是逆人性的。它绝不会让下面的人都舒服，一旦他们都舒服了，那你肯定就要难受了。因为人真的是很贱的，这个词，我本不该用，但是又不得不用。或者说的更文雅点，叫人的劣根性使然。&lt;/p&gt;
+&lt;p&gt;你对他剖心剖肝，还不如把他训一顿来的效果好。你以为他会感谢你的真诚相待，想多了，他只会觉得你软弱可欺。一旦你把他骂得狗血淋头，那么我告诉你，下次他肯定会老实听话很多。后来我才明白，难怪有人说啊，管理不能当好人。尤其是基层管理者。&lt;/p&gt;
+&lt;p&gt;道德经里讲，太上①，不知有之②；其次，亲而誉之；其次，畏之；其次，侮之。信不足焉，有不信焉。悠兮③，其贵言④。功成事遂，百姓皆谓“我自然”⑤。&lt;/p&gt;
+&lt;p&gt;说这是讲管理的几重境界。之前没当这小管理者之前，觉得我至少要做一个亲而誉之的领导，坚决不做那个只会打骂的领导。&lt;/p&gt;
+&lt;p&gt;但现实却狠狠的打了脸，我视员工如初恋，员工不听我号令啊。事儿干不好啊，这就是理论和实际的差别。后来，我没了法，只有吼骂啊，批评啊，不然工作如何推动的下去？&lt;/p&gt;
+&lt;p&gt;谁愿意闹矛盾？谁愿意打骂呢？都是屁股决定脑袋。我批评他们，我也不愿意，生活工作所迫而已。&lt;/p&gt;
+&lt;p&gt;所以在平时生活中，我尽量的丰富他们的业余生活，和他们打成一片，然后处成朋友。但工作就是工作，该批还得批。&lt;/p&gt;
+&lt;p&gt;但到这半年后，我发现自己现在批评的少了，说教的多了，然后效果也还不错。但这也是经历了前期的磨合之后才有的结果。没有一帆风顺的事业，我想我肯定能做一个亲而誉之的管理者，道德经里说的应该是一个过程，要达到不知有之的境界，前面的几个阶段应该都要经历。没有前面的侮之和畏之，怎么可能亲而誉之？更别提不知有之了。不知有之的前提，首先是你要有极强的统筹力、控制力、亲和力，不让你一上来玩高深，迟早会被下面玩死。&lt;/p&gt;</description></item><item><title>隐秘的角落</title><link>https://leesy.cc/posts/%E9%9A%90%E7%A7%98%E7%9A%84%E8%A7%92%E8%90%BD/</link><pubDate>Fri, 26 Jun 2026 23:05:11 +0800</pubDate><guid>https://leesy.cc/posts/%E9%9A%90%E7%A7%98%E7%9A%84%E8%A7%92%E8%90%BD/</guid><description>&lt;p&gt;&lt;img alt="Airdate: The Bad Kids | TV Tonight" loading="lazy" src="https://leesy.cc/images/%E9%9A%90%E7%A7%98%E7%9A%84%E8%A7%92%E8%90%BD/1.jpeg"&gt;&lt;/p&gt;
+&lt;p&gt;《隐秘的角落》昨日就着弹幕看完的，差点儿没在弹幕里笑死。严格来说这部剧基调是带着压抑氛围的悲剧，却没曾想在弹幕的神助攻下，硬生生看成了喜剧。第二天回过头一想，顿生出一阵悲凉。&lt;/p&gt;
+&lt;p&gt;人生无常，每个人的悲喜都互不相同。但最让我难过的是张东升。一个无奈，压抑，求不得的数学补习老师。他为了妻子来到她的城市生活，努力的做一个好丈夫。不抽烟不喝酒努力认真工作，就因为没个光鲜亮丽的工作或者说工资低就被妻子老丈人他们嫌弃。其实以他高智商是不难找到好工作的，他其实本可以更好，来到了这个小城却只为了妻子！但妻子呢，偷情，冷暴力，任性，他都忍了，最后却还要和他离婚，相当于将他最后的一丝倔强也撕下了。&lt;/p&gt;
+&lt;p&gt;他可以容忍妻子的所有，但妻子却还要将他彻底赶走，他不是不明白一切，在地下车库里，他说了句，你这一走可再也找不到像我一样对你这么好的人了。那一刻，我真的泪目了。&lt;/p&gt;
+&lt;p&gt;弹幕里有人说，多好的坏人啊。知道三个小孩儿为救欣欣，最终还是将30万（其中27万还是找高利贷借的）全部给他们。这冲这份善意，着实让我恨不起来。我虽然做不到他偏执的狠辣，但我依旧被他内心的暖意所感动着。&lt;/p&gt;
+&lt;p&gt;他杀岳父岳母，杀妻子的那份狠辣，一般人做不到。但他爱妻子爱家庭一般人也难以做到。每个人都有很多面，一个法律道义上定义的坏人难道就是个彻头彻尾的坏人么？&lt;/p&gt;
+&lt;p&gt;但命运就是这样，让你求不得，你想和妻子过一个平淡日子，不行，对方就要嫌弃你无能无用；你不想离婚，不行，必须离；你想回归做个好人终结这一切，不行，就是要报警抓你。当然这不是他杀人的理由，这基本的道德标尺我还是有的。但从他这一生来看，他也是个可怜人，和我们普罗大众一样，再怎么挣扎都逃不脱命运的捉弄。&lt;/p&gt;
+&lt;p&gt;他其实可以不死，但他就是一心求死，因为世间已没有什么值得他留恋的了。他已一无所有，拼尽全力也换不回妻子，换不回爱情，换不回不背叛，他活着还有什么意义呢？哀莫大于心死。但他还是用他残存的善意救了欣欣，一个从来没有见过的陌生人。&lt;/p&gt;
+&lt;p&gt;我都怀疑到底有没有欣欣，也许，他也是相信童话的那个人呢？&lt;/p&gt;</description></item><item><title>关于婚姻的部分思考</title><link>https://leesy.cc/posts/%E5%85%B3%E4%BA%8E%E5%A9%9A%E5%A7%BB%E7%9A%84%E9%83%A8%E5%88%86%E6%80%9D%E8%80%83/</link><pubDate>Fri, 26 Jun 2026 22:37:56 +0800</pubDate><guid>https://leesy.cc/posts/%E5%85%B3%E4%BA%8E%E5%A9%9A%E5%A7%BB%E7%9A%84%E9%83%A8%E5%88%86%E6%80%9D%E8%80%83/</guid><description>&lt;p&gt;&lt;img alt="v2-2629f0bbbdddd552a221297a03f558bf_r" loading="lazy" src="https://leesy.cc/images/%E5%85%B3%E4%BA%8E%E5%A9%9A%E5%A7%BB%E7%9A%84%E9%83%A8%E5%88%86%E6%80%9D%E8%80%83/1.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;婚姻的本质就是搭伙过日子，那些没结婚的男女，就是把婚姻看的太神圣，以为结婚了世界就和童话世界一样，一切都完美了。以至于走进去后，发现和他们想象中的完全不一样，难免失落，难免抱怨，又不能及时调整自身，刚对刚，硬碰硬，于是离婚就在所难免了，还抱怨遇人不淑。哪里是遇人不淑啊，实则是没看穿婚姻的本质，两个人在一起生活，吃穿用度，生活习惯，生活方式，性格的契合，都是需要彼此去适应的。恋爱时期的相处是带着面具的，婚姻是赤裸裸的将自己毫无保留的展现在对方面前，就再也没那种男神女神光环了。娶个天仙回来也不过三日五日的，嫁个男神，也是一样的。他的拉屎磨牙放屁抠鼻屎打呼噜你都得适应，作为人的属性，这点是再怎么样也变不了的。其实看穿了，人这个东西就是一堆脓血流漓，肮脏不已。那么，人与人之间难道就没有差别了么？还是有的，主要是思想的区别。思想是人与人之间最大的差异之处。有句话说得好啊，好看的皮囊千篇一律，有趣的灵魂万里挑一。漫长的日子里，若没有契合的灵魂相互取暖，是难以挺过去的。我这里将有趣一词泛化为契合，因为有趣的提前是有人得懂你的有趣，一个枯燥的灵魂是理解不了有趣的灵魂对其生活的意义的。而契合更侧重于彼此性格的相投。他们可能都不有趣，但他们能彼此理解，那也不失为一种灵魂的相吸。称他们为灵魂伴侣也未为不可。就像奸夫配淫妇，臭味相投，也是绝配嘛。&lt;/p&gt;
+&lt;p&gt;再说回婚姻的本质。个人认为，两个人把外在光环去掉，生活在一起很舒服自在，那就是好婚姻，这种配对成功率比那些啥物质条件选的靠谱多了。那么什么叫契合呢，我具体说不出来，但我知道，你发脾气的时候，对方能不激化矛盾懂得转弯是契合，那些我说的梗你能懂，你说的意思我能明白也是契合。那些能玩到一起去，吃到一起去的，性生活和谐的，甚至臭味相投的也是另一种契合。但前提还是得性格要合得来。契合没那么高的标准，简而言之就是两人在一起生活的很自在惬意，有默契，能把日子过顺畅的都叫契合。&lt;/p&gt;
+&lt;p&gt;成长的本质就是不断认清自己。自己在思维眼界上是怎样的层次，就找怎样的人。或者高于自己20%左右的人，太高或者太低了都不太好。不要以貌取人，这本就不礼貌，而且也很肤浅。如果你迷胡歌，那受伤后的他呢？假设他大面积毁容了呢？还会有人喜欢吗？古人云，以色侍人，色衰而爱驰。外在重要，但在婚姻中真的不那么重要。我之前谈过一个女孩子，长的是所有女孩子中最漂亮的，但性格和我非常不合适，和她在一起我很不舒服。后来又遇到了一个非常丑的女孩子，但性格和我非常合适，聊得来，很欢乐，不冷场。但就是见面了就不开心，毕竟那时还没达到忽略外在的程度。时隔多年，我突然明白了上天这么安排的意义。他其实在告诉我，要尊重自己内心的选择。外在重要，但也不那么重要。我在20岁的时候外貌这个占80%，在30岁的时候占50%，在40岁的时候，可能最多占20%了。因为在慢慢看穿这一堆脓血流漓了。&lt;/p&gt;
+&lt;p&gt;婚姻很简单的一个事，就是一起携手过日子。怎么把日子过好，如果把这事儿当做一门工作来做，我认为，一要目标一致。彼此有个5-10年的规划，错了不要互相埋怨，困难时要坚定信心，努力克服。二要性格相投，就是处得来。毕竟工作中的同事关系要处好啊，有情商有智商。三要有应急处理的能力。只不过现代女人把婚姻添加进了好多的高标准，妄图一朝改命，这不是傻嘛？你一个穷苦人家的女孩儿，生活习惯，背景，方式和富二代全都不一样，指望别人稀罕你那美颜式的美貌，全然不顾家庭差距的反对，这不是脑子有病是什么呢？以后拾月的婚姻，我就提一点要求，说说她对男生的看法，如果她对他的描述是和他在一起很舒服，三观很一致，两个人聊的很开心，相处的来，那就同意，不用管这人是否抽烟喝酒烫头，为什么，因为如果月月不嫌弃，那说明啥，说明她自己就是这类人，或者说她认可这种，那还说什么呢？你所谓的好，只是在你的价值观上形成的结论。人各有命，无需多言。如果只是单纯的对她好，她很感动，而没有其他方面的支撑，那大概率不行。&lt;/p&gt;
+&lt;p&gt;我从不指望自己不优秀能找到一个多么优秀的伴侣，所以我鼓励从最基本的生活方面入手，最少有一点可以保证，婚姻是稳定的。&lt;/p&gt;
+&lt;p&gt;譬如说，一个相貌平平的女孩子，普通学历，大众性格，最适合她的就是一个和她差不多的男生。给她介绍一个高学历，高收入，性格好的男生她hold不住，迟早得分手。除非这两人前世有缘，前世有缘那说明了灵魂契合，聊得来啊。也是符合我说的理论的。有些在外人看起来不可思议的配对，有时候往往有一些不为外人道的契合在里面。只是你我俗人不懂罢了。
+我不知道我理解的婚姻的本质是否正确，但这是我的一点思考。以后可能还会有新的感触，但这是我目前对婚姻本质的看法。&lt;/p&gt;</description></item><item><title>生病杂记</title><link>https://leesy.cc/posts/%E7%94%9F%E7%97%85%E6%9D%82%E8%AE%B0/</link><pubDate>Fri, 26 Jun 2026 11:48:01 +0800</pubDate><guid>https://leesy.cc/posts/%E7%94%9F%E7%97%85%E6%9D%82%E8%AE%B0/</guid><description>&lt;p&gt;2026年6月23号，这一天是我该终身铭记的一天。一张医生的诊断证明，让我下半辈子永远都摆脱不了吃药的命运了，我得冠状动脉粥样硬化了。37岁的年龄，说大不大，说小不小，但按医生的话说，得的稍微有点着早。为了宽慰我，他又接着说，没事儿，我还不是吃药，我都吃5年啦。我看着他快50岁的头发和真诚的眼神，有种想打人得冲动，哎，可是我才37岁啊！！！！！！&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image-20260626211918749" loading="lazy" src="https://leesy.cc/images/%E7%94%9F%E7%97%85%E6%9D%82%E8%AE%B0/1.png"&gt;&lt;/p&gt;
+&lt;p&gt;起初我有点想不通，毕竟我血压低，血脂低，身高也就178吧，体重也才65，不说帅比潘安，年轻时候那也是一表人才的，怎么就得了这个病啊，不科学啊。后来我问了AI，才搞明白，我这是遗传和压力导致的。遗传占主导地位，压力占次要地位。刚好25年，工作太忙，压力又大，持续扛压过后，得上了也是意料中事。&lt;/p&gt;
+&lt;p&gt;既然事已成定局，我也不再纠结了。吃药就吃药吧，也没什么大不了，反正医保卡里的钱足够买药了。而且这药是真便宜啊，一盒4板28粒才3块钱。医生给我开了一盒他汀，两瓶叶酸，叶酸，就是那个每个男人备孕时都被媳妇儿逼着吃的玩意儿，三样总共才10块。不得不感慨，社会主义就是好啊，让大家都能吃上国产药了。&lt;/p&gt;
+&lt;p&gt;我们家是有遗传史的，我爸这边男性，几乎人人都有。我爸62岁才得的冠心病，然后由于经常运动，跳舞打拳太极，血脂一直控制的很好，根本看不出有病的样子。&lt;/p&gt;
+&lt;p&gt;有一次他笑着说，如果哪天活腻了，就不吃药了，血管堵了，得了心梗，一下子就走了，轻松自在。比那些在病床上接受放疗化疗最后钱财两空的人好太多了。&lt;/p&gt;
+&lt;p&gt;但是，只要还有希望，谁会愿意离开这个世界呢？谁又敢说自己活腻歪了？&lt;/p&gt;
+&lt;p&gt;好死不如赖活着，我才不想走呢，我还要见证家居AI机器人时代的到来呢？我还等着AI机器人给咱泡茶做饭捏脚按摩呢？咱就躺在家里当大爷，哈哈哈，岂不快哉！&lt;/p&gt;</description></item><item><title>《Hexo迁移Hugo踩坑记录》</title><link>https://leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link><pubDate>Thu, 25 Jun 2026 19:52:37 +0800</pubDate><guid>https://leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid><description>&lt;p&gt;说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。&lt;/p&gt;
+&lt;p&gt;第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。&lt;/p&gt;
+&lt;p&gt;附上美美的照片：&lt;/p&gt;
+&lt;p&gt;&lt;img alt="image-20260625210824834" loading="lazy" src="https://leesy.cc/images/Hexo%E8%BF%81%E7%A7%BBHugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/1.png"&gt;&lt;/p&gt;
+&lt;p&gt;期间主要经历了以下坑：&lt;/p&gt;
+&lt;p&gt;1、Hexo → Hugo 迁移&lt;/p&gt;
+&lt;p&gt;2、图片路径调整&lt;/p&gt;
+&lt;p&gt;3、GitHub 仓库管理&lt;/p&gt;
+&lt;p&gt;4、Git 基本操作（commit、push、pull、rebase）&lt;/p&gt;
+&lt;p&gt;5、GitHub Actions 自动部署&lt;/p&gt;
+&lt;p&gt;6、GitHub Pages&lt;/p&gt;
+&lt;p&gt;7、Cloudflare 自定义域名&lt;/p&gt;
+&lt;p&gt;8、DNS 排查&lt;/p&gt;
+&lt;p&gt;9、Hugo Front Matter 格式&lt;/p&gt;
+&lt;p&gt;这每一个，对我来说都是全新内容，加上AI，它的信息并不是最新的，导致它说的很多地方找不到，然后就再次询问，一来二去的，导致一个小问题，别人1秒可以搞定，我却需要半小时才搞明白。&lt;/p&gt;
+&lt;p&gt;为了不让以后的写博客之路出现故障，在此，我对其中的主要操作细节和流程进行一个记录和复盘，便于以后回顾。&lt;/p&gt;
+&lt;p&gt;博客地址：&lt;/p&gt;
+&lt;h6&gt;&lt;a href="https://blog.leesy.cc"&gt;https://blog.leesy.cc&lt;/a&gt;&lt;/h6&gt;
+&lt;p&gt;源码仓库：&lt;/p&gt;
+&lt;h6&gt;&lt;a href="https://github.com/zkzkeep/blog"&gt;https://github.com/zkzkeep/blog&lt;/a&gt;&lt;/h6&gt;
+&lt;h1 id="一博客目录位置"&gt;一、博客目录位置&lt;/h1&gt;
+&lt;p&gt;Mac 本地博客目录：&lt;/p&gt;
+&lt;p&gt;这是正文&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;~/&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;Documents&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;/&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;blog&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入博客目录：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cd ~/Documents/blog
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;确认是否进入成功：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;pwd
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;应该显示：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;/Users/leesdove/Documents/blog
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h1 id="二本地预览博客"&gt;二、本地预览博客&lt;/h1&gt;
+&lt;p&gt;进入博客目录：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cd ~/Documents/blog
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;启动 Hugo：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;hugo server
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;浏览器访问：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;http://localhost:1313
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;停止服务：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;Ctrl + C
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h1 id="三新建文章"&gt;三、新建文章&lt;/h1&gt;
+&lt;h2 id="方法一推荐"&gt;方法一（推荐）&lt;/h2&gt;
+&lt;p&gt;打开 Typora&lt;/p&gt;
+&lt;p&gt;新建文件&lt;/p&gt;
+&lt;p&gt;保存到：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;~/Documents/blog/content/posts/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;文件名例如：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;我的第一篇文章.md
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;文章模板：&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;+++
+title = &amp;#34;我的第一篇文章&amp;#34;
+date = 2026-06-25
+draft = false
+tags = [&amp;#34;生活&amp;#34;]
+categories = [&amp;#34;随笔&amp;#34;]
++++
+这里开始写正文
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id="方法二hugo命令"&gt;方法二（Hugo命令）&lt;/h2&gt;
+&lt;p&gt;必须先进入博客目录：&lt;/p&gt;</description></item></channel></rss>

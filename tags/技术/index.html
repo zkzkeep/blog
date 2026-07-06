@@ -1,0 +1,61 @@
+<!doctype html><html lang=en dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>技术 | 我的博客</title><meta name=keywords content><meta name=description content><meta name=author content><link rel=canonical href=https://leesy.cc/tags/%E6%8A%80%E6%9C%AF/><link crossorigin=anonymous href=/assets/css/stylesheet.c37119b9630e1d5f12e3c5e038883e2fe7ef6a602aaf5446943f7bdf2f8dd287.css integrity="sha256-w3EZuWMOHV8S48XgOIg+L+fvamAqr1RGlD973y+N0oc=" rel="preload stylesheet" as=style><link rel=icon href=https://leesy.cc/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://leesy.cc/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://leesy.cc/favicon-32x32.png><link rel=apple-touch-icon href=https://leesy.cc/apple-touch-icon.png><link rel=mask-icon href=https://leesy.cc/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://leesy.cc/tags/%E6%8A%80%E6%9C%AF/index.xml title=rss><link rel=alternate hreflang=en href=https://leesy.cc/tags/%E6%8A%80%E6%9C%AF/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://leesy.cc/tags/%E6%8A%80%E6%9C%AF/"><meta property="og:site_name" content="我的博客"><meta property="og:title" content="技术"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="技术"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://leesy.cc/ accesskey=h title="我的博客 (Alt + H)">我的博客</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu></ul></nav></header><main class=main><header class=page-header><h1>技术</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>我的hugo+cloudflare自动化博客搭建手册</h2></header><div class=entry-content><p>《我的 Hugo + Cloudflare 自动化博客搭建手册》 一套属于自己的博客系统，不只是一个网站，更是一份可以长期维护的数字资产。
+第一章 为什么重建博客 1.1 写在前面 从学生时代开始，我就一直有写博客的习惯。
+最早接触的是 Hexo + GitHub Pages。那时更多是为了记录折腾电脑、网络和编程的过程。后来因为域名到期、工作繁忙、长期没有维护，博客逐渐停用，最后也无法继续访问。
+多年以后，我重新开始思考一个问题：
+互联网上那么多内容，真正属于自己的还有多少？
+朋友圈会被时间淹没，公众号受平台限制，知乎、微博也都有自己的规则。只有自己拥有的博客，文章、图片、域名、排版和访问方式，才真正掌握在自己手里。
+这一次，我希望博客不只是一个写文章的网站，而是一套能够长期稳定运行、可以迁移、可以恢复、可以陪伴很多年的知识管理系统。
+1.2 我的目标 重建博客时，我给自己定下了几个目标。
+第一，流程要简单。
+博客应该把精力放在内容上，而不是每天维护网站本身。理想状态是：打开 Typora 写文章，保存后自动发布。
+第二，数据要属于自己。
+所有文章用 Markdown 保存，所有图片进入仓库，源码托管在 GitHub，网站部署在 Cloudflare Pages，域名使用自己的 leesy.cc。
+第三，访问要稳定。
+博客采用静态部署，没有数据库，没有后台，没有服务器运维压力。Cloudflare Pages 负责 HTTPS、CDN 和全球访问。
+第四，系统要能长期维护。
+我希望它不仅能记录读书、生活、技术、工作、健康和思考，也能在几年以后仍然容易恢复、容易修改、容易继续写。
+1.3 为什么选择 Hugo 目前主流静态博客框架很多，例如 Hexo、Hugo、Jekyll、Astro、Next.js。
+最终选择 Hugo，主要因为：
+构建速度快； Markdown 原生支持好； 没有数据库依赖； 主题生态成熟； 迁移成本低； 长期维护相对省心。 对我来说，Hugo 最重要的优点不是功能多，而是它足够安静。
+写作就是写作，不应该被复杂的运行环境绑住。
+1.4 当前真实工作流 现在博客的实际工作流是：
+Typora 写作 ↓ 保存 Markdown ↓ scripts.watch 监听到变化 ↓ deploy.py 调度发布流程 ↓ 整理图片、修正文章、补充标签 ↓ Hugo 本地构建校验 ↓ Git commit / git push ↓ GitHub 保存源码和历史 ↓ Cloudflare Pages 自动构建部署 ↓ https://leesy.cc 日常使用时，我只需要先启动监听器：
+...</p></div><footer class=entry-footer><span title='2026-06-27 09:05:34 +0800 CST'>June 27, 2026</span>&nbsp;·&nbsp;<span>6 min</span></footer><a class=entry-link aria-label="post link to 我的hugo+cloudflare自动化博客搭建手册" href=https://leesy.cc/posts/hugo-cloudflare-handbook/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>《Hexo迁移Hugo踩坑记录》</h2></header><div class=entry-content><p>说实话，我感觉自己是个笨人。别人两个小时就可以干完的，我需要花费差不多两天才能搞定。尤其是对于这个编程软件之类的，自己总是勤勤恳恳学习，但收获总是不大。从23年在公司安监部借调期间，搭建的hexo博客，上线不到3个月就因为工作太忙而弃之不用。一直到26年年中，才因为一个偶然的机会，主要是AI技术发展太快了，让我这等笨人，也能在自然语言的交流下，实现了github、hugo、cloudflare的一些实用功能。从而让我尘封已久的想法慢慢变成了现实。
+第一个，再次搭建一个hugo博客。按照AI的话说，这个很简单，十分钟就帮我搞定。结果我从上午折腾到了下午，又从下午折腾到了晚间，终于经过不断的努力尝试排错，让我这个简陋的博客，正式上线啦。
+附上美美的照片：
+期间主要经历了以下坑：
+1、Hexo → Hugo 迁移
+2、图片路径调整
+3、GitHub 仓库管理
+4、Git 基本操作（commit、push、pull、rebase）
+5、GitHub Actions 自动部署
+6、GitHub Pages
+7、Cloudflare 自定义域名
+8、DNS 排查
+9、Hugo Front Matter 格式
+这每一个，对我来说都是全新内容，加上AI，它的信息并不是最新的，导致它说的很多地方找不到，然后就再次询问，一来二去的，导致一个小问题，别人1秒可以搞定，我却需要半小时才搞明白。
+为了不让以后的写博客之路出现故障，在此，我对其中的主要操作细节和流程进行一个记录和复盘，便于以后回顾。
+博客地址：
+https://blog.leesy.cc 源码仓库：
+https://github.com/zkzkeep/blog 一、博客目录位置 Mac 本地博客目录：
+这是正文
+~/Documents/blog 进入博客目录：
+cd ~/Documents/blog 确认是否进入成功：
+pwd 应该显示：
+/Users/leesdove/Documents/blog 二、本地预览博客 进入博客目录：
+cd ~/Documents/blog 启动 Hugo：
+hugo server 浏览器访问：
+http://localhost:1313 停止服务：
+Ctrl + C 三、新建文章 方法一（推荐） 打开 Typora
+新建文件
+保存到：
+~/Documents/blog/content/posts/ 文件名例如：
+我的第一篇文章.md 文章模板：
++++ title = "我的第一篇文章" date = 2026-06-25 draft = false tags = ["生活"] categories = ["随笔"] +++ 这里开始写正文 方法二（Hugo命令） 必须先进入博客目录：
+...</p></div><footer class=entry-footer><span title='2026-06-25 19:52:37 +0800 CST'>June 25, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer><a class=entry-link aria-label="post link to 《Hexo迁移Hugo踩坑记录》" href=https://leesy.cc/posts/hexo%E8%BF%81%E7%A7%BBhugo%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://leesy.cc/>我的博客</a></span> ·
+<span>Powered by
+<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
+</a><script>(()=>{const e={idle:"复制",done:"已复制",failed:"失败"};function t(e){const t=document.createElement("textarea");t.value=e,t.setAttribute("readonly",""),t.style.position="fixed",t.style.top="-9999px",document.body.appendChild(t),t.select();try{return document.execCommand("copy"),Promise.resolve()}catch(e){return Promise.reject(e)}finally{t.remove()}}function n(e){return navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(e):t(e)}document.querySelectorAll(".post-content div.highlight, .post-content pre").forEach(t=>{if(t.closest(".highlight")&&t.tagName.toLowerCase()==="pre")return;if(t.querySelector(":scope > .copy-code-button"))return;const o=t.querySelector("code");if(!o)return;t.classList.add("copy-code-wrapper");const s=document.createElement("button");s.className="copy-code-button",s.type="button",s.textContent=e.idle,s.setAttribute("aria-label","复制代码"),s.addEventListener("click",async()=>{const t=o.innerText.replace(/\n$/,"");try{await n(t),s.textContent=e.done,s.classList.add("is-copied")}catch{s.textContent=e.failed,s.classList.add("is-failed")}window.setTimeout(()=>{s.textContent=e.idle,s.classList.remove("is-copied","is-failed")},1400)}),t.appendChild(s)})})()</script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>

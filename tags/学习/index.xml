@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>学习 on 我的博客</title><link>https://leesy.cc/tags/%E5%AD%A6%E4%B9%A0/</link><description>Recent content in 学习 on 我的博客</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 28 Jun 2026 13:16:00 +0800</lastBuildDate><atom:link href="https://leesy.cc/tags/%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml"/><item><title>故障录波两题整理</title><link>https://leesy.cc/posts/%E6%95%85%E9%9A%9C%E5%BD%95%E6%B3%A2%E4%B8%A4%E9%A2%98%E6%95%B4%E7%90%86/</link><pubDate>Sun, 28 Jun 2026 13:16:00 +0800</pubDate><guid>https://leesy.cc/posts/%E6%95%85%E9%9A%9C%E5%BD%95%E6%B3%A2%E4%B8%A4%E9%A2%98%E6%95%B4%E7%90%86/</guid><description>&lt;h2 id="总体看图顺序"&gt;总体看图顺序&lt;/h2&gt;
+&lt;p&gt;拿到故障录波图，不要先盯着波形看。先按下面顺序：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;看题干和表头：确认是线路、主变、母线还是其他设备；看动作时间、CT/PT 变比、标度。&lt;/li&gt;
+&lt;li&gt;看通道名称：明确每一列是开关量、电流、电压还是零序量。&lt;/li&gt;
+&lt;li&gt;看模拟量：哪一相电流增大、哪一相电压降低、有没有 3I0 和 3U0。&lt;/li&gt;
+&lt;li&gt;看开关量：保护出口、跳闸、跳位继电器、重合闸、永跳等动作时间。&lt;/li&gt;
+&lt;li&gt;写报告：时间、设备、相别、故障类型、保护动作、开关动作、动作正确性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;核心口诀：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;看对象 -&amp;gt; 定相别 -&amp;gt; 判故障 -&amp;gt; 排时序 -&amp;gt; 写结论
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;hr&gt;
+&lt;h2 id="试题-1线路-c-相接地故障单跳重合后加速三跳"&gt;试题 1：线路 C 相接地故障，单跳重合后加速三跳&lt;/h2&gt;
+&lt;h2 id="一故障性质判断"&gt;一、故障性质判断&lt;/h2&gt;
+&lt;p&gt;从录波图看：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ic&lt;/code&gt; 故障后明显增大；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;3I0&lt;/code&gt; 出现；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Uc&lt;/code&gt; 电压异常或降低；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;3U0&lt;/code&gt; 出现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以可判断为：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;线路 C 相接地故障。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;判断依据：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;C 相电流增大 + 零序电流出现 + C 相电压异常 + 零序电压出现
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;= C 相接地故障
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="二第一次故障及单相跳闸过程"&gt;二、第一次故障及单相跳闸过程&lt;/h2&gt;
+&lt;p&gt;关键时间：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;0ms 左右：C 相接地故障发生
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;30ms 左右：保护发出 C 相跳闸命令
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;75ms 左右：C 相断路器跳开，故障电流消失
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;115ms 左右：C 相跳闸出口返回
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C 相跳闸&lt;/code&gt; 是保护出口命令，不等于断路器已经跳开。&lt;/p&gt;</description></item><item><title>高级技师实操考试笔试复习指导</title><link>https://leesy.cc/posts/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B8%88%E5%AE%9E%E6%93%8D%E8%80%83%E8%AF%95%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E6%8C%87%E5%AF%BC/</link><pubDate>Sun, 28 Jun 2026 09:12:00 +0800</pubDate><guid>https://leesy.cc/posts/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B8%88%E5%AE%9E%E6%93%8D%E8%80%83%E8%AF%95%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E6%8C%87%E5%AF%BC/</guid><description>&lt;p&gt;考试按你说的分三块：仿真机你自己练，我只安排笔试两项。今天是 2026-06-28，后天考试按 2026-06-30 处理，所以策略是：不再追求全量细读，改为“模板化作答 + 高频计算 + 按评分点写满”。&lt;/p&gt;
+&lt;p&gt;&lt;img alt="21331844dbf208cf061c37e00c7351f6" loading="lazy" src="https://leesy.cc/images/%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B8%88%E5%AE%9E%E6%93%8D%E8%80%83%E8%AF%95%E7%AC%94%E8%AF%95%E5%A4%8D%E4%B9%A0%E6%8C%87%E5%AF%BC/1.jpg"&gt;&lt;/p&gt;
+&lt;h2 id="总体优先级"&gt;总体优先级&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;故障录波图分析：最像标准化笔试，材料里明确是“故障参数 40% + 录波报告分析 60%”。这是最值得抢分的一项。&lt;/li&gt;
+&lt;li&gt;一次设备故障及缺陷综合分析：重点不是背整本课件，而是会按模板判断缺陷等级、原因和处理建议。&lt;/li&gt;
+&lt;li&gt;新站投产送电：按流程题准备，背“时间节点、验收环节、验收方法、投运前检查、资料/规程/工器具移交、启动验收”。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="两天复习安排"&gt;两天复习安排&lt;/h2&gt;
+&lt;h3 id="6-月-28-日建立答题骨架"&gt;6 月 28 日：建立答题骨架&lt;/h3&gt;
+&lt;p&gt;上午或现在开始，先用 2 小时做录波：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;背录波分析 6 步：看表头和故障概况；核对故障前相位；读比例尺和开关量；列事件时间轴；算电流电压幅值；用过零点算相位并判断保护动作。&lt;/li&gt;
+&lt;li&gt;默写录波报告 6 栏：开关量动作分析、故障过程、保护动作过程、故障类型、保护动作正确性、保护动作时序图/相量图。&lt;/li&gt;
+&lt;li&gt;练 2 张照片里的题：不要只看答案，要按“时间、设备、故障相别、保护启动/出口/跳闸、是否重合、结论”完整写。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下午用 2.5 小时做一次设备缺陷：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;背缺陷题模板：部位 -&amp;gt; 热像特征 -&amp;gt; 致热类型 -&amp;gt; 计算 -&amp;gt; 缺陷等级 -&amp;gt; 试验数据佐证 -&amp;gt; 原因 -&amp;gt; 处理。&lt;/li&gt;
+&lt;li&gt;重点练 3 个案例：CT 颈部过热、CT 本体过热、CT 储油柜缺油。&lt;/li&gt;
+&lt;li&gt;把“电流致热”和“电压致热”分清：接头/线夹/触头多为电流致热；整体发热、介损异常、绝缘受潮劣化、缺油多归到电压致热或绝缘缺陷。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;晚上用 1.5 小时做新站投产：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默写“七个验收环节”：可研初设审查、厂内验收、到货验收、隐蔽工程验收、中间验收、竣工预验收、启动验收。&lt;/li&gt;
+&lt;li&gt;默写“四种验收方法”：资料检查、旁站见证、现场检查、现场抽查。&lt;/li&gt;
+&lt;li&gt;默写投运前检查重点：主设备点位、监控后台、五防闭锁、辅助设施、标识牌、设备台账、资料移交、规程、工器具备品备件、钥匙办公通信。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="6-月-29-日按考试输出练"&gt;6 月 29 日：按考试输出练&lt;/h3&gt;
+&lt;p&gt;上午：录波闭卷练 2 轮。每轮 35-45 分钟，必须写成报告，不许只在脑子里判断。&lt;/p&gt;</description></item><item><title>我的hugo+cloudflare自动化博客搭建手册</title><link>https://leesy.cc/posts/hugo-cloudflare-handbook/</link><pubDate>Sat, 27 Jun 2026 09:05:34 +0800</pubDate><guid>https://leesy.cc/posts/hugo-cloudflare-handbook/</guid><description>&lt;h1 id="我的-hugo--cloudflare-自动化博客搭建手册"&gt;《我的 Hugo + Cloudflare 自动化博客搭建手册》&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一套属于自己的博客系统，不只是一个网站，更是一份可以长期维护的数字资产。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id="第一章-为什么重建博客"&gt;第一章 为什么重建博客&lt;/h1&gt;
+&lt;h2 id="11-写在前面"&gt;1.1 写在前面&lt;/h2&gt;
+&lt;p&gt;从学生时代开始，我就一直有写博客的习惯。&lt;/p&gt;
+&lt;p&gt;最早接触的是 Hexo + GitHub Pages。那时更多是为了记录折腾电脑、网络和编程的过程。后来因为域名到期、工作繁忙、长期没有维护，博客逐渐停用，最后也无法继续访问。&lt;/p&gt;
+&lt;p&gt;多年以后，我重新开始思考一个问题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;互联网上那么多内容，真正属于自己的还有多少？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;朋友圈会被时间淹没，公众号受平台限制，知乎、微博也都有自己的规则。只有自己拥有的博客，文章、图片、域名、排版和访问方式，才真正掌握在自己手里。&lt;/p&gt;
+&lt;p&gt;这一次，我希望博客不只是一个写文章的网站，而是一套能够长期稳定运行、可以迁移、可以恢复、可以陪伴很多年的知识管理系统。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="12-我的目标"&gt;1.2 我的目标&lt;/h2&gt;
+&lt;p&gt;重建博客时，我给自己定下了几个目标。&lt;/p&gt;
+&lt;p&gt;第一，流程要简单。&lt;/p&gt;
+&lt;p&gt;博客应该把精力放在内容上，而不是每天维护网站本身。理想状态是：打开 Typora 写文章，保存后自动发布。&lt;/p&gt;
+&lt;p&gt;第二，数据要属于自己。&lt;/p&gt;
+&lt;p&gt;所有文章用 Markdown 保存，所有图片进入仓库，源码托管在 GitHub，网站部署在 Cloudflare Pages，域名使用自己的 &lt;code&gt;leesy.cc&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;第三，访问要稳定。&lt;/p&gt;
+&lt;p&gt;博客采用静态部署，没有数据库，没有后台，没有服务器运维压力。Cloudflare Pages 负责 HTTPS、CDN 和全球访问。&lt;/p&gt;
+&lt;p&gt;第四，系统要能长期维护。&lt;/p&gt;
+&lt;p&gt;我希望它不仅能记录读书、生活、技术、工作、健康和思考，也能在几年以后仍然容易恢复、容易修改、容易继续写。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="13-为什么选择-hugo"&gt;1.3 为什么选择 Hugo&lt;/h2&gt;
+&lt;p&gt;目前主流静态博客框架很多，例如 Hexo、Hugo、Jekyll、Astro、Next.js。&lt;/p&gt;
+&lt;p&gt;最终选择 Hugo，主要因为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;构建速度快；&lt;/li&gt;
+&lt;li&gt;Markdown 原生支持好；&lt;/li&gt;
+&lt;li&gt;没有数据库依赖；&lt;/li&gt;
+&lt;li&gt;主题生态成熟；&lt;/li&gt;
+&lt;li&gt;迁移成本低；&lt;/li&gt;
+&lt;li&gt;长期维护相对省心。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;对我来说，Hugo 最重要的优点不是功能多，而是它足够安静。&lt;/p&gt;
+&lt;p&gt;写作就是写作，不应该被复杂的运行环境绑住。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="14-当前真实工作流"&gt;1.4 当前真实工作流&lt;/h2&gt;
+&lt;p&gt;现在博客的实际工作流是：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Typora 写作
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;保存 Markdown
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;scripts.watch 监听到变化
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;deploy.py 调度发布流程
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;整理图片、修正文章、补充标签
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Hugo 本地构建校验
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Git commit / git push
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;GitHub 保存源码和历史
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;Cloudflare Pages 自动构建部署
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;https://leesy.cc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;日常使用时，我只需要先启动监听器：&lt;/p&gt;</description></item><item><title>短视频的些许思考</title><link>https://leesy.cc/posts/%E7%9F%AD%E8%A7%86%E9%A2%91%E7%9A%84%E4%BA%9B%E8%AE%B8%E6%80%9D%E8%80%83/</link><pubDate>Fri, 26 Jun 2026 23:01:09 +0800</pubDate><guid>https://leesy.cc/posts/%E7%9F%AD%E8%A7%86%E9%A2%91%E7%9A%84%E4%BA%9B%E8%AE%B8%E6%80%9D%E8%80%83/</guid><description>&lt;p&gt;突然对所有的短视频去魅了。感觉越刷越没有意义。说到底就是一种不断消耗你注意力的游戏。让你无法集中精力聚焦在真正有意义的事上。把你的心搞散乱了。&lt;/p&gt;
+&lt;p&gt;现在人浮躁，其实浮躁的本质是心。总是在不断的向外攀缘，一会儿刷刷社会大事件，一会儿看看养生小视频，一会儿直击学习方法论，一会儿又到了数码科技场。你的心，没有一刻是定的，好像学到了很多，好像又没有。放下手机的那一刻，心里是慌的，找不到目标。拿起手机，心里好像又对这些东西感到恶心。&lt;/p&gt;
+&lt;p&gt;前段时间，不知是在哪儿刷到了一个视频，谈到了人生的意义。那个人说，人生本没有意义，我们得赋予它意义，如果我们只满足于人生就要快乐，就要及时行乐，该吃吃，该喝喝。那么当你走遍中国，你会发现好空虚，雷同的旅行经历，那些想吃的东西吃多了会腻，那些风景看多了也会腻，除了多了些谈资，还有啥？留下的只是无尽的空虚。这本质和玩手机打游戏是一个道理。都是向外求带来的结果。&lt;/p&gt;
+&lt;p&gt;那么到底什么不会让自己空虚呢？他指出，找到一个你热爱且愿意奉献一生的事业。虽然辛苦，但心里有满足感。可以让自己不空虚。他也说这两种选择没有高下之分，只是当你无聊时，后者可以给你一定的心灵满足。&lt;/p&gt;
+&lt;p&gt;在我看来，既然人生没有意义，那么我们就要赋予它意义。让自己这辈子不白活。古人讲立志，那就立个大志向。不求啥功名富贵，但求自己能为这个世界尽点绵薄之力，譬如说支助失学儿童，救助流浪猫狗，大家立志可以根据自己的性格职业喜好来立。我是看不得这些事情，所以我想要去做。喜欢传统文化的，可以致力于弘扬传统文化，把志向放大点，始终坚信，帮助他人就是帮助自己。别局限在暴富暴瘦上面。要知道暴富。你容易有灾殃，暴瘦容易有病痛。可以立一个，愿天下人都无病无灾，从而教导他人如何养生如何锻炼方面。也可以从自己热爱的工作上立志。譬如说你是搞服务行业的，可以立志说，让所有我服务的人都满意，愿他们都平安喜乐，从而进一步提高自己的服务水平。&lt;/p&gt;
+&lt;p&gt;人，要在小我上求大我，在大我上成就小我。最终达到无我之境。&lt;/p&gt;
+&lt;p&gt;最后，让我以大大的金句来结束，我将无我，不负人民！&lt;/p&gt;</description></item></channel></rss>
