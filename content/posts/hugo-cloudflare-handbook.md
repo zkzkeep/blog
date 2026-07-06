@@ -83,9 +83,9 @@ Typora 写作
     ↓
 保存 Markdown
     ↓
-scripts.watch 监听到变化
+双击「发布博客.command」
     ↓
-deploy.py 调度发布流程
+deploy.py 按 5 步执行发布流程
     ↓
 整理图片、修正文章、补充标签
     ↓
@@ -100,16 +100,22 @@ Cloudflare Pages 自动构建部署
 https://leesy.cc
 ```
 
-日常使用时，我只需要先启动监听器：
+日常使用只有三个动作：
+
+```text
+写文章 → Cmd+S 保存 → 双击「发布博客」
+```
+
+双击后终端会按 5 步显示进度，成功弹窗告诉我网址，失败弹窗告诉我原因。
+
+如果想要“保存即发布”，也可以启动监听器：
 
 ```bash
 cd ~/Documents/blog
 python3 -m scripts.watch
 ```
 
-然后在 Typora 里写文章、保存文章。
-
-监听器会等待 15 秒，确认编辑基本结束后，自动运行发布脚本。
+监听器会等待 15 秒，确认编辑基本结束后，自动运行发布脚本。但现在的主入口是一键发布按钮。
 
 ------
 
@@ -170,6 +176,7 @@ blog/
 ├── themes/
 │   └── PaperMod/
 ├── deploy.py
+├── 发布博客.command
 ├── hugo.toml
 └── README-DEPLOY.md
 ```
@@ -185,6 +192,8 @@ blog/
 `themes/PaperMod/` 保存当前主题。
 
 `deploy.py` 是发布总入口。
+
+`发布博客.command` 是一键发布按钮，双击即可，桌面上有它的快捷方式。
 
 `README-DEPLOY.md` 是日常发布说明。
 
@@ -546,26 +555,108 @@ Typora 写文章
 
 ------
 
-# 第五章 自动化脚本说明
+## 4.7 第六版：一键发布按钮
 
-## 5.1 deploy.py
+监听器好用，但它有一个前提：得先开一个终端窗口，还得记得启动它。
 
-`deploy.py` 是总入口。
+写作的心情是随机的，专门为发布保持一个常驻终端，还是有点重。
 
-它负责调度整个发布流程：
+于是加了一个更直接的入口：`发布博客.command`。
+
+它就放在博客根目录，桌面上有指向它的快捷方式。写完文章保存后，双击一下，发布流程自动开始。
+
+双击后终端会按 5 步显示进度：
 
 ```text
-检测变更文章
-    ↓
-备份原文
-    ↓
-整理图片
-    ↓
-修正 Markdown
-    ↓
-运行 Hugo 构建
-    ↓
-提交并推送 Git
+第 1/5 步：检查有哪些文章需要发布
+第 2/5 步：整理图片、改写 Markdown
+第 3/5 步：清理无用图片
+第 4/5 步：构建 Hugo 网站
+第 5/5 步：提交并推送，触发网站部署
+```
+
+每一步做了什么、涉及哪些文章，都会实时打印出来。
+
+发布成功，弹窗告诉我网站地址；发布失败，弹窗直接显示原因和日志位置，不用去终端里翻。
+
+做这个按钮时还顺手解决了一个隐患：GUI 双击启动的程序拿不到终端里的 PATH，找不到 Homebrew 装的 hugo。脚本里显式补上了 `/opt/homebrew/bin`，双击才能和命令行一样可靠。
+
+现在的体验是：
+
+```text
+写完 → 保存 → 双击 → 弹窗报喜
+```
+
+------
+
+## 4.8 GitHub Token 与钥匙串
+
+一键发布跑通后，遇到了整条链路里最隐蔽的一个坑：推送授权。
+
+GitHub 早已不允许用密码推送，HTTPS 推送每次都要带一个 Token。平时感觉不到它的存在，是因为 Token 被 Git 的凭据助手藏在系统里自动提供。
+
+一旦这个供应链断了——比如换了 GitHub 账号、Token 过期或被清除——推送就会失败。更麻烦的是，此时文章已经在本地提交成功，只是没推上去，很容易误以为“发布成功了，网站怎么没更新”。
+
+现在的方案分三层：
+
+第一层，Token 只保存在 macOS 钥匙串里，不进仓库、不进脚本、不进文章：
+
+```bash
+security add-internet-password -s github.com -a zkzkeep -w -U
+```
+
+第二层，仓库里放一个取凭据脚本 `scripts/github-keychain-askpass.sh`，Git 推送时自动从钥匙串读取，全程不需要手动输入。仓库里只有“怎么取”，没有 Token 本身，所以仓库公开也不怕。
+
+第三层，发布脚本增加了补推逻辑：如果上一次“提交成功但推送失败”，下一次发布时会自动把积压的提交推上去。推送失败不再是需要人工收拾的残局，点一下按钮就能自愈。
+
+以后 Token 过期，只需要在 GitHub 重新生成一个，再跑一次上面那条命令即可。
+
+------
+
+## 4.9 一次排查教训：先确认水管，再修水龙头
+
+修推送问题时，我一度走了弯路，值得记下来。
+
+当时看到仓库里还留着一个 `gh-pages` 分支，最后更新停在很久以前，就推断“网站是从 gh-pages 伺服的，所以才一直不更新”，还专门写了把构建产物发布到 gh-pages 的逻辑。
+
+后来验证才发现：网站响应头是 Cloudflare 的特征，而且一篇只存在于 main 分支新提交里的文章出现在了线上首页——说明 Cloudflare Pages 一直在正常监听 main 分支，`gh-pages` 只是 GitHub Pages 时代的历史遗留，早就不参与部署了。
+
+真正的故障点自始至终只有一个：推送凭据。凭据修好，`git push` 一通，网站立刻恢复更新。多写的 gh-pages 发布逻辑随后被撤掉了。
+
+教训有两条：
+
+一是排查部署问题时，先用证据确认“网站到底从哪里出”，再动手改流程；
+
+二是自动化系统里最容易坏的不是脚本，而是脚本背后的授权。
+
+------
+
+# 第五章 自动化脚本说明
+
+## 5.1 发布博客.command
+
+`发布博客.command` 是日常发布的主入口，双击即可。
+
+它做的事情很简单：进入博客目录，调用 `deploy.py`，把全过程记录到日志文件，最后用系统弹窗报告结果。
+
+成功时弹窗附带网站地址；失败时弹窗显示最近的错误日志和完整日志路径。
+
+它还负责补全 GUI 环境缺失的 PATH，保证双击和在终端里跑效果一致。
+
+------
+
+## 5.2 deploy.py
+
+`deploy.py` 是发布流程的调度器。
+
+它把发布分成 5 步，每一步都在终端里明确标出：
+
+```text
+第 1/5 步：检查有哪些文章需要发布
+第 2/5 步：整理图片、改写 Markdown
+第 3/5 步：清理无用图片
+第 4/5 步：构建 Hugo 网站
+第 5/5 步：提交并推送，触发网站部署
 ```
 
 常用命令：
@@ -577,11 +668,11 @@ python3 deploy.py --no-push
 python3 deploy.py --all-images
 ```
 
-平时不用直接运行它，因为监听器会自动调用。
+平时不用直接运行它，一键发布按钮和监听器都会自动调用。
 
 ------
 
-## 5.2 scripts/watch.py
+## 5.3 scripts/watch.py
 
 `watch.py` 是日常写作时最常用的脚本。
 
@@ -598,7 +689,7 @@ python3 -m scripts.watch
 
 ------
 
-## 5.3 scripts/organize_images.py
+## 5.4 scripts/organize_images.py
 
 `organize_images.py` 负责图片整理。
 
@@ -627,7 +718,7 @@ static/images/<文章名>/
 
 ------
 
-## 5.4 scripts/markdown.py
+## 5.5 scripts/markdown.py
 
 `markdown.py` 负责修正 Markdown 本身。
 
@@ -647,7 +738,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 ------
 
-## 5.5 scripts/git_tools.py
+## 5.6 scripts/git_tools.py
 
 `git_tools.py` 负责 Git 相关操作。
 
@@ -662,9 +753,11 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 这样可以减少误提交，也让每次提交更清楚。
 
+它还有一个自愈能力：推送前会检查本地是否有积压的旧提交。如果上一次“提交成功但推送失败”，这一次会自动补推，不让改动一直停留在本地。
+
 ------
 
-## 5.6 scripts/hugo_tools.py
+## 5.7 scripts/hugo_tools.py
 
 `hugo_tools.py` 负责运行：
 
@@ -678,7 +771,17 @@ hugo --minify
 
 ------
 
-## 5.7 config.py、utils.py 与 audit_images.py
+## 5.8 scripts/github-keychain-askpass.sh
+
+`github-keychain-askpass.sh` 负责在 Git 推送时提供凭据。
+
+Git 需要用户名时，它返回 `zkzkeep`；需要密码时，它从 macOS 钥匙串读取 Token。
+
+仓库里只保存“怎么取”的逻辑，Token 本身永远只在本机钥匙串里。
+
+------
+
+## 5.9 config.py、utils.py 与 audit_images.py
 
 `config.py` 保存路径、图片后缀、Typora 根目录、标签规则等配置。
 
@@ -935,7 +1038,7 @@ static/images/<文章名>/1.jpg
 常见原因：
 
 - 网络问题；
-- GitHub 登录状态失效；
+- Token 过期、被撤销或换了 GitHub 账号；
 - 远端仓库地址错误；
 - 本地和远端历史冲突；
 - GitHub 权限问题。
@@ -946,6 +1049,14 @@ static/images/<文章名>/1.jpg
 git remote -v
 git status --branch --short
 ```
+
+如果报错是 `could not read Username` 或 `Authentication failed`，基本就是凭据问题。处理方式：
+
+1. 用当前 GitHub 账号重新生成一个 fine-grained Token，只授权博客仓库、Contents 读写；
+2. 在终端跑 `security add-internet-password -s github.com -a zkzkeep -w -U`，按提示粘贴 Token；
+3. 再次双击发布即可。之前推送失败而积压的提交，会被自动补推上去。
+
+注意一个陷阱：推送失败时，文章往往已经在本地提交成功了。此时再看“有哪些文章改动”会显示没有——不是文章丢了，而是它们卡在本地提交里，等着补推。
 
 ------
 
