@@ -1,4 +1,5 @@
 from __future__ import annotations
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from .config import TAG_RULES, TYPORA_ROOT_URL
@@ -6,6 +7,37 @@ from .utils import log
 
 @dataclass
 class MarkdownResult: changed_files: set[Path] = field(default_factory=set)
+
+
+def _normalized_title(value: str) -> str:
+    """Normalize harmless Markdown/title decoration before comparing titles."""
+    value = value.strip().strip("'\"")
+    value = value.removeprefix("《").removesuffix("》")
+    return "".join(value.lower().split())
+
+
+def _remove_repeated_title(text: str) -> str:
+    """Remove a body H1 when Hugo already renders the same front matter title."""
+    if not text.startswith(("---\n", "+++\n")):
+        return text
+    marker = text[:3]
+    end = text.find(f"\n{marker}\n", 4)
+    if end == -1:
+        return text
+    title = None
+    for line in text[4:end].splitlines():
+        match = re.match(r"^title\s*[:=]\s*(.+?)\s*$", line)
+        if match:
+            title = match.group(1)
+            break
+    if not title:
+        return text
+    body_start = end + 5
+    body = text[body_start:]
+    match = re.match(r"(?:\s*\n)*#\s+(.+?)\s*\n(?:\s*\n)?", body)
+    if not match or _normalized_title(match.group(1)) != _normalized_title(title):
+        return text
+    return text[:body_start] + body[match.end():]
 
 
 def _suggest_tags(text: str) -> list[str]:
@@ -63,7 +95,7 @@ def fix_markdown(posts: list[Path], *, dry_run: bool = False) -> MarkdownResult:
     result = MarkdownResult()
     for post in posts:
         before = post.read_text(encoding="utf-8")
-        after = _ensure_tags(_with_typora_root(before))
+        after = _remove_repeated_title(_ensure_tags(_with_typora_root(before)))
         if after == before: continue
         result.changed_files.add(post)
         if dry_run: log(f"[dry-run] 将加入 Typora 图片根目录：{post}")
