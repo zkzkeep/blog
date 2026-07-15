@@ -1,6 +1,6 @@
 ---
 title: "从格式化到满血复活：飞牛 NAS 一天重建记（附两桩网速悬案的破案过程）"
-date: 2026-07-15T23:30:00+08:00
+date: 2026-07-15T21:30:00+08:00
 draft: false
 tags: ["飞牛OS", "NAS", "Docker", "Cloudflare Tunnel", "qBittorrent", "MoviePilot", "Tailscale", "PT", "网络排障"]
 categories: ["NAS", "折腾记录"]
