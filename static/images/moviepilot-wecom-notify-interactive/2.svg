@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 260" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#7c5cff"/>
+    </marker>
+    <style>
+      .box{fill:#f5f3ff;stroke:#7c5cff;stroke-width:1.5;rx:10;}
+      .lbl{fill:#2d2a45;font-size:15px;font-weight:600;text-anchor:middle;}
+      .sub{fill:#6b6786;font-size:11px;text-anchor:middle;}
+      .flow{stroke:#7c5cff;stroke-width:2;fill:none;}
+      .step{fill:#7c5cff;font-size:12px;text-anchor:middle;font-weight:600;}
+      .phone{fill:#eafaf1;stroke:#2eb872;stroke-width:1.5;}
+      .plbl{fill:#1f7a4d;font-size:15px;font-weight:600;text-anchor:middle;}
+    </style>
+  </defs>
+
+  <!-- 手机(用户) -->
+  <rect x="20" y="90" width="130" height="80" rx="10" class="phone"/>
+  <text x="85" y="122" class="plbl">微信</text>
+  <text x="85" y="145" class="sub" fill="#1f7a4d">你发：福贵</text>
+
+  <!-- MoviePilot -->
+  <rect x="220" y="90" width="140" height="80" rx="10" class="box"/>
+  <text x="290" y="120" class="lbl">MoviePilot</text>
+  <text x="290" y="142" class="sub">解析请求</text>
+
+  <!-- TMDB -->
+  <rect x="430" y="20" width="130" height="64" rx="10" class="box"/>
+  <text x="495" y="48" class="lbl">TMDB</text>
+  <text x="495" y="68" class="sub">元数据搜索</text>
+
+  <!-- 结果列表 -->
+  <rect x="430" y="176" width="130" height="64" rx="10" class="box"/>
+  <text x="495" y="204" class="lbl">回列表</text>
+  <text x="495" y="224" class="sub">3条结果供选</text>
+
+  <!-- 资源站 -->
+  <rect x="630" y="90" width="130" height="80" rx="10" class="box"/>
+  <text x="695" y="120" class="lbl">PT 站搜索</text>
+  <text x="695" y="142" class="sub">选编号→找种</text>
+
+  <!-- 下载 -->
+  <rect x="795" y="90" width="70" height="80" rx="10" class="phone"/>
+  <text x="830" y="125" class="plbl" font-size="13">下载</text>
+  <text x="830" y="145" class="sub" fill="#1f7a4d">qb</text>
+
+  <!-- arrows -->
+  <path d="M152 130 L216 130" class="flow" marker-end="url(#ah)"/>
+  <text x="184" y="122" class="step">①片名</text>
+
+  <path d="M362 118 Q400 90 428 66" class="flow" marker-end="url(#ah)"/>
+  <text x="398" y="100" class="step">②搜</text>
+
+  <path d="M428 208 Q400 175 362 148" class="flow" marker-end="url(#ah)"/>
+  <text x="392" y="185" class="step">③回列表</text>
+
+  <path d="M562 130 L626 130" class="flow" marker-end="url(#ah)"/>
+  <text x="594" y="122" class="step">④选编号</text>
+
+  <path d="M762 130 L792 130" class="flow" marker-end="url(#ah)"/>
+  <text x="778" y="122" class="step">⑤下</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 320" font-family="-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <marker id="a1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#7c5cff"/>
+    </marker>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#c0392b"/>
+    </marker>
+    <style>
+      .box{fill:#f5f3ff;stroke:#7c5cff;stroke-width:1.5;}
+      .lbl{fill:#2d2a45;font-size:15px;font-weight:600;text-anchor:middle;}
+      .sub{fill:#6b6786;font-size:11px;text-anchor:middle;}
+      .good{stroke:#7c5cff;stroke-width:2.2;fill:none;}
+      .bad{stroke:#c0392b;stroke-width:2;fill:none;stroke-dasharray:6 4;}
+      .glbl{fill:#5a3ec8;font-size:12px;font-weight:600;text-anchor:middle;}
+      .blbl{fill:#c0392b;font-size:12px;font-weight:600;text-anchor:middle;}
+    </style>
+  </defs>
+
+  <text x="410" y="28" class="lbl" font-size="17">企业微信通知：动态家宽IP → 固定出口IP</text>
+
+  <!-- MP -->
+  <rect x="30" y="120" width="150" height="80" rx="10" class="box"/>
+  <text x="105" y="152" class="lbl">MoviePilot</text>
+  <text x="105" y="174" class="sub">httpx 请求</text>
+
+  <!-- mihomo -->
+  <rect x="270" y="120" width="150" height="80" rx="10" class="box"/>
+  <text x="345" y="150" class="lbl">mihomo</text>
+  <text x="345" y="172" class="sub">按域名分流</text>
+
+  <!-- 家宽直连(坏) -->
+  <rect x="510" y="230" width="270" height="70" rx="10" fill="#fdecea" stroke="#c0392b" stroke-width="1.5"/>
+  <text x="645" y="258" class="lbl" fill="#c0392b">家宽直连出口</text>
+  <text x="645" y="280" class="sub" fill="#c0392b">动态IP → 60020 不在白名单 ✕</text>
+
+  <!-- DMIT固定(好) -->
+  <rect x="510" y="90" width="270" height="70" rx="10" fill="#eafaf1" stroke="#2eb872" stroke-width="1.5"/>
+  <text x="645" y="118" class="lbl" fill="#1f7a4d">DMIT 节点固定IP</text>
+  <text x="645" y="140" class="sub" fill="#1f7a4d">154.x.x.x → 白名单填这一个 ✓</text>
+
+  <!-- MP -> mihomo -->
+  <path d="M182 160 L266 160" class="good" marker-end="url(#a1)"/>
+  <text x="224" y="150" class="glbl">HTTP_PROXY</text>
+
+  <!-- mihomo -> DMIT (规则命中) -->
+  <path d="M422 150 Q470 130 506 125" class="good" marker-end="url(#a1)"/>
+  <text x="470" y="118" class="glbl">qyapi 走 PROXY</text>
+
+  <!-- mihomo -> 家宽 (默认，被舍弃) -->
+  <path d="M422 175 Q470 220 506 258" class="bad" marker-end="url(#a2)"/>
+  <text x="452" y="235" class="blbl">默认直连(舍弃)</text>
+
+  <!-- 企业微信 -->
+  <rect x="640" y="8" width="150" height="50" rx="10" fill="#eafaf1" stroke="#2eb872" stroke-width="1.5"/>
+  <text x="715" y="30" class="lbl" fill="#1f7a4d" font-size="13">企业微信 API</text>
+  <text x="715" y="48" class="sub" fill="#1f7a4d">校验可信IP</text>
+  <path d="M690 90 L710 62" class="good" marker-end="url(#a1)"/>
+</svg>
