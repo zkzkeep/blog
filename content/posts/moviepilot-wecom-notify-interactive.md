@@ -1,6 +1,6 @@
 ---
 title: "给自托管 MoviePilot 配企业微信：从『收不到通知』到『发个片名就下片』"
-date: 2026-07-20T22:30:00+08:00
+date: 2026-07-20T21:20:00+08:00
 draft: false
 tags: ["MoviePilot", "企业微信", "飞牛OS", "NAS", "Docker", "网络排障", "mihomo"]
 categories: ["NAS", "折腾记录"]
