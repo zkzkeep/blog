@@ -66,6 +66,8 @@ environment:
 
 改完实测，`message/send` 返回 `errcode: 0, ok`——出口变成了固定IP，白名单里填它，动态IP的问题一劳永逸。
 
+![企业微信通知走固定出口IP的路由](/images/moviepilot-wecom-notify-interactive/1.svg)
+
 ## 坑三：直接写数据库，被 MP 覆盖了
 
 我图省事，把企业微信渠道配置直接 `INSERT` 进了 MP 的 `Notifications` 系统配置表，重启。测试消息（我手搓 httpx 发的）能收到，以为成了。
@@ -141,6 +143,8 @@ MP 日志里一条龙：
 秒回一个片单：1. 福贵（2005，余华《活着》改编，评分9.0）、2. 神厨小福贵、3. 贵人多旺事。回复数字就去搜资源、选种子、下载。
 
 **发片名 → 搜TMDB → 回列表 → 选编号 → 搜资源 → 下载**，全程在微信里点，人在外面也能点播。
+
+![微信双向交互点播流程](/images/moviepilot-wecom-notify-interactive/2.svg)
 
 ## 附赠坑五：改一次 compose，MP 就崩
 
