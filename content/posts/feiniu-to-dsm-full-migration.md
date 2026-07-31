@@ -1,6 +1,6 @@
 ---
 title: "从飞牛迁到黑群晖：六块盘、一个电源，和三次判断失误"
-date: 2026-07-31T15:40:00+08:00
+date: 2026-07-31T15:34:51+08:00
 draft: false
 tags: ["黑群晖", "Xpenology", "DSM", "飞牛", "fnOS", "NAS", "SHR", "Docker", "迁移", "硬件排障"]
 categories: ["NAS", "折腾记录"]
