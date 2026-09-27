@@ -2,10 +2,10 @@
 title: "补课二次（二）：顺着一根线，把 3/2 接线的和电流走一遍"
 date: 2026-09-27T21:30:00+08:00
 draft: false
+typora-root-url: /Users/leesdove/Documents/blog/static
 tags: ["变电运维", "继电保护", "二次回路", "CT", "学习笔记"]
 categories: ["电力"]
 summary: "从“CT 为什么不能开路”出发，拿着手机下到保护室，对着端子排、线号和图纸，把一条 500kV 线路保护的和电流从 CT 出发、穿过保护、安稳、录波再回到 CT 的整圈走通了。"
-typora-root-url: /Users/leesdove/Documents/blog/static
 ---
 
 上一篇学的是二次回路识图，写到 CT 那段时，我自己心里其实还是迷糊的：和电流到底在哪里"和"？中开关检修时，隔离 CT 要动哪几个端子？N 线要不要断？
@@ -24,7 +24,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 ## 二、为什么要"和电流"
 
-![图1：3/2 接线一个串](images/fig1-32-string.png)
+![图1：3/2 接线一个串](/images/ct-sum-current/1.png)
 
 一个完整串有三台开关：两台边开关（5031、5033）和一台中开关（5032）。本线路挂在 5031 和 5032 之间，流进线路的电流一部分从 5031 来，一部分从 5032 来。
 
@@ -60,7 +60,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 ### 端子排上的线号
 
-![照片1：第一套保护的电流端子](images/01-set1-terminals.jpg)
+![照片1：第一套保护的电流端子](/images/ct-sum-current/2.jpg)
 
 线号标签怎么读，以 `WXB31-101/1 A111` 为例：`WXB31-101` 是电缆编号，`/1` 是第 1 芯，`A111` 是回路号。
 
@@ -81,7 +81,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 ### 对照图纸
 
-![照片：第一套保护电流回路图纸（局部）](images/07-set1-schematic-crop.jpg)
+![照片：第一套保护电流回路图纸（局部）](/images/ct-sum-current/3.jpg)
 
 图纸把整条路说清楚了：
 
@@ -95,11 +95,11 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 ### 第一套 A 相走一整圈
 
-![图2：第一套保护 A 相完整回路](images/fig2-set1-loop.png)
+![图2：第一套保护 A 相完整回路](/images/ct-sum-current/4.png)
 
 ## 五、现场：第二套保护
 
-![照片2：第二套保护的电流端子](images/02-set2-terminals.jpg)
+![照片2：第二套保护的电流端子](/images/ct-sum-current/5.jpg)
 
 第二套用的是**另外一组 CT 绕组**，回路号是 121（5031）和 171（5032），端子编成 1、1A、2、2A……同样交替排列。两套保护用不同的电缆、不同的 CT 二次绕组，一套回路出问题不影响另一套，这才是真正的双重化。
 
@@ -107,7 +107,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 把端子排两侧的线号都对上以后，规律一下就出来了：
 
-![照片3：第二套端子排两侧的线号](images/03-set2-both-sides.jpg)
+![照片3：第二套端子排两侧的线号](/images/ct-sum-current/6.jpg)
 
 | 端子 | 电缆侧（右） | 屏内侧（左，去装置） | 作用 |
 |---|---|---|---|
@@ -125,13 +125,13 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 ### 黄色连接片才是汇合点
 
-![照片4：屏内侧的黄色连接片](images/04-set2-yellow-links.jpg)
+![照片4：屏内侧的黄色连接片](/images/ct-sum-current/7.jpg)
 
 第二套的汇合点不在进装置之前，而是在**出装置之后**：两个通道的出口分别回到 1ID5 和 1ID6，被一块黄色连接片连在一起，合成的和电流从 1ID5 以 A122 接出去，送往安稳主机B。
 
 这也解释了我一开始的疑惑：为什么进来的是两组（121 和 171），出去的却只有一组 122？因为两股电流在黄色连接片那里已经并成一股了。
 
-![图3：第二套保护 A 相完整回路](images/fig3-set2-loop.png)
+![图3：第二套保护 A 相完整回路](/images/ct-sum-current/8.png)
 
 这种接法的好处是装置能**分别看到**边开关和中开关的电流，可以单独判断每组 CT 是否断线。
 
@@ -158,7 +158,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 5032 转检修、两条线路继续运行时，要把 5032 的 CT 从和电流回路里拿出来。不拿出来，检修人员给 5032 CT 做通流试验，试验电流会串进运行中的线路保护，把好好的线路跳掉。
 
-![图4：隔离 5032 CT 的正确位置](images/fig4-isolation.png)
+![图4：隔离 5032 CT 的正确位置](/images/ct-sum-current/9.png)
 
 要点：
 
@@ -186,11 +186,11 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 
 ## 九、顺便认识了整面屏
 
-![照片5：整面屏侧视](images/05-panel-overview.jpg)
+![照片5：整面屏侧视](/images/ct-sum-current/10.jpg)
 
 端子排按功能分段：1UD 电压、1ID 电流，往下还有信号、遥信、录波、通信等段。屏里两个光纤终端盒标着 A、B，是纵联保护的双通道。最下面的铜排是屏内接地铜排，连到全站二次等电位接地网。
 
-![照片6：JD 段](images/06-jd-lighting.jpg)
+![照片6：JD 段](/images/ct-sum-current/11.jpg)
 
 这里有个小插曲。JD 段接着红蓝两色粗线，我第一反应是直流正负电源。其实电缆编号是 ZM51，ZM 就是照明：红线接 1、2 号端子是相线，蓝线接 3、4 号端子是中性线，两根电缆一进一出，照明电源在各屏之间串接。
 
