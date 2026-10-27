@@ -2,9 +2,10 @@
 title: '群晖CUPS远程打印踩坑记'
 date: 2026-10-21T20:30:00+08:00
 draft: false
+lastmod: 2026-10-27T15:50:00+08:00
 tags: ["群晖", "CUPS", "Tailscale", "打印机", "Shadowrocket", "排障"]
 categories: ["折腾记录"]
-description: "新到一台兄弟墨仓机，人不在家，想用群晖当打印服务器，在外面通过 Tailscale 打印，顺便每周自动打一张防堵头。一路踩了四个坑：群晖普通用户没有 ping 权限、Tailscale 用户空间模式撞上 CUPS 的本机检查、传文件被 401、小火箭把 Tailscale 流量拐到了美国。"
+description: "新到一台兄弟墨仓机，人不在家，想用群晖当打印服务器，在外面通过 Tailscale 打印，顺便每周自动打一张防堵头。一路踩了五个坑：群晖普通用户没有 ping 权限、Tailscale 用户空间模式撞上 CUPS 的本机检查、传文件被 401、小火箭把 Tailscale 流量拐到了美国、通用 PostScript 驱动把 PDF 撑大十几倍。"
 typora-root-url: /Users/leesdove/Documents/blog/static
 ---
 
@@ -13,7 +14,7 @@ typora-root-url: /Users/leesdove/Documents/blog/static
 1. **人在外面也能打印**：老师发来的作业，在外面就能直接打到家里。
 2. **每周自动打一张**：墨仓机最怕长期不用堵喷头，让它每周自己出一张纸，冲一冲喷头。
 
-思路很简单：群晖 24 小时开着，让它当打印服务器，外面通过 Tailscale 连回家。实际做下来踩了四个坑，每个坑的原因都不在我一开始以为的地方。记录一下。
+思路很简单：群晖 24 小时开着，让它当打印服务器，外面通过 Tailscale 连回家。实际做下来踩了五个坑，每个坑的原因都不在我一开始以为的地方。记录一下。
 
 ## 最终的样子
 
@@ -137,7 +138,7 @@ sudo /usr/local/bin/docker run -d \
 
 ## 坑三：Mac 打印，任务建了，文件没传过去
 
-在 Mac 上添加打印机：系统设置 → 打印机与扫描仪 → 添加 → IP，地址填 `sa6400:6631`，协议选 IPP，队列填 `printers/Brother_T436W`。
+在 Mac 上添加打印机：系统设置 → 打印机与扫描仪 → 添加 → IP，地址填 `sa6400:6631`，队列填 `printers/Brother_T436W`。我当时协议选的是 IPP，「使用」选了「通用 PostScript 打印机」，这一步后来证明是错的，正确选法见「坑五」。
 
 打印了一张，CUPS 里出现一个 **0k、held** 的任务，一直卡着不动。
 
@@ -213,6 +214,46 @@ pong from sa6400 via [240e:...]:41641 in 40ms
 
 顺带一提，浏览器访问 `100.x` 地址时走的是系统代理，`tun-excluded-routes` 管不到这一层。所以还要在 `skip-proxy` 里加上 `100.64.0.0/10`，前面那个 503 也就没了。
 
+## 坑五：通用 PostScript 把 PDF 撑大十几倍（10 月 27 日补）
+
+直连打通以后，有一次在外面打一份 28 页的 PDF，文件本身只有 2 MB 多，结果等了半个多小时才出纸。CUPS 的任务列表里，这个任务的大小是 **26583k**，差不多 26 MB。
+
+CUPS 默认会在 `/var/spool/cups` 里留一份收到的文件，看一眼开头就知道 Mac 发来的是什么：
+
+```bash
+sudo /usr/local/bin/docker exec cups sh -c 'for f in /var/spool/cups/d00018-*; do ls -la "$f"; head -c 40 "$f" | tr -c "[:print:]\n" "."; echo; done'
+```
+
+```
+-rw-r----- 1 root lp 27220036 Oct 27 14:57 /var/spool/cups/d00018-001
+%!PS-Adobe-3.0
+%APL_DSC_Encoding: UTF8
+```
+
+**是 PostScript。** 文件 14:57 开始写入，15:29 才打完，这半个多小时基本都花在传这 26 MB 上。
+
+问题出在添加打印机时选的「通用 PostScript 打印机」驱动。选了它，Mac 不发原 PDF，而是先把每一页转成 PostScript。纯文字页转出来很小，可这份 PDF 主要是扫描页，图片在 PDF 里是 JPEG 压缩的；转成 PostScript 时，图片常被解开成原始像素再编码进去，体积就涨了十几倍。
+
+解决办法是删掉这台打印机重新添加，地址和队列不变：
+
+- **协议选「隔空打印」**（就是 AirPrint，中文版 macOS 这么翻译）
+- 等它「收集打印机信息」，「使用」一栏会自动变成 **「DCP-T436W - IPP Everywhere」**
+
+这样 Mac 会先问 CUPS 收什么格式，CUPS 说收 PDF，Mac 就把 PDF 原样发过去，转格式这一步交给家里的群晖。改完试了一个 228 KB 的 PDF，CUPS 收到 251 KB，多出的那点是 Mac 按打印设置重新生成 PDF 的开销，不再是成倍膨胀。
+
+### 顺手：别让群晖留着打印过的文件
+
+上面能看到文件开头，是因为 CUPS 默认会保留打印过的文件，任务列表里那个「Reprint Job」按钮就靠它。家用打印机打的多是孩子作业、体检单这类东西，没必要在 NAS 上留底：
+
+```bash
+sudo /usr/local/bin/docker exec cups sh -c "grep -q '^PreserveJobFiles' /etc/cups/cupsd.conf && sed -i 's/^PreserveJobFiles.*/PreserveJobFiles No/' /etc/cups/cupsd.conf || echo 'PreserveJobFiles No' >> /etc/cups/cupsd.conf"
+sudo /usr/local/bin/docker exec cups sh -c 'rm -f /var/spool/cups/d000*'
+sudo /usr/local/bin/docker restart cups
+sudo /usr/local/bin/docker exec cups sh -c "cp -a /etc/cups/cupsd.conf /backup/"
+```
+
+第一条让以后打完不留文件，第二条删掉已经留下的。打印记录还在，只是不留内容。
+
 ## 每周自动保养
 
 一开始每周打的是 CUPS 自带的测试页。后来发现防堵头只要让四种颜色都喷一下就够了，于是换成一个 PostScript 小文件，左上角四个 2 厘米的色块：
@@ -237,16 +278,26 @@ EOF
 
 这张纸顺便还能当喷嘴检查用：哪个色块出现断线或发白，就说明那个颜色开始堵了。
 
+过了一周，查了一下有没有按时跑：
+
+```bash
+sudo /usr/syno/bin/synoschedtask --get
+sudo /usr/local/bin/docker exec cups lpstat -W completed -o
+```
+
+任务计划里显示 `Last Run Time: Sun Oct 25 10:00:01`、`Status: [Success]`；CUPS 那边对应一条 root 提交、1 KB 的任务，10:00:15 打完。每周保养确实在自己跑。
+
 插一句：媳妇儿说彩色墨刚灌满，一下就少了一小半。那不是测试页用掉的，是新机第一次开机做「初始充墨」，要把墨仓到喷头之间的墨管灌满，只有第一次会这样。
 
 ## 回头看
 
-四个坑里有两个，我第一次的判断都是错的：
+五个坑里有三个，我第一次的判断都是错的：
 
 - 加 `ServerAlias *` 去解决 400，结果对本机连接根本不起作用
 - 以为 Send-Document 失败是端口对不上，日志一看是 401
+- 打印慢的时候，以为换成「通用 PostScript」能让文件变小，结果恰恰是它把文件撑大的
 
-真正把问题钉死的，每次都是那几行原始输出：ping 的退出码、响应头里的 `Server:`、CUPS error_log 里那句 `Request from "localhost"`、access_log 里的 401、netcheck 里那个境外出口 IP。凭经验猜，猜对了能省时间，猜错了要多绕一圈。所以一旦有了假设，先找一条能证伪它的日志，比直接动手改配置划算。
+真正把问题钉死的，每次都是那几行原始输出：ping 的退出码、响应头里的 `Server:`、CUPS error_log 里那句 `Request from "localhost"`、access_log 里的 401、netcheck 里那个境外出口 IP、spool 文件开头那行 `%!PS-Adobe`。凭经验猜，猜对了能省时间，猜错了要多绕一圈。所以一旦有了假设，先找一条能证伪它的日志，比直接动手改配置划算。
 
 还有一点感受：Tailscale 用户空间模式、CUPS 的本机检查、Shadowrocket 的代理范围，这三样单独看都是合理的设计，凑在一起就出了问题。家庭网络里叠的东西越多，越要搞清楚一个包到底是从哪儿进、从哪儿出的。
 
