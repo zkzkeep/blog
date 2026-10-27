@@ -239,7 +239,7 @@ sudo /usr/local/bin/docker exec cups sh -c 'for f in /var/spool/cups/d00018-*; d
 - **协议选「隔空打印」**（就是 AirPrint，中文版 macOS 这么翻译）
 - 等它「收集打印机信息」，「使用」一栏会自动变成 **「DCP-T436W - IPP Everywhere」**
 
-这样 Mac 会先问 CUPS 收什么格式，CUPS 说收 PDF，Mac 就把 PDF 原样发过去，转格式这一步交给家里的群晖。改完试了一个 228 KB 的 PDF，CUPS 收到 251 KB，多出的那点是 Mac 按打印设置重新生成 PDF 的开销，不再是成倍膨胀。
+这样 Mac 会先问 CUPS 收什么格式，CUPS 说收 PDF，Mac 就发 PDF 过去，转成打印机格式这一步交给家里的群晖。严格说，Mac 发的不是原文件，而是按纸张、边距等打印设置重新生成的一份 PDF，体积会有些出入：一个 228 KB 的 PDF，CUPS 收到 251 KB；一个 1.9 MB 的，收到约 3 MB。但都在同一个量级，不像 PostScript 那样涨十几倍。
 
 ### 顺手：别让群晖留着打印过的文件
 
